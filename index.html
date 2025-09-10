@@ -1,0 +1,134 @@
+<!doctype html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>WaterUI — Modern Cross‑Platform UI for Rust</title>
+    <meta name="description" content="WaterUI: a modern, elegant Rust UI framework with native rendering, declarative and reactive." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Background: ripples + rain -->
+    <div class="bg" aria-hidden="true"></div>
+    <canvas id="rain" aria-hidden="true"></canvas>
+
+    <!-- Content -->
+    <header class="site-header">
+      <div class="brand">
+        <span class="logo">🌊</span>
+        <span class="title">WaterUI</span>
+      </div>
+      <nav class="nav">
+        <a href="https://github.com/water-rs/waterui" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://water-rs.github.io/waterui/" target="_blank" rel="noreferrer">Docs</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <div class="accent" aria-hidden="true"></div>
+      <h1>Future‑ready Rust UI framework</h1>
+      <p class="tagline">Elegant • Native rendering • Declarative • Reactive</p>
+      <div class="cta">
+        <a class="btn primary" href="https://water-rs.github.io/waterui/" target="_blank" rel="noreferrer">Get Started</a>
+        <a class="btn" href="https://github.com/water-rs/waterui" target="_blank" rel="noreferrer">View Repository</a>
+      </div>
+      <div class="quickstart">
+        <div class="quickstart-content">
+          <h2>Quick Start</h2>
+          <p>Get started with WaterUI in seconds</p>
+          <div class="command-card glass">
+            <div class="command-header">
+              <div class="command-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="command-title">Terminal</span>
+            </div>
+            <div class="command-body">
+              <div class="command-line">
+                <span class="prompt">$</span>
+                <span class="command">cargo install waterui-cli</span>
+              </div>
+              <div class="command-output">
+                <span class="output-text">Installing waterui-cli...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="code-card glass">
+        <pre><code class="language-rust">use waterui::prelude::*;
+
+pub fn counter() -> impl View {
+    let count = Binding::int(0);
+    let doubled = count.map(|n| n * 2);
+
+    vstack((
+        text!("Count: {count}"),
+        text!("Doubled: {doubled}")
+            .font_size(20),
+        hstack((
+            button("Increment")
+                .action_with(&count, |c| c.increment(1)),
+            button("Reset")
+                .action_with(&count, |c| c.set(0)),
+        ))
+    ))
+}
+        </code></pre>
+      </div>
+    </main>
+
+    <section class="features">
+      <div class="features-grid">
+        <div class="feature-card glass">
+          <div class="feature-icon">🚀</div>
+          <h3>Native Rendering</h3>
+          <p>True native rendering across all platforms with platform-specific optimizations for Apple, GTK4, and more.</p>
+        </div>
+        
+        <div class="feature-card glass">
+          <div class="feature-icon">⚡</div>
+          <h3>Fine-Grained Reactivity</h3>
+          <p>Vue-like reactive system with efficient updates without virtual DOM overhead.</p>
+        </div>
+        
+        <div class="feature-card glass">
+          <div class="feature-icon">🛡️</div>
+          <h3>Type-Safe</h3>
+          <p>Leverage Rust's powerful type system for compile-time guarantees and memory safety.</p>
+        </div>
+        
+        <div class="feature-card glass">
+          <div class="feature-icon">🌍</div>
+          <h3>Cross-Platform</h3>
+          <p>Write once, run everywhere — from desktop to mobile, even visionOS and watchOS.</p>
+        </div>
+        
+        <div class="feature-card glass">
+          <div class="feature-icon">🎨</div>
+          <h3>Declarative UI</h3>
+          <p>SwiftUI-like declarative syntax that's intuitive and expressive for building modern interfaces.</p>
+        </div>
+        
+        <div class="feature-card glass">
+          <div class="feature-icon">📱</div>
+          <h3>Modern Experience</h3>
+          <p>Developer experience inspired by React and SwiftUI with Rust's performance benefits.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>© 2025 WaterUI Contributors. CC-BY / MIT </p>
+    </footer>
+
+    <script src="scripts/rain.js" type="module"></script>
+    <script src="scripts/highlight.js" type="module"></script>
+  </body>
+  </html>
