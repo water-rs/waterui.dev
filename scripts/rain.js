@@ -38,7 +38,7 @@ function resetDrop(d) {
   d.speed = rand(320, 520) * dpr; // px/s
   d.thick = rand(0.6, 1.1) * dpr; // thickness
   d.wind = rand(-80, 80) * dpr; // drift per second
-  d.alpha = rand(0.08, 0.16);
+  d.alpha = rand(0.15, 0.28);
 }
 
 function createDrops(count){
@@ -111,9 +111,9 @@ function frame(ts){
 
 function start(){
   resize();
-  // density tuned for subtle effect across sizes
-  const density = Math.round((w * h) / (90000 * dpr * dpr));
-  createDrops(Math.max(40, Math.min(220, density)));
+  // density tuned for visible effect across sizes
+  const density = Math.round((w * h) / (60000 * dpr * dpr));
+  createDrops(Math.max(80, Math.min(350, density)));
   ripples.length = 0;
   last = 0;
   requestAnimationFrame(frame);
@@ -144,7 +144,7 @@ function spawnRipple(x, y){
     x, y,
     radius: rand(2, 6) * dpr,
     max,
-    alpha: rand(0.06, 0.12),
+    alpha: rand(0.12, 0.20),
     line: rand(0.8, 1.6) * dpr,
     grow: rand(120, 220) * dpr, // px/s
     fade: rand(0.2, 0.45),      // exponential fade factor per second (applied via pow)

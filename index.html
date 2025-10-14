@@ -22,8 +22,7 @@
         <span class="title">WaterUI</span>
       </div>
       <nav class="nav">
-        <a href="https://github.com/water-rs/waterui" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://water-rs.github.io/waterui/" target="_blank" rel="noreferrer">Docs</a>
+        <a href="#" target="_blank" rel="noreferrer">API Reference</a>
       </nav>
     </header>
 
@@ -49,13 +48,9 @@
               <span class="command-title">Terminal</span>
             </div>
             <div class="command-body">
-              <div class="command-line">
                 <span class="prompt">$</span>
                 <span class="command">cargo install waterui-cli</span>
-              </div>
-              <div class="command-output">
-                <span class="output-text">Installing waterui-cli...</span>
-              </div>
+
             </div>
           </div>
         </div>
@@ -66,14 +61,11 @@
 
 pub fn counter() -> impl View {
     let count = Binding::int(0);
-    let doubled = count.map(|n| n * 2);
-
+    
     vstack((
         text!("Count: {count}"),
-        text!("Doubled: {doubled}")
-            .font_size(20),
         hstack((
-            button("Increment")
+            button("+")
                 .action_with(&count, |c| c.increment(1)),
             button("Reset")
                 .action_with(&count, |c| c.set(0)),
