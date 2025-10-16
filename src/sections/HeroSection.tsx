@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState, type ChangeEvent } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import Button from "../components/Button";
 import Logo from "../components/Logo";
@@ -81,6 +81,13 @@ const HeroSection = () => {
   const flowCopyClasses = accentCopy[flowStage.accent];
   const workflowAccentClasses = accentBackground[selectedWorkflow.accent];
   const workflowCopyClasses = accentCopy[selectedWorkflow.accent];
+  const handleRoadmapClick = useCallback(() => {
+    const roadmapSection = document.getElementById("roadmap");
+
+    if (roadmapSection) {
+      roadmapSection.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
 
   return (
     <header className="relative overflow-hidden border border-water-black bg-water-ivory">
@@ -120,8 +127,12 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="flex flex-wrap gap-4">
-            <Button>Read the book</Button>
-            <Button variant="ghost">Explore the roadmap</Button>
+            <Button>
+              <a href="https://book.waterui.dev">Read the book</a>
+            </Button>
+            <Button variant="ghost" type="button" onClick={handleRoadmapClick}>
+              Explore the roadmap
+            </Button>
           </div>
         </div>
       </div>

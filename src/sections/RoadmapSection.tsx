@@ -74,7 +74,10 @@ const RoadmapSection = () => {
   const copy = accentCopy[selectedMilestone.accent];
 
   return (
-    <section className="grid gap-10 border border-water-black bg-water-ivory p-10">
+    <section
+      id="roadmap"
+      className="grid gap-10 border border-water-black bg-water-ivory p-10"
+    >
       <header className="grid gap-3">
         <p className="text-xs uppercase tracking-[0.4em] text-water-black">
           Course Chart
