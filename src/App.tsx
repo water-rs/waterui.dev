@@ -1,20 +1,34 @@
-import HeroSection from "./sections/HeroSection";
-import PrinciplesSection from "./sections/PrinciplesSection";
-import EcosystemSection from "./sections/EcosystemSection";
-import RoadmapSection from "./sections/RoadmapSection";
-import EndnoteSection from "./sections/EndnoteSection";
-import LayerSection from "./sections/LayerSection";
-const App = () => (
-  <div className="min-h-screen bg-water-ivory text-water-black">
-    <main className="mx-auto flex max-w-7xl flex-col gap-16 px-6 py-16 md:gap-20 md:px-10 md:py-24">
-      <HeroSection />
-      <PrinciplesSection />
-      <LayerSection />
-      <EcosystemSection />
-      <RoadmapSection />
-    </main>
-    <EndnoteSection />
-  </div>
-);
+import { useState, useEffect } from 'react'
+import Navigation from './components/Navigation'
+import Hero from './components/Hero'
+import ValuePropBar from './components/ValuePropBar'
+import QuickStart from './components/QuickStart'
+import Features from './components/Features'
+import Gallery from './components/Gallery'
+import Architecture from './components/Architecture'
+import Footer from './components/Footer'
 
-export default App;
+function App() {
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return (
+    <div className="min-h-screen bg-[#F0F0F0] overflow-x-hidden">
+      <Navigation />
+      <Hero scrollY={scrollY} />
+      <ValuePropBar />
+      <QuickStart />
+      <Features />
+      <Gallery />
+      <Architecture />
+      <Footer />
+    </div>
+  )
+}
+
+export default App
