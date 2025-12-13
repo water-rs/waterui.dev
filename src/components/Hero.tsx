@@ -1,8 +1,4 @@
-interface HeroProps {
-  scrollY: number;
-}
-
-export default function Hero({ scrollY }: HeroProps) {
+export default function Hero() {
   return (
     <div className="relative min-h-[85vh] flex flex-col md:flex-row border-b-4 border-black">
       {/* Left Content */}
