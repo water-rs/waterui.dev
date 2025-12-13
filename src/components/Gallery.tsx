@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const examples = [
   {
     id: 'form',
@@ -50,6 +52,12 @@ const examples = [
 ]
 
 export default function Gallery() {
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set())
+
+  const handleImageLoad = (id: string) => {
+    setLoadedImages(prev => new Set(prev).add(id))
+  }
+
   return (
     <section id="gallery" className="border-t-4 border-black bg-white py-20">
       <div className="max-w-7xl mx-auto px-6">
@@ -72,11 +80,27 @@ export default function Gallery() {
                 className="h-3 border-b-4 border-black"
                 style={{ backgroundColor: example.color }}
               />
-              <div className="aspect-[4/3] bg-gray-100 overflow-hidden border-b-4 border-black">
+              <div className="aspect-[4/3] bg-gray-100 overflow-hidden border-b-4 border-black relative">
+                {!loadedImages.has(example.id) && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="flex flex-col items-center gap-4">
+                      <div className="w-16 h-16 border-4 border-black relative">
+                        <div
+                          className="absolute inset-0 animate-pulse"
+                          style={{ backgroundColor: example.color }}
+                        />
+                      </div>
+                      <div className="text-xs font-bold tracking-wider">LOADING...</div>
+                    </div>
+                  </div>
+                )}
                 <img
                   src={example.image}
                   alt={`${example.title} example on ${example.platform}`}
-                  className="w-full h-full object-contain"
+                  className={`w-full h-full object-contain transition-opacity duration-300 ${
+                    loadedImages.has(example.id) ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  onLoad={() => handleImageLoad(example.id)}
                 />
               </div>
               <div className="p-6">

@@ -17,7 +17,7 @@ export default function QuickStart() {
     {
       id: 'install',
       step: '1. Install the CLI',
-      command: 'cargo install --path cli'
+      command: 'cargo install waterui-cli'
     },
     {
       id: 'create',
