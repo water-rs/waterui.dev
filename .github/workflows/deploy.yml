@@ -51,7 +51,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: >
-            pages publish ./dist
+            pages deploy ./dist
             --project-name=waterui-website
             --commit-hash=${{ github.sha }}
             --commit-message="${{ github.event.head_commit.message || 'CI deploy' }}"
