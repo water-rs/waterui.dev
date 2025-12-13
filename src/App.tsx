@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="min-h-screen bg-[#F0F0F0] overflow-x-hidden">
       <Navigation />
-      <Hero scrollY={scrollY} />
+      <Hero />
       <ValuePropBar />
       <QuickStart />
       <Features />
