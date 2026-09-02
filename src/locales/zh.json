@@ -30,7 +30,6 @@
     "view": "text!(\"Count: {count}\")",
     "decrement": "减一",
     "increment": "加一",
-    "rendered": "渲染结果",
     "caption": "值变了，读它的 view 就更新。其他什么都不碰。"
   },
   "targets": {

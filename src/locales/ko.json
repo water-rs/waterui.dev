@@ -30,7 +30,6 @@
     "view": "text!(\"Count: {count}\")",
     "decrement": "감소",
     "increment": "증가",
-    "rendered": "렌더링 결과",
     "caption": "값이 바뀌면 그것을 읽는 view만 갱신됩니다. 다른 것은 건드리지 않습니다."
   },
   "targets": {
@@ -39,11 +38,31 @@
     "lead": "하나의 view 트리, 다섯 개의 백엔드. 각 백엔드는 플랫폼 고유의 툴킷으로 말하고, 없으면 직접 그립니다.",
     "rendersThrough": "렌더링 방식",
     "items": {
-      "apple": { "platform": "iOS 및 macOS", "backend": "Apple", "renders": "UIKit / AppKit" },
-      "android": { "platform": "Android", "backend": "Android", "renders": "Android View" },
-      "gtk": { "platform": "Linux", "backend": "GTK4", "renders": "GTK4 위젯" },
-      "hydrolysis": { "platform": "macOS, Linux, Windows, 웹", "backend": "Hydrolysis", "renders": "자체 렌더링, GPU (Vello)" },
-      "dew": { "platform": "ESP32-S3 / ESP32-C3", "backend": "Dew", "renders": "자체 렌더링, CPU, 변경 영역만 갱신" }
+      "apple": {
+        "platform": "iOS 및 macOS",
+        "backend": "Apple",
+        "renders": "UIKit / AppKit"
+      },
+      "android": {
+        "platform": "Android",
+        "backend": "Android",
+        "renders": "Android View"
+      },
+      "gtk": {
+        "platform": "Linux",
+        "backend": "GTK4",
+        "renders": "GTK4 위젯"
+      },
+      "hydrolysis": {
+        "platform": "macOS, Linux, Windows, 웹",
+        "backend": "Hydrolysis",
+        "renders": "자체 렌더링, GPU (Vello)"
+      },
+      "dew": {
+        "platform": "ESP32-S3 / ESP32-C3",
+        "backend": "Dew",
+        "renders": "자체 렌더링, CPU, 변경 영역만 갱신"
+      }
     },
     "dewNote": "iPhone에서 UIKit 컨트롤이 되는 바로 그 view가 OS도 GPU도 없는 마이크로컨트롤러에서 그대로 실행됩니다."
   },
@@ -52,28 +71,121 @@
     "title": "상태",
     "lead": "상태는 그냥 값입니다. diff할 가상 트리가 없고, 문자열 하나를 바꿔도 주변 서브트리를 다시 만들지 않습니다.",
     "points": {
-      "binding": { "title": "Binding<T>는 가변 상태", "body": "값을 Binding에 넣고 view에 넘기세요. 그것을 읽는 view는 값이 바뀔 때 갱신됩니다." },
-      "computed": { "title": "Computed<T>는 파생 상태", "body": "Binding을 map하여 Computed로 만듭니다. 시그널 인식 API는 둘 다 받으며, 읽는 쪽만 갱신됩니다." },
-      "collections": { "title": "컬렉션은 id로 diff", "body": "List나 ForEach에 Identifiable 항목의 반응형 컬렉션을 주면 멤버 변화가 id 기준으로 diff됩니다." }
+      "binding": {
+        "title": "Binding<T>는 가변 상태",
+        "body": "값을 Binding에 넣고 view에 넘기세요. 그것을 읽는 view는 값이 바뀔 때 갱신됩니다."
+      },
+      "computed": {
+        "title": "Computed<T>는 파생 상태",
+        "body": "Binding을 map하여 Computed로 만듭니다. 시그널 인식 API는 둘 다 받으며, 읽는 쪽만 갱신됩니다."
+      },
+      "collections": {
+        "title": "컬렉션은 id로 diff",
+        "body": "List나 ForEach에 Identifiable 항목의 반응형 컬렉션을 주면 멤버 변화가 id 기준으로 diff됩니다."
+      }
     },
-    "flow": { "binding": "Binding", "computed": "Computed", "view": "View" }
+    "flow": {
+      "binding": "Binding",
+      "computed": "Computed",
+      "view": "View"
+    }
   },
   "features": {
     "eyebrow": "03",
     "title": "기본 제공",
     "lead": "레이아웃, 컨트롤, 폼, 내비게이션, 미디어, 차트, 그리고 그 주변의 플랫폼 서비스. 의존성은 하나뿐입니다.",
     "groups": {
-      "layout": { "title": "레이아웃과 텍스트", "items": ["vstack, hstack, zstack, grid, scroll", "CJK 폰트 폴백이 있는 타이포그래피", "오른쪽에서 왼쪽 레이아웃 방향", "Markdown이 내장된 리치 텍스트", "LLM 출력용 스트리밍 Markdown"] },
-      "controls": { "title": "컨트롤과 폼", "items": ["버튼, 텍스트 필드, 슬라이더, 스테퍼, 토글", "피커, 날짜 피커, 미디어 피커", "#[form]으로 struct에서 폼 전체를 도출", "id로 diff되는 List와 ForEach", "메뉴, 컨텍스트 메뉴, 스낵바"] },
-      "navigation": { "title": "내비게이션과 창", "items": ["내비게이션 스택과 탭", "타입이 있는 내비게이션 경로, serde로 영속화", "각자 스타일을 가진 다중 창", "환경에서 오는 로케일과 레이아웃 방향", "테마 시스템, Material 3 포함"] },
-      "graphics": { "title": "그래픽과 모션", "items": ["Canvas, 도형, 클리핑, 그라데이션, SVG", "GPU 이미지 필터와 셰이더 서피스", "GPU 파티클", "결정적 프레임 클록 위의 애니메이션", "제스처, 호버, 커서, 드래그 앤 드롭"] },
-      "media": { "title": "미디어와 데이터", "items": ["비디오와 오디오 재생", "실시간 오디오 비주얼라이저", "차트, 일반적인 유형 모두", "지도", "바코드와 웹뷰: WebKit, CEF, WPE, Chromium"] },
-      "icons": { "title": "아이콘", "items": ["SF Symbols", "Material Symbols", "Lucide", "Font Awesome 7", "플랫폼별 네이티브 아이콘, 하나의 API"] }
+      "layout": {
+        "title": "레이아웃과 텍스트",
+        "items": [
+          "vstack, hstack, zstack, grid, scroll",
+          "CJK 폰트 폴백이 있는 타이포그래피",
+          "오른쪽에서 왼쪽 레이아웃 방향",
+          "Markdown이 내장된 리치 텍스트",
+          "LLM 출력용 스트리밍 Markdown"
+        ]
+      },
+      "controls": {
+        "title": "컨트롤과 폼",
+        "items": [
+          "버튼, 텍스트 필드, 슬라이더, 스테퍼, 토글",
+          "피커, 날짜 피커, 미디어 피커",
+          "#[form]으로 struct에서 폼 전체를 도출",
+          "id로 diff되는 List와 ForEach",
+          "메뉴, 컨텍스트 메뉴, 스낵바"
+        ]
+      },
+      "navigation": {
+        "title": "내비게이션과 창",
+        "items": [
+          "내비게이션 스택과 탭",
+          "타입이 있는 내비게이션 경로, serde로 영속화",
+          "각자 스타일을 가진 다중 창",
+          "환경에서 오는 로케일과 레이아웃 방향",
+          "테마 시스템, Material 3 포함"
+        ]
+      },
+      "graphics": {
+        "title": "그래픽과 모션",
+        "items": [
+          "Canvas, 도형, 클리핑, 그라데이션, SVG",
+          "GPU 이미지 필터와 셰이더 서피스",
+          "GPU 파티클",
+          "결정적 프레임 클록 위의 애니메이션",
+          "제스처, 호버, 커서, 드래그 앤 드롭"
+        ]
+      },
+      "media": {
+        "title": "미디어와 데이터",
+        "items": [
+          "비디오와 오디오 재생",
+          "실시간 오디오 비주얼라이저",
+          "차트, 일반적인 유형 모두",
+          "지도",
+          "바코드와 웹뷰: WebKit, CEF, WPE, Chromium"
+        ]
+      },
+      "icons": {
+        "title": "아이콘",
+        "items": [
+          "SF Symbols",
+          "Material Symbols",
+          "Lucide",
+          "Font Awesome 7",
+          "플랫폼별 네이티브 아이콘, 하나의 API"
+        ]
+      }
     },
     "kit": {
       "title": "WaterKit",
       "lead": "UI 주변의 플랫폼 서비스. 기능마다 하나의 Rust API, 플랫폼마다 네이티브 구현.",
-      "items": ["카메라", "위치", "알림", "권한", "생체 인증", "패스키", "Bluetooth", "NFC", "햅틱", "클립보드", "연락처", "캘린더", "건강", "센서", "보안 저장소", "공유 시트", "음성", "딥링크", "대화상자", "파일 시스템", "오디오", "비디오", "화면", "백그라운드 작업", "시스템 정보"]
+      "items": [
+        "카메라",
+        "위치",
+        "알림",
+        "권한",
+        "생체 인증",
+        "패스키",
+        "Bluetooth",
+        "NFC",
+        "햅틱",
+        "클립보드",
+        "연락처",
+        "캘린더",
+        "건강",
+        "센서",
+        "보안 저장소",
+        "공유 시트",
+        "음성",
+        "딥링크",
+        "대화상자",
+        "파일 시스템",
+        "오디오",
+        "비디오",
+        "화면",
+        "백그라운드 작업",
+        "시스템 정보"
+      ]
     },
     "testing": {
       "title": "테스트",
@@ -84,7 +196,12 @@
     "eyebrow": "04",
     "title": "미리보기",
     "lead": "#[preview]가 붙은 함수는 앱을 실행하지 않고도 이미지로 렌더링됩니다. 같은 기반이 시맨틱 상호작용 테스트와 GPU 측정도 구동합니다.",
-    "commands": { "render": "view를 PNG로 렌더링", "frame": "프레임 크기 지정", "test": "시맨틱 상호작용 테스트 실행", "perf": "GPU 비용 측정" },
+    "commands": {
+      "render": "view를 PNG로 렌더링",
+      "frame": "프레임 크기 지정",
+      "test": "시맨틱 상호작용 테스트 실행",
+      "perf": "GPU 비용 측정"
+    },
     "imageCaption": "{{example}} 예제에 대한 water preview 출력.",
     "dogfood": "이 페이지의 모든 스크린샷은 이 방법으로 만들어졌습니다."
   },
@@ -92,12 +209,19 @@
     "eyebrow": "05",
     "title": "빠른 시작",
     "lead": "playground는 평범한 Rust 크레이트입니다. CLI가 네이티브 프로젝트를 소스 트리 밖에 두고 필요할 때 관리합니다.",
-    "steps": { "install": "CLI 설치", "create": "playground 만들기", "run": "호스트에서 실행" },
+    "steps": {
+      "install": "CLI 설치",
+      "create": "playground 만들기",
+      "run": "호스트에서 실행"
+    },
     "copy": "복사",
     "copied": "복사됨",
     "elsewhere": "다른 곳에서 실행하려면",
     "entryPoint": "진입점은 이게 전부입니다. 앱 크레이트는 waterui에만 의존합니다.",
-    "tools": { "doctor": "툴체인에 빠진 것을 보고", "devices": "시뮬레이터와 연결된 기기 목록" },
+    "tools": {
+      "doctor": "툴체인에 빠진 것을 보고",
+      "devices": "시뮬레이터와 연결된 기기 목록"
+    },
     "shipping": "출시 준비가 되셨나요? App 모드는 여러분 소유의 플랫폼 프로젝트를 생성하므로 커스터마이즈, 서명, 패키징이 가능합니다.",
     "shippingLink": "App 모드 알아보기"
   },

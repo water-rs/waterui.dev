@@ -30,7 +30,6 @@
     "view": "text!(\"Count: {count}\")",
     "decrement": "Verringern",
     "increment": "Erhöhen",
-    "rendered": "gerendert",
     "caption": "Ein Wert ändert sich, seine Leser aktualisieren sich. Sonst wird nichts angefasst."
   },
   "targets": {
@@ -39,11 +38,31 @@
     "lead": "Ein View-Baum, fünf Backends. Jedes spricht das Toolkit seiner Plattform oder zeichnet die View selbst, wenn es keines gibt.",
     "rendersThrough": "Rendert über",
     "items": {
-      "apple": { "platform": "iOS und macOS", "backend": "Apple", "renders": "UIKit / AppKit" },
-      "android": { "platform": "Android", "backend": "Android", "renders": "Android Views" },
-      "gtk": { "platform": "Linux", "backend": "GTK4", "renders": "GTK4-Widgets" },
-      "hydrolysis": { "platform": "macOS, Linux, Windows, Web", "backend": "Hydrolysis", "renders": "Selbst gezeichnet, GPU über Vello" },
-      "dew": { "platform": "ESP32-S3 / ESP32-C3", "backend": "Dew", "renders": "Selbst gezeichnet, CPU, nur geänderte Bereiche" }
+      "apple": {
+        "platform": "iOS und macOS",
+        "backend": "Apple",
+        "renders": "UIKit / AppKit"
+      },
+      "android": {
+        "platform": "Android",
+        "backend": "Android",
+        "renders": "Android Views"
+      },
+      "gtk": {
+        "platform": "Linux",
+        "backend": "GTK4",
+        "renders": "GTK4-Widgets"
+      },
+      "hydrolysis": {
+        "platform": "macOS, Linux, Windows, Web",
+        "backend": "Hydrolysis",
+        "renders": "Selbst gezeichnet, GPU über Vello"
+      },
+      "dew": {
+        "platform": "ESP32-S3 / ESP32-C3",
+        "backend": "Dew",
+        "renders": "Selbst gezeichnet, CPU, nur geänderte Bereiche"
+      }
     },
     "dewNote": "Dieselbe View, die auf dem iPhone ein UIKit-Control wird, läuft auf einem Mikrocontroller ohne Betriebssystem und ohne GPU."
   },
@@ -52,28 +71,121 @@
     "title": "Zustand",
     "lead": "Zustand besteht aus einfachen Werten. Es gibt keinen virtuellen Baum zum Vergleichen, und eine geänderte Zeichenkette baut nie den Teilbaum um sie herum neu.",
     "points": {
-      "binding": { "title": "Binding<T> ist veränderlicher Zustand", "body": "Lege einen Wert in ein Binding und reiche es an Views weiter. Jede View, die es liest, aktualisiert sich bei Änderungen." },
-      "computed": { "title": "Computed<T> ist abgeleiteter Zustand", "body": "Bilde ein Binding per map auf ein Computed ab. Signal-bewusste APIs nehmen beides an, und nur ihre Leser aktualisieren sich." },
-      "collections": { "title": "Sammlungen werden nach Identität verglichen", "body": "Gib List oder ForEach eine reaktive Sammlung von Identifiable-Elementen, und Änderungen der Mitgliedschaft werden nach id verglichen." }
+      "binding": {
+        "title": "Binding<T> ist veränderlicher Zustand",
+        "body": "Lege einen Wert in ein Binding und reiche es an Views weiter. Jede View, die es liest, aktualisiert sich bei Änderungen."
+      },
+      "computed": {
+        "title": "Computed<T> ist abgeleiteter Zustand",
+        "body": "Bilde ein Binding per map auf ein Computed ab. Signal-bewusste APIs nehmen beides an, und nur ihre Leser aktualisieren sich."
+      },
+      "collections": {
+        "title": "Sammlungen werden nach Identität verglichen",
+        "body": "Gib List oder ForEach eine reaktive Sammlung von Identifiable-Elementen, und Änderungen der Mitgliedschaft werden nach id verglichen."
+      }
     },
-    "flow": { "binding": "Binding", "computed": "Computed", "view": "View" }
+    "flow": {
+      "binding": "Binding",
+      "computed": "Computed",
+      "view": "View"
+    }
   },
   "features": {
     "eyebrow": "03",
     "title": "Im Lieferumfang",
     "lead": "Layouts, Controls, Formulare, Navigation, Medien, Diagramme und die Plattformdienste drumherum. Eine einzige Abhängigkeit.",
     "groups": {
-      "layout": { "title": "Layout und Text", "items": ["vstack, hstack, zstack, grid, scroll", "Typografie mit CJK-Schriftfallback", "Layoutrichtung rechts-nach-links", "Rich Text mit eingebautem Markdown", "Streaming-Markdown für LLM-Ausgaben"] },
-      "controls": { "title": "Controls und Formulare", "items": ["Buttons, Textfelder, Slider, Stepper, Toggles", "Picker, Datums- und Medien-Picker", "#[form] leitet ein ganzes Formular aus einem Struct ab", "Lists und ForEach, nach id verglichen", "Menüs, Kontextmenüs, Snackbars"] },
-      "navigation": { "title": "Navigation und Fenster", "items": ["Navigationsstacks und Tabs", "Typisierte Navigationspfade, mit serde persistiert", "Mehrere Fenster mit eigenen Stilen", "Locale und Layoutrichtung aus der Umgebung", "Themesystem, Material 3 inklusive"] },
-      "graphics": { "title": "Grafik und Bewegung", "items": ["Canvas, Formen, Clipping, Verläufe, SVG", "GPU-Bildfilter und Shader-Oberflächen", "GPU-Partikel", "Animation auf einer deterministischen Frame-Uhr", "Gesten, Hover, Cursor, Drag and Drop"] },
-      "media": { "title": "Medien und Daten", "items": ["Video- und Audiowiedergabe", "Audio-Visualizer in Echtzeit", "Diagramme, alle gängigen Typen", "Karten", "Barcodes und Webviews: WebKit, CEF, WPE, Chromium"] },
-      "icons": { "title": "Icons", "items": ["SF Symbols", "Material Symbols", "Lucide", "Font Awesome 7", "Natives Icon pro Plattform, eine API"] }
+      "layout": {
+        "title": "Layout und Text",
+        "items": [
+          "vstack, hstack, zstack, grid, scroll",
+          "Typografie mit CJK-Schriftfallback",
+          "Layoutrichtung rechts-nach-links",
+          "Rich Text mit eingebautem Markdown",
+          "Streaming-Markdown für LLM-Ausgaben"
+        ]
+      },
+      "controls": {
+        "title": "Controls und Formulare",
+        "items": [
+          "Buttons, Textfelder, Slider, Stepper, Toggles",
+          "Picker, Datums- und Medien-Picker",
+          "#[form] leitet ein ganzes Formular aus einem Struct ab",
+          "Lists und ForEach, nach id verglichen",
+          "Menüs, Kontextmenüs, Snackbars"
+        ]
+      },
+      "navigation": {
+        "title": "Navigation und Fenster",
+        "items": [
+          "Navigationsstacks und Tabs",
+          "Typisierte Navigationspfade, mit serde persistiert",
+          "Mehrere Fenster mit eigenen Stilen",
+          "Locale und Layoutrichtung aus der Umgebung",
+          "Themesystem, Material 3 inklusive"
+        ]
+      },
+      "graphics": {
+        "title": "Grafik und Bewegung",
+        "items": [
+          "Canvas, Formen, Clipping, Verläufe, SVG",
+          "GPU-Bildfilter und Shader-Oberflächen",
+          "GPU-Partikel",
+          "Animation auf einer deterministischen Frame-Uhr",
+          "Gesten, Hover, Cursor, Drag and Drop"
+        ]
+      },
+      "media": {
+        "title": "Medien und Daten",
+        "items": [
+          "Video- und Audiowiedergabe",
+          "Audio-Visualizer in Echtzeit",
+          "Diagramme, alle gängigen Typen",
+          "Karten",
+          "Barcodes und Webviews: WebKit, CEF, WPE, Chromium"
+        ]
+      },
+      "icons": {
+        "title": "Icons",
+        "items": [
+          "SF Symbols",
+          "Material Symbols",
+          "Lucide",
+          "Font Awesome 7",
+          "Natives Icon pro Plattform, eine API"
+        ]
+      }
     },
     "kit": {
       "title": "WaterKit",
       "lead": "Die Plattformdienste rund um die UI: eine Rust-API pro Fähigkeit, eine native Implementierung pro Plattform.",
-      "items": ["Kamera", "Standort", "Benachrichtigungen", "Berechtigungen", "Biometrie", "Passkeys", "Bluetooth", "NFC", "Haptik", "Zwischenablage", "Kontakte", "Kalender", "Gesundheit", "Sensoren", "Sicherer Speicher", "Teilen-Dialog", "Sprache", "Deep Links", "Dialoge", "Dateisystem", "Audio", "Video", "Bildschirm", "Hintergrundaufgaben", "Systeminfo"]
+      "items": [
+        "Kamera",
+        "Standort",
+        "Benachrichtigungen",
+        "Berechtigungen",
+        "Biometrie",
+        "Passkeys",
+        "Bluetooth",
+        "NFC",
+        "Haptik",
+        "Zwischenablage",
+        "Kontakte",
+        "Kalender",
+        "Gesundheit",
+        "Sensoren",
+        "Sicherer Speicher",
+        "Teilen-Dialog",
+        "Sprache",
+        "Deep Links",
+        "Dialoge",
+        "Dateisystem",
+        "Audio",
+        "Video",
+        "Bildschirm",
+        "Hintergrundaufgaben",
+        "Systeminfo"
+      ]
     },
     "testing": {
       "title": "Testen",
@@ -84,7 +196,12 @@
     "eyebrow": "04",
     "title": "Vorschauen",
     "lead": "Jede mit #[preview] markierte Funktion wird zu einem Bild gerendert, ohne die App zu starten. Dieselbe Basis treibt semantische Interaktionstests und GPU-Messungen an.",
-    "commands": { "render": "Eine View als PNG rendern", "frame": "Die Rahmengröße wählen", "test": "Semantische Interaktionstests ausführen", "perf": "GPU-Kosten messen" },
+    "commands": {
+      "render": "Eine View als PNG rendern",
+      "frame": "Die Rahmengröße wählen",
+      "test": "Semantische Interaktionstests ausführen",
+      "perf": "GPU-Kosten messen"
+    },
     "imageCaption": "Ausgabe von water preview für das Beispiel {{example}}.",
     "dogfood": "Jeder Screenshot auf dieser Seite ist so entstanden."
   },
@@ -92,12 +209,19 @@
     "eyebrow": "05",
     "title": "Schnellstart",
     "lead": "Ein Playground ist eine gewöhnliche Rust-Crate. Die CLI hält native Projekte aus dem Quellbaum heraus und verwaltet sie bei Bedarf.",
-    "steps": { "install": "CLI installieren", "create": "Playground anlegen", "run": "Auf dem Host ausführen" },
+    "steps": {
+      "install": "CLI installieren",
+      "create": "Playground anlegen",
+      "run": "Auf dem Host ausführen"
+    },
     "copy": "Kopieren",
     "copied": "Kopiert",
     "elsewhere": "Woanders ausführen",
     "entryPoint": "Das ist der ganze Einstiegspunkt. Die App-Crate hängt von waterui ab und von nichts sonst.",
-    "tools": { "doctor": "meldet, was einer Toolchain fehlt", "devices": "listet Simulatoren und verbundene Geräte" },
+    "tools": {
+      "doctor": "meldet, was einer Toolchain fehlt",
+      "devices": "listet Simulatoren und verbundene Geräte"
+    },
     "shipping": "Bereit zum Ausliefern? Der App-Modus erzeugt Plattformprojekte, die dir gehören, sodass sie angepasst, signiert und paketiert werden können.",
     "shippingLink": "Mehr zum App-Modus"
   },

@@ -30,7 +30,6 @@
     "view": "text!(\"Count: {count}\")",
     "decrement": "Decrement",
     "increment": "Increment",
-    "rendered": "rendered",
     "caption": "A value changes, its readers update. Nothing else is touched."
   },
   "targets": {
