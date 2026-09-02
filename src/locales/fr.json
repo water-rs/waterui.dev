@@ -1,0 +1,254 @@
+{
+  "meta": {
+    "title": "WaterUI — UI multiplateforme pour Rust",
+    "description": "Écrivez une fois, appliquez partout. WaterUI est un framework d'interface multiplateforme pour Rust qui rend via UIKit, AppKit, Android Views, GTK4, le GPU ou un ESP32."
+  },
+  "nav": {
+    "book": "Guide",
+    "api": "API",
+    "examples": "Exemples",
+    "github": "GitHub",
+    "menu": "Menu",
+    "closeMenu": "Fermer le menu",
+    "language": "Langue",
+    "theme": "Thème",
+    "themeSystem": "Système",
+    "themeLight": "Clair",
+    "themeDark": "Sombre"
+  },
+  "hero": {
+    "eyebrow": "Framework d'interface multiplateforme pour Rust",
+    "titleLine1": "Écrivez une fois,",
+    "titleLine2": "appliquez partout.",
+    "lead": "WaterUI projette chaque vue sur la boîte à outils propre à la plateforme : UIKit, AppKit, Android Views, GTK4. Là où rien de natif ne convient, il dessine la vue lui-même, sur le GPU ou sur un microcontrôleur.",
+    "ctaStart": "Commencer",
+    "ctaBook": "Lire le guide",
+    "status": "Avant 1.0 · Apple et Android sont les backends les plus complets"
+  },
+  "bond": {
+    "binding": "Binding<i32>",
+    "view": "text!(\"Count: {count}\")",
+    "decrement": "Décrémenter",
+    "increment": "Incrémenter",
+    "caption": "Une valeur change, ses lecteurs se mettent à jour. Rien d'autre n'est touché."
+  },
+  "targets": {
+    "eyebrow": "01",
+    "title": "Cibles",
+    "lead": "Un seul arbre de vues, cinq backends. Chacun parle la boîte à outils de sa plateforme, ou dessine la vue lui-même quand il n'y en a pas.",
+    "rendersThrough": "Rend via",
+    "items": {
+      "apple": {
+        "platform": "iOS et macOS",
+        "backend": "Apple",
+        "renders": "UIKit / AppKit"
+      },
+      "android": {
+        "platform": "Android",
+        "backend": "Android",
+        "renders": "Android Views"
+      },
+      "gtk": {
+        "platform": "Linux",
+        "backend": "GTK4",
+        "renders": "Widgets GTK4"
+      },
+      "hydrolysis": {
+        "platform": "macOS, Linux, Windows, web",
+        "backend": "Hydrolysis",
+        "renders": "Dessin propre, GPU via Vello"
+      },
+      "dew": {
+        "platform": "ESP32-S3 / ESP32-C3",
+        "backend": "Dew",
+        "renders": "Dessin propre, CPU, zones modifiées"
+      }
+    },
+    "dewNote": "La même vue qui devient un contrôle UIKit sur un iPhone tourne sur un microcontrôleur sans OS ni GPU."
+  },
+  "reactivity": {
+    "eyebrow": "02",
+    "title": "État",
+    "lead": "L'état, ce sont des valeurs ordinaires. Il n'y a pas d'arbre virtuel à comparer, et changer une chaîne ne reconstruit jamais le sous-arbre autour d'elle.",
+    "points": {
+      "binding": {
+        "title": "Binding<T> est l'état mutable",
+        "body": "Placez une valeur dans un Binding et confiez-le aux vues. Toute vue qui le lit se met à jour quand il change."
+      },
+      "computed": {
+        "title": "Computed<T> est l'état dérivé",
+        "body": "Appliquez map à un Binding pour obtenir un Computed. Les API sensibles aux signaux acceptent l'un comme l'autre, et seuls leurs lecteurs se mettent à jour."
+      },
+      "collections": {
+        "title": "Les collections sont comparées par identité",
+        "body": "Donnez à List ou ForEach une collection réactive d'éléments Identifiable, et les changements de composition sont comparés par id."
+      }
+    },
+    "flow": {
+      "binding": "Binding",
+      "computed": "Computed",
+      "view": "View"
+    }
+  },
+  "features": {
+    "eyebrow": "03",
+    "title": "Inclus",
+    "lead": "Mises en page, contrôles, formulaires, navigation, médias, graphiques, et les services de plateforme autour. Une seule dépendance.",
+    "groups": {
+      "layout": {
+        "title": "Mise en page et texte",
+        "items": [
+          "vstack, hstack, zstack, grid, scroll",
+          "Typographie avec repli de police CJC",
+          "Sens de mise en page de droite à gauche",
+          "Texte riche avec Markdown intégré",
+          "Markdown en flux pour les sorties de LLM"
+        ]
+      },
+      "controls": {
+        "title": "Contrôles et formulaires",
+        "items": [
+          "Boutons, champs de texte, curseurs, steppers, interrupteurs",
+          "Sélecteurs, sélecteurs de date et de médias",
+          "#[form] dérive un formulaire entier d'une struct",
+          "List et ForEach comparés par id",
+          "Menus, menus contextuels, snackbars"
+        ]
+      },
+      "navigation": {
+        "title": "Navigation et fenêtres",
+        "items": [
+          "Piles de navigation et onglets",
+          "Chemins de navigation typés, persistés avec serde",
+          "Plusieurs fenêtres avec leurs propres styles",
+          "Locale et sens de mise en page depuis l'environnement",
+          "Système de thèmes, Material 3 inclus"
+        ]
+      },
+      "graphics": {
+        "title": "Graphisme et mouvement",
+        "items": [
+          "Canvas, formes, découpe, dégradés, SVG",
+          "Filtres d'image GPU et surfaces de shaders",
+          "Particules GPU",
+          "Animation sur une horloge d'images déterministe",
+          "Gestes, survol, curseur, glisser-déposer"
+        ]
+      },
+      "media": {
+        "title": "Médias et données",
+        "items": [
+          "Lecture vidéo et audio",
+          "Visualiseur audio en temps réel",
+          "Graphiques, tous les types courants",
+          "Cartes",
+          "Codes-barres et vues web : WebKit, CEF, WPE, Chromium"
+        ]
+      },
+      "icons": {
+        "title": "Icônes",
+        "items": [
+          "SF Symbols",
+          "Material Symbols",
+          "Lucide",
+          "Font Awesome 7",
+          "Icône native par plateforme, une seule API"
+        ]
+      }
+    },
+    "kit": {
+      "title": "WaterKit",
+      "lead": "Les services de plateforme autour de l'interface : une API Rust par capacité, une implémentation native par plateforme.",
+      "items": [
+        "Caméra",
+        "Localisation",
+        "Notifications",
+        "Permissions",
+        "Biométrie",
+        "Passkeys",
+        "Bluetooth",
+        "NFC",
+        "Haptique",
+        "Presse-papiers",
+        "Contacts",
+        "Calendrier",
+        "Santé",
+        "Capteurs",
+        "Stockage sécurisé",
+        "Feuille de partage",
+        "Voix",
+        "Liens profonds",
+        "Boîtes de dialogue",
+        "Système de fichiers",
+        "Audio",
+        "Vidéo",
+        "Écran",
+        "Tâches en arrière-plan",
+        "Infos système"
+      ]
+    },
+    "testing": {
+      "title": "Tests",
+      "lead": "Des tests fondés sur l'accessibilité tournent sous un simple cargo test face au moteur Hydrolysis. Ni simulateur, ni appareil. Les interactions sont des assertions, et chaque attente pompe jusqu'au repos au lieu de dormir."
+    }
+  },
+  "previews": {
+    "eyebrow": "04",
+    "title": "Aperçus",
+    "lead": "Toute fonction marquée #[preview] se rend en image sans lancer l'application. La même base pilote les tests d'interaction sémantiques et les mesures GPU.",
+    "commands": {
+      "render": "Rendre une vue en PNG",
+      "frame": "Choisir la taille du cadre",
+      "test": "Lancer les tests d'interaction sémantiques",
+      "perf": "Mesurer le coût GPU"
+    },
+    "imageCaption": "Sortie de water preview sur l'exemple {{example}}.",
+    "dogfood": "Chaque capture de cette page a été produite ainsi."
+  },
+  "quickStart": {
+    "eyebrow": "05",
+    "title": "Démarrage rapide",
+    "lead": "Un playground est une crate Rust ordinaire. La CLI garde les projets natifs hors de votre arborescence et les gère à la demande.",
+    "steps": {
+      "install": "Installer la CLI",
+      "create": "Créer un playground",
+      "run": "L'exécuter sur l'hôte"
+    },
+    "copy": "Copier",
+    "copied": "Copié",
+    "elsewhere": "Pour l'exécuter ailleurs",
+    "entryPoint": "C'est là tout le point d'entrée. La crate de l'application dépend de waterui et de rien d'autre.",
+    "tools": {
+      "doctor": "signale ce qui manque à une chaîne d'outils",
+      "devices": "liste les simulateurs et les appareils connectés"
+    },
+    "shipping": "Prêt à livrer ? Le mode App génère des projets de plateforme qui vous appartiennent, pour les personnaliser, les signer et les empaqueter.",
+    "shippingLink": "En savoir plus sur le mode App"
+  },
+  "gallery": {
+    "eyebrow": "06",
+    "title": "Exemples",
+    "lead": "Des applications exécutables du dépôt, rendues par la commande d'aperçu du framework lui-même.",
+    "items": {
+      "gallery": "Vitrine large des composants",
+      "form": "Formulaires dérivés et projection réactive des champs",
+      "navigation": "Piles, onglets et état de navigation",
+      "flow_markdown": "Rendu Markdown en flux",
+      "map": "Composant carte selon les réalisations de chaque plateforme",
+      "video_player": "État de lecture et contrôles",
+      "filter": "Filtres d'image GPU"
+    },
+    "viewAll": "Tous les exemples sur GitHub",
+    "runOne": "En lancer un depuis un checkout"
+  },
+  "footer": {
+    "tagline": "Écrivez une fois, appliquez partout.",
+    "book": "Guide",
+    "api": "Référence API",
+    "github": "GitHub",
+    "discord": "Discord",
+    "twitter": "X",
+    "license": "MIT ou Apache 2.0, au choix.",
+    "contributing": "Visez la branche dev. Ouvrez une issue avant tout changement important."
+  }
+}
