@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "title": "WaterUI — Rust 跨平台 UI 框架",
+    "description": "写一次，处处适用。WaterUI 是 Rust 跨平台 UI 框架，通过 UIKit、AppKit、Android View、GTK4、GPU 或 ESP32 渲染。"
+  },
+  "nav": {
+    "book": "文档",
+    "api": "API",
+    "examples": "示例",
+    "github": "GitHub",
+    "menu": "菜单",
+    "closeMenu": "关闭菜单",
+    "language": "语言",
+    "theme": "主题",
+    "themeSystem": "跟随系统",
+    "themeLight": "浅色",
+    "themeDark": "深色"
+  },
+  "hero": {
+    "eyebrow": "Rust 跨平台 UI 框架",
+    "titleLine1": "写一次，",
+    "titleLine2": "处处适用。",
+    "lead": "WaterUI 把每个 view 映射到平台自己的工具包：UIKit、AppKit、Android View、GTK4。没有合适的原生控件时，它自己绘制：在 GPU 上，或者在单片机上。",
+    "ctaStart": "开始使用",
+    "ctaBook": "阅读文档",
+    "status": "1.0 之前 · Apple 与 Android 后端最完整"
+  },
+  "bond": {
+    "binding": "Binding<i32>",
+    "view": "text!(\"Count: {count}\")",
+    "decrement": "减一",
+    "increment": "加一",
+    "rendered": "渲染结果",
+    "caption": "值变了，读它的 view 就更新。其他什么都不碰。"
+  },
+  "targets": {
+    "eyebrow": "01",
+    "title": "目标平台",
+    "lead": "一棵 view 树，五个后端。每个后端都说平台自己的语言，没有原生控件时就自己绘制。",
+    "rendersThrough": "渲染方式",
+    "items": {
+      "apple": {
+        "platform": "iOS 与 macOS",
+        "backend": "Apple",
+        "renders": "UIKit / AppKit"
+      },
+      "android": {
+        "platform": "Android",
+        "backend": "Android",
+        "renders": "Android View"
+      },
+      "gtk": {
+        "platform": "Linux",
+        "backend": "GTK4",
+        "renders": "GTK4 控件"
+      },
+      "hydrolysis": {
+        "platform": "macOS、Linux、Windows、Web",
+        "backend": "Hydrolysis",
+        "renders": "自绘，GPU（Vello）"
+      },
+      "dew": {
+        "platform": "ESP32-S3 / ESP32-C3",
+        "backend": "Dew",
+        "renders": "自绘，CPU，脏区刷新"
+      }
+    },
+    "dewNote": "在 iPhone 上变成 UIKit 控件的那个 view，可以原样跑在没有操作系统、没有 GPU 的单片机上。"
+  },
+  "reactivity": {
+    "eyebrow": "02",
+    "title": "状态",
+    "lead": "状态就是普通的值。没有 virtual tree 要 diff，改一个字符串也永远不会重建它周围的子树。",
+    "points": {
+      "binding": {
+        "title": "Binding<T> 是可变状态",
+        "body": "把值放进 Binding，交给 view。任何读它的 view 都会在它变化时更新。"
+      },
+      "computed": {
+        "title": "Computed<T> 是派生状态",
+        "body": "把 Binding map 成 Computed。所有响应式 API 两者都接受，而且只有读取者会更新。"
+      },
+      "collections": {
+        "title": "集合按 id 做 diff",
+        "body": "给 List 或 ForEach 一个 Identifiable 元素的响应式集合，成员变化按 id 精确 diff。"
+      }
+    },
+    "flow": {
+      "binding": "Binding",
+      "computed": "Computed",
+      "view": "View"
+    }
+  },
+  "previews": {
+    "eyebrow": "03",
+    "title": "预览",
+    "lead": "任何标了 #[preview] 的函数都能不启动 app 直接渲染成图片。同一套机制还驱动语义交互测试和 GPU 性能测量。",
+    "commands": {
+      "render": "把 view 渲染成 PNG",
+      "frame": "指定画面尺寸",
+      "test": "运行语义交互测试",
+      "perf": "测量 GPU 开销"
+    },
+    "imageCaption": "water preview 对 {{example}} 示例的输出。",
+    "dogfood": "本页所有截图都是这样生成的。"
+  },
+  "quickStart": {
+    "eyebrow": "04",
+    "title": "快速开始",
+    "lead": "playground 就是一个普通的 Rust crate。CLI 把原生工程放在源码树之外，按需管理。",
+    "steps": {
+      "install": "安装 CLI",
+      "create": "创建 playground",
+      "run": "在本机运行"
+    },
+    "copy": "复制",
+    "copied": "已复制",
+    "elsewhere": "运行到其他平台",
+    "entryPoint": "整个入口就是这些。app crate 只依赖 waterui，别的什么都不需要。",
+    "tools": {
+      "doctor": "报告工具链缺什么",
+      "devices": "列出模拟器和已连接的设备"
+    },
+    "shipping": "准备发布？App 模式生成属于你自己的平台工程，可以自定义、签名和打包。",
+    "shippingLink": "了解 App 模式"
+  },
+  "gallery": {
+    "eyebrow": "05",
+    "title": "示例",
+    "lead": "仓库里可运行的应用，由框架自己的 preview 命令渲染。",
+    "items": {
+      "gallery": "组件总览",
+      "form": "派生表单与响应式字段投影",
+      "navigation": "导航栈、标签页与导航状态",
+      "flow_markdown": "流式 Markdown 渲染",
+      "map": "跨平台实现的地图组件",
+      "video_player": "播放状态与控制",
+      "filter": "GPU 图像滤镜"
+    },
+    "viewAll": "GitHub 上的全部示例",
+    "runOne": "从源码运行一个示例"
+  },
+  "roadmap": {
+    "eyebrow": "06",
+    "title": "路线图",
+    "lead": "实时读取仓库里的 docs/ROADMAP.md，所以这一节不会和代码脱节。",
+    "loading": "正在从 GitHub 加载路线图…",
+    "failed": "无法从 GitHub 加载路线图。",
+    "openSource": "打开 docs/ROADMAP.md",
+    "done": "{{total}} 项中已完成 {{done}} 项",
+    "status": "1.0 之前。API 仍在变化，找到更好的形状时我们会主动打破它。"
+  },
+  "footer": {
+    "tagline": "写一次，处处适用。",
+    "book": "文档",
+    "api": "API 参考",
+    "github": "GitHub",
+    "discord": "Discord",
+    "twitter": "X",
+    "license": "MIT 或 Apache 2.0，任选其一。",
+    "contributing": "向 dev 分支提交。做大改动之前先开 issue。"
+  }
+}

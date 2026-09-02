@@ -2,10 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="WaterUI - A modern, cross-platform UI framework for Rust that renders to native platform widgets (UIKit/AppKit on Apple, Android View on Android)" />
-    <title>WaterUI - Native UI Framework for Rust</title>
+    <title>WaterUI — Cross-platform UI for Rust</title>
+    <meta
+      name="description"
+      content="Write once, apply everywhere. WaterUI is a cross-platform UI framework for Rust that renders through UIKit, AppKit, Android Views, GTK4, the GPU, or an ESP32."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href="https://waterui.dev/" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf8" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1112" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="WaterUI" />
+    <meta property="og:title" content="WaterUI — Cross-platform UI for Rust" />
+    <meta
+      property="og:description"
+      content="Write once, apply everywhere. A cross-platform UI framework for Rust."
+    />
+    <meta property="og:url" content="https://waterui.dev/" />
+    <meta property="og:image" content="https://waterui.dev/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@waterui_dev" />
+    <meta name="twitter:title" content="WaterUI — Cross-platform UI for Rust" />
+    <meta
+      name="twitter:description"
+      content="Write once, apply everywhere. A cross-platform UI framework for Rust."
+    />
+    <meta name="twitter:image" content="https://waterui.dev/og.png" />
+
+    <script>
+      ;(function () {
+        try {
+          var theme = localStorage.getItem('waterui.theme')
+          if (theme === 'light' || theme === 'dark') {
+            document.documentElement.dataset.theme = theme
+          }
+        } catch (_) {}
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

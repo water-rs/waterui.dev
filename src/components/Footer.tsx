@@ -1,47 +1,41 @@
+import { useTranslation } from 'react-i18next'
+import { Mark } from './Logo'
+
+const links = [
+  { key: 'book', href: 'https://book.waterui.dev' },
+  { key: 'api', href: 'https://docs.rs/waterui' },
+  { key: 'github', href: 'https://github.com/water-rs/waterui' },
+  { key: 'discord', href: 'https://discord.gg/8mtmNUyGRp' },
+  { key: 'twitter', href: 'https://twitter.com/waterui_dev' },
+] as const
+
 export default function Footer() {
+  const { t } = useTranslation()
+
   return (
-    <footer className="bg-white border-t-4 border-black py-12">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="flex items-center">
-          <span className="text-2xl font-black tracking-tighter mr-2">
-            WATER<span className="text-[#1E488F]">UI</span>
-          </span>
-          <span className="text-sm font-bold bg-black text-white px-2 py-0.5">
-            v0.2.0
-          </span>
+    <footer className="border-t border-line">
+      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-12">
+        <div className="md:col-span-5">
+          <Mark className="h-8 w-auto text-ink" title="WaterUI" />
+          <p className="mt-4 font-mono text-sm text-ink-muted">{t('footer.tagline')}</p>
         </div>
-
-        <div className="flex gap-8 font-bold text-sm md:text-base">
-          <a
-            href="https://book.waterui.dev"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#1E488F] underline decoration-2 underline-offset-4"
-          >
-            Book
-          </a>
-          <a
-            href="https://discord.gg/8mtmNUyGRp"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#D22730] underline decoration-2 underline-offset-4"
-          >
-            Discord
-          </a>
-          <a
-            href="https://twitter.com/waterui_dev"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#F1A814] underline decoration-2 underline-offset-4"
-          >
-            Twitter
-          </a>
+        <nav className="md:col-span-4" aria-label="Footer">
+          <ul className="grid grid-cols-2 gap-2 font-mono text-sm">
+            {links.map((link) => (
+              <li key={link.key}>
+                <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-ink-muted transition-colors hover:text-ink">
+                  {t(`footer.${link.key}`)}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className="space-y-2 text-xs text-ink-faint md:col-span-3">
+          <p>{t('footer.license')}</p>
+          <p>{t('footer.contributing')}</p>
+          <p>© {new Date().getFullYear()} WaterUI</p>
         </div>
-
-        <p className="text-sm font-medium text-gray-500">
-          &copy; 2025 WaterUI. Form follows function.
-        </p>
       </div>
     </footer>
-  );
+  )
 }
