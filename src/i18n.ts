@@ -3,18 +3,42 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
 import en from './locales/en.json'
 import zh from './locales/zh.json'
+import ja from './locales/ja.json'
+import ko from './locales/ko.json'
+import de from './locales/de.json'
+import fr from './locales/fr.json'
+import es from './locales/es.json'
+import pt from './locales/pt.json'
+import ru from './locales/ru.json'
+
+/** English is the source of truth; every other locale must carry exactly its keys. */
+type Locale = typeof en
 
 export const languages = [
   { code: 'en', label: 'English', htmlLang: 'en' },
   { code: 'zh', label: '中文', htmlLang: 'zh-Hans' },
+  { code: 'ja', label: '日本語', htmlLang: 'ja' },
+  { code: 'ko', label: '한국어', htmlLang: 'ko' },
+  { code: 'de', label: 'Deutsch', htmlLang: 'de' },
+  { code: 'fr', label: 'Français', htmlLang: 'fr' },
+  { code: 'es', label: 'Español', htmlLang: 'es' },
+  { code: 'pt', label: 'Português', htmlLang: 'pt-BR' },
+  { code: 'ru', label: 'Русский', htmlLang: 'ru' },
 ] as const
 
 export type LanguageCode = (typeof languages)[number]['code']
 
 export const resources = {
   en: { translation: en },
-  zh: { translation: zh },
-} as const
+  zh: { translation: zh satisfies Locale },
+  ja: { translation: ja satisfies Locale },
+  ko: { translation: ko satisfies Locale },
+  de: { translation: de satisfies Locale },
+  fr: { translation: fr satisfies Locale },
+  es: { translation: es satisfies Locale },
+  pt: { translation: pt satisfies Locale },
+  ru: { translation: ru satisfies Locale },
+} satisfies Record<LanguageCode, { translation: Locale }>
 
 i18n
   .use(LanguageDetector)

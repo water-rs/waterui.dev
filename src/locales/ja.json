@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "title": "WaterUI — Rust のクロスプラットフォーム UI",
+    "description": "一度書けば、どこでも使える。WaterUI は UIKit、AppKit、Android View、GTK4、GPU、ESP32 で描画する Rust のクロスプラットフォーム UI フレームワークです。"
+  },
+  "nav": {
+    "book": "ドキュメント",
+    "api": "API",
+    "examples": "サンプル",
+    "github": "GitHub",
+    "menu": "メニュー",
+    "closeMenu": "メニューを閉じる",
+    "language": "言語",
+    "theme": "テーマ",
+    "themeSystem": "システム",
+    "themeLight": "ライト",
+    "themeDark": "ダーク"
+  },
+  "hero": {
+    "eyebrow": "Rust のクロスプラットフォーム UI フレームワーク",
+    "titleLine1": "一度書けば、",
+    "titleLine2": "どこでも使える。",
+    "lead": "WaterUI は各 view をプラットフォーム自身のツールキットへ対応づけます。UIKit、AppKit、Android View、GTK4。適切なネイティブ部品がない場所では、GPU またはマイコン上で自ら描画します。",
+    "ctaStart": "はじめる",
+    "ctaBook": "ドキュメントを読む",
+    "status": "1.0 未満 · Apple と Android のバックエンドが最も充実"
+  },
+  "bond": {
+    "binding": "Binding<i32>",
+    "view": "text!(\"Count: {count}\")",
+    "decrement": "減らす",
+    "increment": "増やす",
+    "rendered": "描画結果",
+    "caption": "値が変わると、それを読む view だけが更新されます。ほかには何も触れません。"
+  },
+  "targets": {
+    "eyebrow": "01",
+    "title": "対応環境",
+    "lead": "ひとつの view ツリー、五つのバックエンド。それぞれがプラットフォーム自身のツールキットで話し、ない場合は自ら描画します。",
+    "rendersThrough": "描画方式",
+    "items": {
+      "apple": { "platform": "iOS と macOS", "backend": "Apple", "renders": "UIKit / AppKit" },
+      "android": { "platform": "Android", "backend": "Android", "renders": "Android View" },
+      "gtk": { "platform": "Linux", "backend": "GTK4", "renders": "GTK4 ウィジェット" },
+      "hydrolysis": { "platform": "macOS、Linux、Windows、Web", "backend": "Hydrolysis", "renders": "自前描画、GPU（Vello）" },
+      "dew": { "platform": "ESP32-S3 / ESP32-C3", "backend": "Dew", "renders": "自前描画、CPU、差分領域更新" }
+    },
+    "dewNote": "iPhone で UIKit のコントロールになる同じ view が、OS も GPU もないマイコンでそのまま動きます。"
+  },
+  "reactivity": {
+    "eyebrow": "02",
+    "title": "状態",
+    "lead": "状態はただの値です。差分を取る仮想ツリーはなく、文字列ひとつの変更が周囲のサブツリーを作り直すこともありません。",
+    "points": {
+      "binding": { "title": "Binding<T> は可変の状態", "body": "値を Binding に入れて view に渡します。それを読む view は、変更時に更新されます。" },
+      "computed": { "title": "Computed<T> は派生した状態", "body": "Binding を map して Computed にします。シグナル対応の API はどちらも受け取り、読み手だけが更新されます。" },
+      "collections": { "title": "コレクションは id で差分", "body": "List や ForEach に Identifiable な要素のリアクティブなコレクションを渡すと、要素の増減は id で差分計算されます。" }
+    },
+    "flow": { "binding": "Binding", "computed": "Computed", "view": "View" }
+  },
+  "features": {
+    "eyebrow": "03",
+    "title": "同梱機能",
+    "lead": "レイアウト、コントロール、フォーム、ナビゲーション、メディア、チャート、そしてその周りのプラットフォーム機能。依存はひとつだけ。",
+    "groups": {
+      "layout": { "title": "レイアウトと文字", "items": ["vstack、hstack、zstack、grid、scroll", "CJK フォントフォールバック付きのタイポグラフィ", "右から左のレイアウト方向", "Markdown 内蔵のリッチテキスト", "LLM 出力向けのストリーミング Markdown"] },
+      "controls": { "title": "コントロールとフォーム", "items": ["ボタン、テキストフィールド、スライダー、ステッパー、トグル", "ピッカー、日付ピッカー、メディアピッカー", "#[form] で struct からフォーム全体を導出", "id で差分される List と ForEach", "メニュー、コンテキストメニュー、スナックバー"] },
+      "navigation": { "title": "ナビゲーションとウィンドウ", "items": ["ナビゲーションスタックとタブ", "型付きのナビゲーションパス、serde で永続化", "それぞれ独自のスタイルを持つ複数ウィンドウ", "環境から得るロケールとレイアウト方向", "テーマシステム、Material 3 を同梱"] },
+      "graphics": { "title": "グラフィックスとモーション", "items": ["Canvas、図形、クリッピング、グラデーション、SVG", "GPU 画像フィルターとシェーダーサーフェス", "GPU パーティクル", "決定的なフレームクロック上のアニメーション", "ジェスチャー、ホバー、カーソル、ドラッグ＆ドロップ"] },
+      "media": { "title": "メディアとデータ", "items": ["動画と音声の再生", "リアルタイム音声ビジュアライザー", "チャート、一般的な種類をすべて", "地図", "バーコードと WebView：WebKit、CEF、WPE、Chromium"] },
+      "icons": { "title": "アイコン", "items": ["SF Symbols", "Material Symbols", "Lucide", "Font Awesome 7", "プラットフォームごとのネイティブアイコンをひとつの API で"] }
+    },
+    "kit": {
+      "title": "WaterKit",
+      "lead": "UI の周りのプラットフォーム機能。機能ごとにひとつの Rust API、プラットフォームごとにネイティブ実装。",
+      "items": ["カメラ", "位置情報", "通知", "権限", "生体認証", "パスキー", "Bluetooth", "NFC", "触覚フィードバック", "クリップボード", "連絡先", "カレンダー", "ヘルスケア", "センサー", "セキュアストレージ", "共有シート", "音声", "ディープリンク", "ダイアログ", "ファイルシステム", "オーディオ", "ビデオ", "画面", "バックグラウンドタスク", "システム情報"]
+    },
+    "testing": {
+      "title": "テスト",
+      "lead": "アクセシビリティ優先のテストが、通常の cargo test で Hydrolysis レンダラーに対して走ります。シミュレーターも実機も不要。操作そのものがアサーションで、待機は sleep ではなくランタイムが静止するまでポンプします。"
+    }
+  },
+  "previews": {
+    "eyebrow": "04",
+    "title": "プレビュー",
+    "lead": "#[preview] を付けた関数は、アプリを起動せずに画像として描画できます。同じ仕組みがセマンティックな操作テストと GPU 計測も駆動します。",
+    "commands": { "render": "view を PNG に描画", "frame": "フレームサイズを指定", "test": "セマンティックな操作テストを実行", "perf": "GPU コストを計測" },
+    "imageCaption": "{{example}} サンプルに対する water preview の出力。",
+    "dogfood": "このページのスクリーンショットはすべてこの方法で作られています。"
+  },
+  "quickStart": {
+    "eyebrow": "05",
+    "title": "クイックスタート",
+    "lead": "playground はただの Rust クレートです。CLI がネイティブプロジェクトをソースツリーの外に置き、必要に応じて管理します。",
+    "steps": { "install": "CLI をインストール", "create": "playground を作成", "run": "ホストで実行" },
+    "copy": "コピー",
+    "copied": "コピー済み",
+    "elsewhere": "ほかの環境で実行するには",
+    "entryPoint": "エントリポイントはこれで全部です。アプリのクレートは waterui だけに依存します。",
+    "tools": { "doctor": "ツールチェーンに足りないものを報告", "devices": "シミュレーターと接続中のデバイスを一覧" },
+    "shipping": "リリースの準備は？App モードはあなた自身のプラットフォームプロジェクトを生成するので、カスタマイズ、署名、パッケージングができます。",
+    "shippingLink": "App モードについて読む"
+  },
+  "gallery": {
+    "eyebrow": "06",
+    "title": "サンプル",
+    "lead": "リポジトリにある実行可能なアプリケーション。フレームワーク自身の preview コマンドで描画。",
+    "items": {
+      "gallery": "コンポーネントの総覧",
+      "form": "導出フォームとリアクティブなフィールド投影",
+      "navigation": "スタック、タブ、ナビゲーション状態",
+      "flow_markdown": "ストリーミング Markdown 描画",
+      "map": "プラットフォームごとに実装された地図コンポーネント",
+      "video_player": "再生状態とコントロール",
+      "filter": "GPU 画像フィルター"
+    },
+    "viewAll": "GitHub ですべてのサンプルを見る",
+    "runOne": "チェックアウトから実行する"
+  },
+  "footer": {
+    "tagline": "一度書けば、どこでも使える。",
+    "book": "ドキュメント",
+    "api": "API リファレンス",
+    "github": "GitHub",
+    "discord": "Discord",
+    "twitter": "X",
+    "license": "MIT または Apache 2.0、お好きな方で。",
+    "contributing": "dev ブランチへ。大きな変更の前に issue を開いてください。"
+  }
+}
