@@ -50,8 +50,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: >
-            pages deploy ./dist
-            --project-name=waterui-website
-            --commit-hash=${{ github.sha }}
-            --commit-message="${{ github.event.head_commit.message || 'CI deploy' }}"
+          # Wrangler reads the commit hash and message from the checkout itself. Passing the
+          # message through the action's `command` input breaks on multi-line messages, because
+          # the action splits that input on newlines and runs every line as its own command.
+          command: pages deploy ./dist --project-name=waterui-website --branch=main --commit-dirty=true
