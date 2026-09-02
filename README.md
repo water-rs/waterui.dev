@@ -21,7 +21,6 @@ The hero demo animates the mark itself: a `Binding` on the left `#`, a view on t
 
 - `src/locales/*.json` hold every user-facing string. English is the source of truth; add a language by adding a file and an entry in `src/i18n.ts`. The current language is stored under `waterui.lang` and can be forced with `?lang=zh`.
 - Code samples are plain files under `src/snippets/` and are imported with `?raw`.
-- The roadmap section fetches `docs/ROADMAP.md` from the `dev` branch at runtime, so it never drifts from the repository.
 - Example screenshots under `public/examples/` are rendered with `water preview`; `src/data/examples.ts` lists which ones are shown.
 
 ## Brand assets

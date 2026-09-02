@@ -91,8 +91,110 @@
       "view": "View"
     }
   },
-  "previews": {
+  "features": {
     "eyebrow": "03",
+    "title": "Batteries",
+    "lead": "Layouts, controls, forms, navigation, media, charts, and the platform services around them. One dependency.",
+    "groups": {
+      "layout": {
+        "title": "Layout and text",
+        "items": [
+          "vstack, hstack, zstack, grid, scroll",
+          "Typography with CJK font fallback",
+          "Right-to-left layout direction",
+          "Rich text with built-in Markdown",
+          "Streaming Markdown for LLM output"
+        ]
+      },
+      "controls": {
+        "title": "Controls and forms",
+        "items": [
+          "Buttons, text fields, sliders, steppers, toggles",
+          "Pickers, date pickers, media pickers",
+          "#[form] derives a whole form from a struct",
+          "Lists and ForEach diffed by id",
+          "Menus, context menus, snackbars"
+        ]
+      },
+      "navigation": {
+        "title": "Navigation and windows",
+        "items": [
+          "Navigation stacks and tabs",
+          "Typed navigation paths, persisted with serde",
+          "Multiple windows with their own styles",
+          "Locale and layout direction from the environment",
+          "Theme system, Material 3 included"
+        ]
+      },
+      "graphics": {
+        "title": "Graphics and motion",
+        "items": [
+          "Canvas, shapes, clipping, gradients, SVG",
+          "GPU image filters and shader surfaces",
+          "GPU particles",
+          "Animation on a deterministic frame clock",
+          "Gestures, hover, cursor, drag and drop"
+        ]
+      },
+      "media": {
+        "title": "Media and data",
+        "items": [
+          "Video and audio playback",
+          "Real-time audio visualizer",
+          "Charts, every common type",
+          "Maps",
+          "Barcodes and web views: WebKit, CEF, WPE, Chromium"
+        ]
+      },
+      "icons": {
+        "title": "Icons",
+        "items": [
+          "SF Symbols",
+          "Material Symbols",
+          "Lucide",
+          "Font Awesome 7",
+          "Native icon per platform, one API"
+        ]
+      }
+    },
+    "kit": {
+      "title": "WaterKit",
+      "lead": "The platform services around the UI: one Rust API per capability, a native implementation on each platform.",
+      "items": [
+        "Camera",
+        "Location",
+        "Notifications",
+        "Permissions",
+        "Biometrics",
+        "Passkeys",
+        "Bluetooth",
+        "NFC",
+        "Haptics",
+        "Clipboard",
+        "Contacts",
+        "Calendar",
+        "Health",
+        "Sensors",
+        "Secure storage",
+        "Share sheet",
+        "Speech",
+        "Deep links",
+        "Dialogs",
+        "File system",
+        "Audio",
+        "Video",
+        "Screen",
+        "Background tasks",
+        "System info"
+      ]
+    },
+    "testing": {
+      "title": "Testing",
+      "lead": "Accessibility-first tests run under plain cargo test against the Hydrolysis renderer. No simulator, no device. Interactions are assertions, and every wait pumps to quiescence instead of sleeping."
+    }
+  },
+  "previews": {
+    "eyebrow": "04",
     "title": "Previews",
     "lead": "Any function marked #[preview] renders to an image without launching the app. The same surface drives semantic interaction tests and GPU measurements.",
     "commands": {
@@ -105,7 +207,7 @@
     "dogfood": "Every screenshot on this page was produced this way."
   },
   "quickStart": {
-    "eyebrow": "04",
+    "eyebrow": "05",
     "title": "Quick start",
     "lead": "A playground is a plain Rust crate. The CLI keeps native projects out of your source tree and manages them on demand.",
     "steps": {
@@ -125,7 +227,7 @@
     "shippingLink": "Read about app mode"
   },
   "gallery": {
-    "eyebrow": "05",
+    "eyebrow": "06",
     "title": "Examples",
     "lead": "Runnable applications from the repository, rendered by the framework's own preview command.",
     "items": {
@@ -139,16 +241,6 @@
     },
     "viewAll": "All examples on GitHub",
     "runOne": "Run one from a checkout"
-  },
-  "roadmap": {
-    "eyebrow": "06",
-    "title": "Roadmap",
-    "lead": "Read live from docs/ROADMAP.md in the repository, so this section cannot drift from the code.",
-    "loading": "Loading the roadmap from GitHub…",
-    "failed": "The roadmap could not be loaded from GitHub.",
-    "openSource": "Open docs/ROADMAP.md",
-    "done": "{{done}} of {{total}} done",
-    "status": "Pre-1.0. The API still moves, and we break it on purpose when a better shape is found."
   },
   "footer": {
     "tagline": "Write once, apply everywhere.",
