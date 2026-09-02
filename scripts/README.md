@@ -14,7 +14,8 @@ target/release/water preview demo --backend hydrolysis --theme material3 --frame
   --path examples/<name> --output <name>.png
 ```
 
-Two examples need a variant:
+Three examples need a variant:
 
 - `filter` has no representative `#[preview]`, so render its `demo()` as an expression: `water preview --expr "demo()" ...`.
-- `flow_markdown` starts on an empty document; drive it with `--scenario` (a click on "Load full", capture at 1500 ms) and take `frame-1500ms.png` from `--output-dir`.
+- `video_player`'s preview is named `video_player_preview`, not `demo`: `water preview video_player_preview ...`. Asking for `demo` fails at link time with an undefined `_waterui_preview_video_player_example_demo`.
+- `flow_markdown` starts on an empty document; drive it with `--scenario` (a click on "Load full", capture at 1500 ms) and take `frame-1500ms.png` from `--output-dir`. A working scenario file is `scripts/flow_markdown.scenario.toml`.

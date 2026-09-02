@@ -1,0 +1,23 @@
+# Drive the flow_markdown example past its empty initial state: click "Load full",
+# then capture once the document has flowed in.
+captures_ms = [1500]
+
+[[events]]
+at_ms = 200
+kind = "pointer_move"
+x = 600.0
+y = 158.0
+
+[[events]]
+at_ms = 250
+kind = "pointer_down"
+x = 600.0
+y = 158.0
+button = "primary"
+
+[[events]]
+at_ms = 320
+kind = "pointer_up"
+x = 600.0
+y = 158.0
+button = "primary"
