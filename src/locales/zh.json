@@ -91,8 +91,110 @@
       "view": "View"
     }
   },
-  "previews": {
+  "features": {
     "eyebrow": "03",
+    "title": "内置组件",
+    "lead": "布局、控件、表单、导航、媒体、图表，以及围绕它们的平台能力。只需一个依赖。",
+    "groups": {
+      "layout": {
+        "title": "布局与文字",
+        "items": [
+          "vstack、hstack、zstack、grid、scroll",
+          "中日韩字体回退的排版",
+          "从右到左的布局方向",
+          "富文本与内置 Markdown",
+          "面向 LLM 输出的流式 Markdown"
+        ]
+      },
+      "controls": {
+        "title": "控件与表单",
+        "items": [
+          "按钮、文本框、滑块、步进器、开关",
+          "选择器、日期选择器、媒体选择器",
+          "#[form] 从 struct 直接派生整张表单",
+          "按 id diff 的 List 与 ForEach",
+          "菜单、上下文菜单、snackbar"
+        ]
+      },
+      "navigation": {
+        "title": "导航与窗口",
+        "items": [
+          "导航栈与标签页",
+          "类型化导航路径，可用 serde 持久化",
+          "多窗口，各自独立的样式",
+          "来自环境的 locale 与布局方向",
+          "主题系统，内置 Material 3"
+        ]
+      },
+      "graphics": {
+        "title": "图形与动效",
+        "items": [
+          "Canvas、形状、裁剪、渐变、SVG",
+          "GPU 图像滤镜与 shader surface",
+          "GPU 粒子",
+          "确定性帧时钟上的动画",
+          "手势、悬停、光标、拖放"
+        ]
+      },
+      "media": {
+        "title": "媒体与数据",
+        "items": [
+          "视频与音频播放",
+          "实时音频可视化",
+          "图表，覆盖常见类型",
+          "地图",
+          "条码与 WebView：WebKit、CEF、WPE、Chromium"
+        ]
+      },
+      "icons": {
+        "title": "图标",
+        "items": [
+          "SF Symbols",
+          "Material Symbols",
+          "Lucide",
+          "Font Awesome 7",
+          "每个平台的原生图标，同一套 API"
+        ]
+      }
+    },
+    "kit": {
+      "title": "WaterKit",
+      "lead": "围绕 UI 的平台能力：每种能力一个 Rust API，每个平台一份原生实现。",
+      "items": [
+        "相机",
+        "定位",
+        "通知",
+        "权限",
+        "生物识别",
+        "Passkey",
+        "蓝牙",
+        "NFC",
+        "触感反馈",
+        "剪贴板",
+        "通讯录",
+        "日历",
+        "健康",
+        "传感器",
+        "安全存储",
+        "分享面板",
+        "语音",
+        "深层链接",
+        "对话框",
+        "文件系统",
+        "音频",
+        "视频",
+        "屏幕",
+        "后台任务",
+        "系统信息"
+      ]
+    },
+    "testing": {
+      "title": "测试",
+      "lead": "以无障碍树为基础的测试，直接在 cargo test 里对着 Hydrolysis 渲染器跑。不需要模拟器，不需要设备。交互本身就是断言，所有等待都等到运行时真正空闲，而不是 sleep。"
+    }
+  },
+  "previews": {
+    "eyebrow": "04",
     "title": "预览",
     "lead": "任何标了 #[preview] 的函数都能不启动 app 直接渲染成图片。同一套机制还驱动语义交互测试和 GPU 性能测量。",
     "commands": {
@@ -105,7 +207,7 @@
     "dogfood": "本页所有截图都是这样生成的。"
   },
   "quickStart": {
-    "eyebrow": "04",
+    "eyebrow": "05",
     "title": "快速开始",
     "lead": "playground 就是一个普通的 Rust crate。CLI 把原生工程放在源码树之外，按需管理。",
     "steps": {
@@ -125,7 +227,7 @@
     "shippingLink": "了解 App 模式"
   },
   "gallery": {
-    "eyebrow": "05",
+    "eyebrow": "06",
     "title": "示例",
     "lead": "仓库里可运行的应用，由框架自己的 preview 命令渲染。",
     "items": {
@@ -139,16 +241,6 @@
     },
     "viewAll": "GitHub 上的全部示例",
     "runOne": "从源码运行一个示例"
-  },
-  "roadmap": {
-    "eyebrow": "06",
-    "title": "路线图",
-    "lead": "实时读取仓库里的 docs/ROADMAP.md，所以这一节不会和代码脱节。",
-    "loading": "正在从 GitHub 加载路线图…",
-    "failed": "无法从 GitHub 加载路线图。",
-    "openSource": "打开 docs/ROADMAP.md",
-    "done": "{{total}} 项中已完成 {{done}} 项",
-    "status": "1.0 之前。API 仍在变化，找到更好的形状时我们会主动打破它。"
   },
   "footer": {
     "tagline": "写一次，处处适用。",

@@ -47,3 +47,11 @@ i18n.on('languageChanged', applyDocumentLanguage)
 applyDocumentLanguage(i18n.resolvedLanguage ?? 'en')
 
 export default i18n
+
+/** Narrows a `returnObjects` translation to a list of strings, failing loudly on a malformed locale file. */
+export function stringList(value: unknown): string[] {
+  if (!Array.isArray(value) || !value.every((item) => typeof item === 'string')) {
+    throw new Error(`translation is not a list of strings: ${JSON.stringify(value)}`)
+  }
+  return value
+}
