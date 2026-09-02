@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "title": "WaterUI — Cross-platform UI for Rust",
+    "description": "Write once, apply everywhere. WaterUI is a cross-platform UI framework for Rust that renders through UIKit, AppKit, Android Views, GTK4, the GPU, or an ESP32."
+  },
+  "nav": {
+    "book": "Book",
+    "api": "API",
+    "examples": "Examples",
+    "github": "GitHub",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "theme": "Theme",
+    "themeSystem": "System",
+    "themeLight": "Light",
+    "themeDark": "Dark"
+  },
+  "hero": {
+    "eyebrow": "Cross-platform UI framework for Rust",
+    "titleLine1": "Write once,",
+    "titleLine2": "apply everywhere.",
+    "lead": "WaterUI maps each view onto the platform's own toolkit: UIKit, AppKit, Android Views, GTK4. Where none fits, it draws the view itself, on the GPU or on a microcontroller.",
+    "ctaStart": "Get started",
+    "ctaBook": "Read the book",
+    "status": "Pre-1.0 · Apple and Android are the most complete backends"
+  },
+  "bond": {
+    "binding": "Binding<i32>",
+    "view": "text!(\"Count: {count}\")",
+    "decrement": "Decrement",
+    "increment": "Increment",
+    "rendered": "rendered",
+    "caption": "A value changes, its readers update. Nothing else is touched."
+  },
+  "targets": {
+    "eyebrow": "01",
+    "title": "Targets",
+    "lead": "One view tree, five backends. Each one speaks the platform's own toolkit, or draws the view itself when there is none.",
+    "rendersThrough": "Renders through",
+    "items": {
+      "apple": {
+        "platform": "iOS and macOS",
+        "backend": "Apple",
+        "renders": "UIKit / AppKit"
+      },
+      "android": {
+        "platform": "Android",
+        "backend": "Android",
+        "renders": "Android Views"
+      },
+      "gtk": {
+        "platform": "Linux",
+        "backend": "GTK4",
+        "renders": "GTK4 widgets"
+      },
+      "hydrolysis": {
+        "platform": "macOS, Linux, Windows, web",
+        "backend": "Hydrolysis",
+        "renders": "Self-drawn, GPU via Vello"
+      },
+      "dew": {
+        "platform": "ESP32-S3 / ESP32-C3",
+        "backend": "Dew",
+        "renders": "Self-drawn, CPU, dirty-region"
+      }
+    },
+    "dewNote": "The same view that becomes a UIKit control on an iPhone runs on a microcontroller with no OS and no GPU."
+  },
+  "reactivity": {
+    "eyebrow": "02",
+    "title": "State",
+    "lead": "State is plain values. There is no virtual tree to diff, and changing one string never rebuilds the subtree around it.",
+    "points": {
+      "binding": {
+        "title": "Binding<T> is mutable state",
+        "body": "Put a value in a Binding and hand it to views. Any view that reads it updates when it changes."
+      },
+      "computed": {
+        "title": "Computed<T> is derived state",
+        "body": "Map a Binding into a Computed. Signal-aware APIs accept either, and only their readers update."
+      },
+      "collections": {
+        "title": "Collections diff by identity",
+        "body": "Give List or ForEach a reactive collection of Identifiable items and membership changes are diffed by id."
+      }
+    },
+    "flow": {
+      "binding": "Binding",
+      "computed": "Computed",
+      "view": "View"
+    }
+  },
+  "previews": {
+    "eyebrow": "03",
+    "title": "Previews",
+    "lead": "Any function marked #[preview] renders to an image without launching the app. The same surface drives semantic interaction tests and GPU measurements.",
+    "commands": {
+      "render": "Render a view to a PNG",
+      "frame": "Pick the frame size",
+      "test": "Run semantic interaction tests",
+      "perf": "Measure GPU cost"
+    },
+    "imageCaption": "Output of water preview on the {{example}} example.",
+    "dogfood": "Every screenshot on this page was produced this way."
+  },
+  "quickStart": {
+    "eyebrow": "04",
+    "title": "Quick start",
+    "lead": "A playground is a plain Rust crate. The CLI keeps native projects out of your source tree and manages them on demand.",
+    "steps": {
+      "install": "Install the CLI",
+      "create": "Create a playground",
+      "run": "Run it on the host"
+    },
+    "copy": "Copy",
+    "copied": "Copied",
+    "elsewhere": "To run somewhere else",
+    "entryPoint": "That is the whole entry point. The app crate depends on waterui and nothing else.",
+    "tools": {
+      "doctor": "reports what a toolchain is missing",
+      "devices": "lists simulators and connected devices"
+    },
+    "shipping": "Ready to ship? App mode generates platform projects that belong to you, so they can be customized, signed, and packaged.",
+    "shippingLink": "Read about app mode"
+  },
+  "gallery": {
+    "eyebrow": "05",
+    "title": "Examples",
+    "lead": "Runnable applications from the repository, rendered by the framework's own preview command.",
+    "items": {
+      "gallery": "Broad component showcase",
+      "form": "Derived forms and reactive field projection",
+      "navigation": "Stacks, tabs, and navigation state",
+      "flow_markdown": "Streaming Markdown rendering",
+      "map": "Map component across platform realizations",
+      "video_player": "Playback state and controls",
+      "filter": "GPU image filters"
+    },
+    "viewAll": "All examples on GitHub",
+    "runOne": "Run one from a checkout"
+  },
+  "roadmap": {
+    "eyebrow": "06",
+    "title": "Roadmap",
+    "lead": "Read live from docs/ROADMAP.md in the repository, so this section cannot drift from the code.",
+    "loading": "Loading the roadmap from GitHub…",
+    "failed": "The roadmap could not be loaded from GitHub.",
+    "openSource": "Open docs/ROADMAP.md",
+    "done": "{{done}} of {{total}} done",
+    "status": "Pre-1.0. The API still moves, and we break it on purpose when a better shape is found."
+  },
+  "footer": {
+    "tagline": "Write once, apply everywhere.",
+    "book": "Book",
+    "api": "API reference",
+    "github": "GitHub",
+    "discord": "Discord",
+    "twitter": "X",
+    "license": "MIT or Apache 2.0, at your option.",
+    "contributing": "Target the dev branch. Open an issue before anything substantial."
+  }
+}
