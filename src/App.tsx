@@ -1,34 +1,29 @@
-import { useState, useEffect } from 'react'
-import Navigation from './components/Navigation'
+import Nav from './components/Nav'
 import Hero from './components/Hero'
-import ValuePropBar from './components/ValuePropBar'
-import QuickStart from './components/QuickStart'
+import Targets from './components/Targets'
+import Reactivity from './components/Reactivity'
 import Features from './components/Features'
+import Previews from './components/Previews'
+import QuickStart from './components/QuickStart'
 import Gallery from './components/Gallery'
-import Architecture from './components/Architecture'
+import LiveDemo from './components/LiveDemo'
 import Footer from './components/Footer'
 
-function App() {
-  const [scrollY, setScrollY] = useState(0)
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
+export default function App() {
   return (
-    <div className="min-h-screen bg-[#F0F0F0] overflow-x-hidden">
-      <Navigation />
-      <Hero />
-      <ValuePropBar />
-      <QuickStart />
-      <Features />
-      <Gallery />
-      <Architecture />
+    <div id="top" className="min-h-screen bg-paper text-ink">
+      <Nav />
+      <main>
+        <Hero />
+        <Targets />
+        <Reactivity />
+        <Features />
+        <Previews />
+        <QuickStart />
+        <Gallery />
+        <LiveDemo />
+      </main>
       <Footer />
     </div>
   )
 }
-
-export default App

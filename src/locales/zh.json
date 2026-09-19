@@ -1,0 +1,318 @@
+{
+  "meta": {
+    "title": "WaterUI — Rust 跨平台 UI 框架",
+    "description": "写一次，处处适用。WaterUI 是 Rust 跨平台 UI 框架，通过 UIKit、AppKit、Android View、GTK4、GPU 或 ESP32 渲染。"
+  },
+  "nav": {
+    "book": "文档",
+    "api": "API",
+    "examples": "示例",
+    "github": "GitHub",
+    "menu": "菜单",
+    "closeMenu": "关闭菜单",
+    "language": "语言",
+    "theme": "主题",
+    "themeSystem": "跟随系统",
+    "themeLight": "浅色",
+    "themeDark": "深色"
+  },
+  "hero": {
+    "eyebrow": "Rust 跨平台 UI 框架",
+    "titleLine1": "写一次，",
+    "titleLine2": "处处适用。",
+    "lead": "WaterUI 把每个 view 映射到平台自己的工具包：UIKit、AppKit、Android View、GTK4。没有合适的原生控件时，它自己绘制：在 GPU 上，或者在单片机上。",
+    "ctaStart": "开始使用",
+    "ctaBook": "阅读文档",
+    "status": "1.0 之前 · Apple 与 Android 后端最完整"
+  },
+  "bond": {
+    "binding": "Binding<i32>",
+    "view": "text!(\"Count: {count}\")",
+    "decrement": "减一",
+    "increment": "加一",
+    "caption": "值变了，读它的 view 就更新。其他什么都不碰。"
+  },
+  "targets": {
+    "eyebrow": "01",
+    "title": "目标平台",
+    "lead": "一棵 view 树，五个后端。每个后端都说平台自己的语言，没有原生控件时就自己绘制。",
+    "rendersThrough": "渲染方式",
+    "items": {
+      "apple": {
+        "platform": "iOS 与 macOS",
+        "backend": "Apple",
+        "renders": "UIKit / AppKit"
+      },
+      "android": {
+        "platform": "Android",
+        "backend": "Android",
+        "renders": "Android View"
+      },
+      "gtk": {
+        "platform": "Linux",
+        "backend": "GTK4",
+        "renders": "GTK4 控件"
+      },
+      "hydrolysis": {
+        "platform": "macOS、Linux、Windows、Web",
+        "backend": "Hydrolysis",
+        "renders": "自绘，GPU（Vello）"
+      },
+      "dew": {
+        "platform": "ESP32-S3 / ESP32-C3",
+        "backend": "Dew",
+        "renders": "自绘，CPU，脏区刷新"
+      }
+    },
+    "dewNote": "在 iPhone 上变成 UIKit 控件的那个 view，可以原样跑在没有操作系统、没有 GPU 的单片机上。"
+  },
+  "reactivity": {
+    "eyebrow": "02",
+    "title": "状态",
+    "lead": "状态就是普通的值。没有 virtual tree 要 diff，改一个字符串也永远不会重建它周围的子树。",
+    "points": {
+      "binding": {
+        "title": "Binding<T> 是可变状态",
+        "body": "把值放进 Binding，交给 view。任何读它的 view 都会在它变化时更新。"
+      },
+      "computed": {
+        "title": "Computed<T> 是派生状态",
+        "body": "把 Binding map 成 Computed。所有响应式 API 两者都接受，而且只有读取者会更新。"
+      },
+      "collections": {
+        "title": "集合按 id 做 diff",
+        "body": "给 List 或 ForEach 一个 Identifiable 元素的响应式集合，成员变化按 id 精确 diff。"
+      }
+    },
+    "flow": {
+      "binding": "Binding",
+      "computed": "Computed",
+      "view": "View"
+    }
+  },
+  "features": {
+    "eyebrow": "03",
+    "title": "内置组件",
+    "lead": "布局、控件、表单、导航、媒体、图表，以及围绕它们的平台能力。只需一个依赖。",
+    "groups": {
+      "layout": {
+        "title": "布局与文字",
+        "items": [
+          "vstack、hstack、zstack、grid、scroll",
+          "中日韩字体回退的排版",
+          "从右到左的布局方向",
+          "富文本与内置 Markdown",
+          "面向 LLM 输出的流式 Markdown"
+        ]
+      },
+      "controls": {
+        "title": "控件与表单",
+        "items": [
+          "按钮、文本框、滑块、步进器、开关",
+          "选择器、日期选择器、媒体选择器",
+          "#[form] 从 struct 直接派生整张表单",
+          "按 id diff 的 List 与 ForEach",
+          "菜单、上下文菜单、snackbar"
+        ]
+      },
+      "navigation": {
+        "title": "导航与窗口",
+        "items": [
+          "导航栈与标签页",
+          "类型化导航路径，可用 serde 持久化",
+          "多窗口，各自独立的样式",
+          "来自环境的 locale 与布局方向",
+          "主题系统，内置 Material 3"
+        ]
+      },
+      "graphics": {
+        "title": "图形与动效",
+        "items": [
+          "Canvas、形状、裁剪、渐变、SVG",
+          "GPU 图像滤镜与 shader surface",
+          "GPU 粒子",
+          "确定性帧时钟上的动画",
+          "手势、悬停、光标、拖放"
+        ]
+      },
+      "media": {
+        "title": "媒体与数据",
+        "items": [
+          "视频与音频播放",
+          "实时音频可视化",
+          "图表，覆盖常见类型",
+          "地图",
+          "条码与 WebView：WebKit、CEF、WPE、Chromium"
+        ]
+      },
+      "icons": {
+        "title": "图标",
+        "items": [
+          "SF Symbols",
+          "Material Symbols",
+          "Lucide",
+          "Font Awesome 7",
+          "每个平台的原生图标，同一套 API"
+        ]
+      }
+    },
+    "kit": {
+      "title": "WaterKit",
+      "lead": "围绕 UI 的平台能力：每种能力一个 Rust API，每个平台一份原生实现。",
+      "items": [
+        "相机",
+        "定位",
+        "通知",
+        "权限",
+        "生物识别",
+        "Passkey",
+        "蓝牙",
+        "NFC",
+        "触感反馈",
+        "剪贴板",
+        "通讯录",
+        "日历",
+        "健康",
+        "传感器",
+        "安全存储",
+        "分享面板",
+        "语音",
+        "深层链接",
+        "对话框",
+        "文件系统",
+        "音频",
+        "视频",
+        "屏幕",
+        "后台任务",
+        "系统信息"
+      ]
+    },
+    "testing": {
+      "title": "测试",
+      "lead": "以无障碍树为基础的测试，直接在 cargo test 里对着 Hydrolysis 渲染器跑。不需要模拟器，不需要设备。交互本身就是断言，所有等待都等到运行时真正空闲，而不是 sleep。"
+    }
+  },
+  "previews": {
+    "eyebrow": "04",
+    "title": "预览",
+    "lead": "任何标了 #[preview] 的函数都能不启动 app 直接渲染成图片。同一套机制还驱动语义交互测试和 GPU 性能测量。",
+    "commands": {
+      "render": "把 view 渲染成 PNG",
+      "frame": "指定画面尺寸",
+      "test": "运行语义交互测试",
+      "perf": "测量 GPU 开销"
+    },
+    "imageCaption": "water preview 对 {{example}} 示例的输出。",
+    "dogfood": "本页所有截图都是这样生成的。"
+  },
+  "quickStart": {
+    "eyebrow": "05",
+    "title": "快速开始",
+    "lead": "playground 就是一个普通的 Rust crate。CLI 把原生工程放在源码树之外，按需管理。",
+    "steps": {
+      "install": "安装 CLI",
+      "create": "创建 playground",
+      "run": "在本机运行"
+    },
+    "copy": "复制",
+    "copied": "已复制",
+    "elsewhere": "运行到其他平台",
+    "entryPoint": "整个入口就是这些。app crate 只依赖 waterui，别的什么都不需要。",
+    "tools": {
+      "doctor": "报告工具链缺什么",
+      "devices": "列出模拟器和已连接的设备"
+    },
+    "shipping": "准备发布？App 模式生成属于你自己的平台工程，可以自定义、签名和打包。",
+    "shippingLink": "了解 App 模式"
+  },
+  "gallery": {
+    "eyebrow": "06",
+    "title": "示例",
+    "lead": "仓库中每个可运行示例在各后端 e2e 套件下的真实截图。选择一个后端逐一对比。",
+    "backend": "后端",
+    "shotCount": "{{count}} 张截图",
+    "liveBadge": "在线",
+    "backends": {
+      "ios": {
+        "label": "iOS",
+        "caption": "UIKit · iPhone 模拟器 e2e 截图"
+      },
+      "macos": {
+        "label": "macOS",
+        "caption": "AppKit · Mac e2e 截图"
+      },
+      "android": {
+        "label": "Android",
+        "caption": "Android Views · 模拟器 e2e 截图"
+      },
+      "gtk": {
+        "label": "GTK4",
+        "caption": "GTK4 组件 · Linux e2e 截图"
+      },
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "自绘 GPU 渲染器 · water preview"
+      }
+    },
+    "items": {
+      "gallery": "组件总览",
+      "form": "派生表单与响应式字段投影",
+      "navigation": "导航栈、标签页与导航状态",
+      "map": "GPU 地图瓦片与平台地图桥接",
+      "flow_markdown": "流式 Markdown 渲染",
+      "video_player": "播放状态与控制",
+      "filter": "GPU 图像滤镜",
+      "reply": "Material 3 列表-详情邮件客户端",
+      "markdown": "富文本与 Markdown 渲染",
+      "list": "按标识符 diff 的响应式集合",
+      "animation": "确定性帧时钟上的动画",
+      "gesture": "点按、拖拽与捏合手势",
+      "gradient": "网格与动画渐变",
+      "shape": "形状、裁剪与填充",
+      "icons": "一套图标 API 贯通各符号库",
+      "menu": "菜单与上下文菜单",
+      "picker": "各种样式的选择器",
+      "media_picker": "照片与媒体选取",
+      "snackbar": "瞬时 Snackbar 通知",
+      "multi_window": "各自独立样式的多窗口",
+      "locale": "语言环境、i18n 与布局方向",
+      "typography-rtl": "CJK 回退与从右到左布局",
+      "hover": "悬停状态与光标控制",
+      "drag_drop": "视图间的拖放",
+      "webview": "作为原生视图的网页内容",
+      "reminders": "提醒事项风格的任务列表",
+      "starfield": "GPU 粒子星空",
+      "stress": "渲染与动画压力测试",
+      "edge_layout": "布局边界情况",
+      "edge_list": "列表边界情况",
+      "edge_text": "文本边界情况",
+      "waterkit_camera_filters": "GPU 表面上的相机滤镜",
+      "chromium": "作为视图的 Chromium 引擎",
+      "webview-cef": "CEF 驱动的网页视图",
+      "liquid_glass": "iOS 26 Liquid Glass 材质"
+    },
+    "viewAll": "GitHub 上的全部示例",
+    "runOne": "从源码运行一个示例"
+  },
+  "live": {
+    "eyebrow": "07",
+    "title": "在浏览器中实时运行",
+    "lead": "Hydrolysis 将示例 crate 本身编译为 WebAssembly，在 canvas 上运行真实的视图树。可以点击、输入、拖拽——运行的是框架本身，不是录像。",
+    "examples": "交互示例",
+    "load": "运行 {{example}}",
+    "loadHint": "按需加载 {{example}} 示例的 WebAssembly 构建。",
+    "caption": "{{example}} · 编译为 wasm，由 Hydrolysis 在 WebGPU 上渲染",
+    "openFull": "打开完整页面",
+    "frameTitle": "{{example}} 示例在 Hydrolysis 中实时运行"
+  },
+  "footer": {
+    "tagline": "写一次，处处适用。",
+    "book": "文档",
+    "api": "API 参考",
+    "github": "GitHub",
+    "discord": "Discord",
+    "twitter": "X",
+    "license": "MIT 或 Apache 2.0，任选其一。",
+    "contributing": "向 dev 分支提交。做大改动之前先开 issue。"
+  }
+}

@@ -1,0 +1,318 @@
+{
+  "meta": {
+    "title": "WaterUI — Cross-platform UI for Rust",
+    "description": "Write once, apply everywhere. WaterUI is a cross-platform UI framework for Rust that renders through UIKit, AppKit, Android Views, GTK4, the GPU, or an ESP32."
+  },
+  "nav": {
+    "book": "Book",
+    "api": "API",
+    "examples": "Examples",
+    "github": "GitHub",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "theme": "Theme",
+    "themeSystem": "System",
+    "themeLight": "Light",
+    "themeDark": "Dark"
+  },
+  "hero": {
+    "eyebrow": "Cross-platform UI framework for Rust",
+    "titleLine1": "Write once,",
+    "titleLine2": "apply everywhere.",
+    "lead": "WaterUI maps each view onto the platform's own toolkit: UIKit, AppKit, Android Views, GTK4. Where none fits, it draws the view itself, on the GPU or on a microcontroller.",
+    "ctaStart": "Get started",
+    "ctaBook": "Read the book",
+    "status": "Pre-1.0 · Apple and Android are the most complete backends"
+  },
+  "bond": {
+    "binding": "Binding<i32>",
+    "view": "text!(\"Count: {count}\")",
+    "decrement": "Decrement",
+    "increment": "Increment",
+    "caption": "A value changes, its readers update. Nothing else is touched."
+  },
+  "targets": {
+    "eyebrow": "01",
+    "title": "Targets",
+    "lead": "One view tree, five backends. Each one speaks the platform's own toolkit, or draws the view itself when there is none.",
+    "rendersThrough": "Renders through",
+    "items": {
+      "apple": {
+        "platform": "iOS and macOS",
+        "backend": "Apple",
+        "renders": "UIKit / AppKit"
+      },
+      "android": {
+        "platform": "Android",
+        "backend": "Android",
+        "renders": "Android Views"
+      },
+      "gtk": {
+        "platform": "Linux",
+        "backend": "GTK4",
+        "renders": "GTK4 widgets"
+      },
+      "hydrolysis": {
+        "platform": "macOS, Linux, Windows, web",
+        "backend": "Hydrolysis",
+        "renders": "Self-drawn, GPU via Vello"
+      },
+      "dew": {
+        "platform": "ESP32-S3 / ESP32-C3",
+        "backend": "Dew",
+        "renders": "Self-drawn, CPU, dirty-region"
+      }
+    },
+    "dewNote": "The same view that becomes a UIKit control on an iPhone runs on a microcontroller with no OS and no GPU."
+  },
+  "reactivity": {
+    "eyebrow": "02",
+    "title": "State",
+    "lead": "State is plain values. There is no virtual tree to diff, and changing one string never rebuilds the subtree around it.",
+    "points": {
+      "binding": {
+        "title": "Binding<T> is mutable state",
+        "body": "Put a value in a Binding and hand it to views. Any view that reads it updates when it changes."
+      },
+      "computed": {
+        "title": "Computed<T> is derived state",
+        "body": "Map a Binding into a Computed. Signal-aware APIs accept either, and only their readers update."
+      },
+      "collections": {
+        "title": "Collections diff by identity",
+        "body": "Give List or ForEach a reactive collection of Identifiable items and membership changes are diffed by id."
+      }
+    },
+    "flow": {
+      "binding": "Binding",
+      "computed": "Computed",
+      "view": "View"
+    }
+  },
+  "features": {
+    "eyebrow": "03",
+    "title": "Batteries",
+    "lead": "Layouts, controls, forms, navigation, media, charts, and the platform services around them. One dependency.",
+    "groups": {
+      "layout": {
+        "title": "Layout and text",
+        "items": [
+          "vstack, hstack, zstack, grid, scroll",
+          "Typography with CJK font fallback",
+          "Right-to-left layout direction",
+          "Rich text with built-in Markdown",
+          "Streaming Markdown for LLM output"
+        ]
+      },
+      "controls": {
+        "title": "Controls and forms",
+        "items": [
+          "Buttons, text fields, sliders, steppers, toggles",
+          "Pickers, date pickers, media pickers",
+          "#[form] derives a whole form from a struct",
+          "Lists and ForEach diffed by id",
+          "Menus, context menus, snackbars"
+        ]
+      },
+      "navigation": {
+        "title": "Navigation and windows",
+        "items": [
+          "Navigation stacks and tabs",
+          "Typed navigation paths, persisted with serde",
+          "Multiple windows with their own styles",
+          "Locale and layout direction from the environment",
+          "Theme system, Material 3 included"
+        ]
+      },
+      "graphics": {
+        "title": "Graphics and motion",
+        "items": [
+          "Canvas, shapes, clipping, gradients, SVG",
+          "GPU image filters and shader surfaces",
+          "GPU particles",
+          "Animation on a deterministic frame clock",
+          "Gestures, hover, cursor, drag and drop"
+        ]
+      },
+      "media": {
+        "title": "Media and data",
+        "items": [
+          "Video and audio playback",
+          "Real-time audio visualizer",
+          "Charts, every common type",
+          "Maps",
+          "Barcodes and web views: WebKit, CEF, WPE, Chromium"
+        ]
+      },
+      "icons": {
+        "title": "Icons",
+        "items": [
+          "SF Symbols",
+          "Material Symbols",
+          "Lucide",
+          "Font Awesome 7",
+          "Native icon per platform, one API"
+        ]
+      }
+    },
+    "kit": {
+      "title": "WaterKit",
+      "lead": "The platform services around the UI: one Rust API per capability, a native implementation on each platform.",
+      "items": [
+        "Camera",
+        "Location",
+        "Notifications",
+        "Permissions",
+        "Biometrics",
+        "Passkeys",
+        "Bluetooth",
+        "NFC",
+        "Haptics",
+        "Clipboard",
+        "Contacts",
+        "Calendar",
+        "Health",
+        "Sensors",
+        "Secure storage",
+        "Share sheet",
+        "Speech",
+        "Deep links",
+        "Dialogs",
+        "File system",
+        "Audio",
+        "Video",
+        "Screen",
+        "Background tasks",
+        "System info"
+      ]
+    },
+    "testing": {
+      "title": "Testing",
+      "lead": "Accessibility-first tests run under plain cargo test against the Hydrolysis renderer. No simulator, no device. Interactions are assertions, and every wait pumps to quiescence instead of sleeping."
+    }
+  },
+  "previews": {
+    "eyebrow": "04",
+    "title": "Previews",
+    "lead": "Any function marked #[preview] renders to an image without launching the app. The same surface drives semantic interaction tests and GPU measurements.",
+    "commands": {
+      "render": "Render a view to a PNG",
+      "frame": "Pick the frame size",
+      "test": "Run semantic interaction tests",
+      "perf": "Measure GPU cost"
+    },
+    "imageCaption": "Output of water preview on the {{example}} example.",
+    "dogfood": "Every screenshot on this page was produced this way."
+  },
+  "quickStart": {
+    "eyebrow": "05",
+    "title": "Quick start",
+    "lead": "A playground is a plain Rust crate. The CLI keeps native projects out of your source tree and manages them on demand.",
+    "steps": {
+      "install": "Install the CLI",
+      "create": "Create a playground",
+      "run": "Run it on the host"
+    },
+    "copy": "Copy",
+    "copied": "Copied",
+    "elsewhere": "To run somewhere else",
+    "entryPoint": "That is the whole entry point. The app crate depends on waterui and nothing else.",
+    "tools": {
+      "doctor": "reports what a toolchain is missing",
+      "devices": "lists simulators and connected devices"
+    },
+    "shipping": "Ready to ship? App mode generates platform projects that belong to you, so they can be customized, signed, and packaged.",
+    "shippingLink": "Read about app mode"
+  },
+  "gallery": {
+    "eyebrow": "06",
+    "title": "Examples",
+    "lead": "Every runnable example in the repository, captured by each backend's own e2e suite. Pick a backend and compare.",
+    "backend": "Backend",
+    "shotCount": "{{count}} captures",
+    "liveBadge": "live",
+    "backends": {
+      "ios": {
+        "label": "iOS",
+        "caption": "UIKit · iPhone simulator, e2e capture"
+      },
+      "macos": {
+        "label": "macOS",
+        "caption": "AppKit · Mac, e2e capture"
+      },
+      "android": {
+        "label": "Android",
+        "caption": "Android Views · emulator, e2e capture"
+      },
+      "gtk": {
+        "label": "GTK4",
+        "caption": "GTK4 widgets · Linux, e2e capture"
+      },
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "Self-drawn GPU renderer · water preview"
+      }
+    },
+    "items": {
+      "gallery": "Broad component showcase",
+      "form": "Derived forms and reactive field projection",
+      "navigation": "Stacks, tabs, and navigation state",
+      "map": "GPU map tiles and platform map bridges",
+      "flow_markdown": "Streaming Markdown rendering",
+      "video_player": "Playback state and controls",
+      "filter": "GPU image filters",
+      "reply": "Material 3 list-detail mail client",
+      "markdown": "Rich text and Markdown rendering",
+      "list": "Reactive collections diffed by identity",
+      "animation": "Animation on a deterministic frame clock",
+      "gesture": "Tap, drag, and pinch gestures",
+      "gradient": "Mesh and animated gradients",
+      "shape": "Shapes, clipping, and fills",
+      "icons": "One icon API across symbol sets",
+      "menu": "Menus and context menus",
+      "picker": "Pickers in every style",
+      "media_picker": "Photos and media picking",
+      "snackbar": "Transient snackbar notifications",
+      "multi_window": "Multiple windows with their own styles",
+      "locale": "Locale, i18n, and layout direction",
+      "typography-rtl": "CJK fallback and right-to-left layout",
+      "hover": "Hover states and cursor control",
+      "drag_drop": "Drag and drop between views",
+      "webview": "Web content as a native view",
+      "reminders": "A reminders-style task list",
+      "starfield": "GPU particle star field",
+      "stress": "Rendering and animation stress test",
+      "edge_layout": "Layout edge cases",
+      "edge_list": "List edge cases",
+      "edge_text": "Text edge cases",
+      "waterkit_camera_filters": "Camera filters on a GPU surface",
+      "chromium": "Chromium engine as a view",
+      "webview-cef": "CEF-backed web view",
+      "liquid_glass": "iOS 26 Liquid Glass materials"
+    },
+    "viewAll": "All examples on GitHub",
+    "runOne": "Run one from a checkout"
+  },
+  "live": {
+    "eyebrow": "07",
+    "title": "Live in your browser",
+    "lead": "Hydrolysis compiles the example crate itself to WebAssembly and runs the real view tree on a canvas. Click, type, drag — this is the framework running, not a recording.",
+    "examples": "Interactive examples",
+    "load": "Run {{example}}",
+    "loadHint": "Loads a WebAssembly build of the {{example}} example on demand.",
+    "caption": "{{example}} · compiled to wasm, rendered by Hydrolysis on WebGPU",
+    "openFull": "Open full page",
+    "frameTitle": "The {{example}} example running live in Hydrolysis"
+  },
+  "footer": {
+    "tagline": "Write once, apply everywhere.",
+    "book": "Book",
+    "api": "API reference",
+    "github": "GitHub",
+    "discord": "Discord",
+    "twitter": "X",
+    "license": "MIT or Apache 2.0, at your option.",
+    "contributing": "Target the dev branch. Open an issue before anything substantial."
+  }
+}

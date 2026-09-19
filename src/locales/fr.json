@@ -1,0 +1,318 @@
+{
+  "meta": {
+    "title": "WaterUI — UI multiplateforme pour Rust",
+    "description": "Écrivez une fois, appliquez partout. WaterUI est un framework d'interface multiplateforme pour Rust qui rend via UIKit, AppKit, Android Views, GTK4, le GPU ou un ESP32."
+  },
+  "nav": {
+    "book": "Guide",
+    "api": "API",
+    "examples": "Exemples",
+    "github": "GitHub",
+    "menu": "Menu",
+    "closeMenu": "Fermer le menu",
+    "language": "Langue",
+    "theme": "Thème",
+    "themeSystem": "Système",
+    "themeLight": "Clair",
+    "themeDark": "Sombre"
+  },
+  "hero": {
+    "eyebrow": "Framework d'interface multiplateforme pour Rust",
+    "titleLine1": "Écrivez une fois,",
+    "titleLine2": "appliquez partout.",
+    "lead": "WaterUI projette chaque vue sur la boîte à outils propre à la plateforme : UIKit, AppKit, Android Views, GTK4. Là où rien de natif ne convient, il dessine la vue lui-même, sur le GPU ou sur un microcontrôleur.",
+    "ctaStart": "Commencer",
+    "ctaBook": "Lire le guide",
+    "status": "Avant 1.0 · Apple et Android sont les backends les plus complets"
+  },
+  "bond": {
+    "binding": "Binding<i32>",
+    "view": "text!(\"Count: {count}\")",
+    "decrement": "Décrémenter",
+    "increment": "Incrémenter",
+    "caption": "Une valeur change, ses lecteurs se mettent à jour. Rien d'autre n'est touché."
+  },
+  "targets": {
+    "eyebrow": "01",
+    "title": "Cibles",
+    "lead": "Un seul arbre de vues, cinq backends. Chacun parle la boîte à outils de sa plateforme, ou dessine la vue lui-même quand il n'y en a pas.",
+    "rendersThrough": "Rend via",
+    "items": {
+      "apple": {
+        "platform": "iOS et macOS",
+        "backend": "Apple",
+        "renders": "UIKit / AppKit"
+      },
+      "android": {
+        "platform": "Android",
+        "backend": "Android",
+        "renders": "Android Views"
+      },
+      "gtk": {
+        "platform": "Linux",
+        "backend": "GTK4",
+        "renders": "Widgets GTK4"
+      },
+      "hydrolysis": {
+        "platform": "macOS, Linux, Windows, web",
+        "backend": "Hydrolysis",
+        "renders": "Dessin propre, GPU via Vello"
+      },
+      "dew": {
+        "platform": "ESP32-S3 / ESP32-C3",
+        "backend": "Dew",
+        "renders": "Dessin propre, CPU, zones modifiées"
+      }
+    },
+    "dewNote": "La même vue qui devient un contrôle UIKit sur un iPhone tourne sur un microcontrôleur sans OS ni GPU."
+  },
+  "reactivity": {
+    "eyebrow": "02",
+    "title": "État",
+    "lead": "L'état, ce sont des valeurs ordinaires. Il n'y a pas d'arbre virtuel à comparer, et changer une chaîne ne reconstruit jamais le sous-arbre autour d'elle.",
+    "points": {
+      "binding": {
+        "title": "Binding<T> est l'état mutable",
+        "body": "Placez une valeur dans un Binding et confiez-le aux vues. Toute vue qui le lit se met à jour quand il change."
+      },
+      "computed": {
+        "title": "Computed<T> est l'état dérivé",
+        "body": "Appliquez map à un Binding pour obtenir un Computed. Les API sensibles aux signaux acceptent l'un comme l'autre, et seuls leurs lecteurs se mettent à jour."
+      },
+      "collections": {
+        "title": "Les collections sont comparées par identité",
+        "body": "Donnez à List ou ForEach une collection réactive d'éléments Identifiable, et les changements de composition sont comparés par id."
+      }
+    },
+    "flow": {
+      "binding": "Binding",
+      "computed": "Computed",
+      "view": "View"
+    }
+  },
+  "features": {
+    "eyebrow": "03",
+    "title": "Inclus",
+    "lead": "Mises en page, contrôles, formulaires, navigation, médias, graphiques, et les services de plateforme autour. Une seule dépendance.",
+    "groups": {
+      "layout": {
+        "title": "Mise en page et texte",
+        "items": [
+          "vstack, hstack, zstack, grid, scroll",
+          "Typographie avec repli de police CJC",
+          "Sens de mise en page de droite à gauche",
+          "Texte riche avec Markdown intégré",
+          "Markdown en flux pour les sorties de LLM"
+        ]
+      },
+      "controls": {
+        "title": "Contrôles et formulaires",
+        "items": [
+          "Boutons, champs de texte, curseurs, steppers, interrupteurs",
+          "Sélecteurs, sélecteurs de date et de médias",
+          "#[form] dérive un formulaire entier d'une struct",
+          "List et ForEach comparés par id",
+          "Menus, menus contextuels, snackbars"
+        ]
+      },
+      "navigation": {
+        "title": "Navigation et fenêtres",
+        "items": [
+          "Piles de navigation et onglets",
+          "Chemins de navigation typés, persistés avec serde",
+          "Plusieurs fenêtres avec leurs propres styles",
+          "Locale et sens de mise en page depuis l'environnement",
+          "Système de thèmes, Material 3 inclus"
+        ]
+      },
+      "graphics": {
+        "title": "Graphisme et mouvement",
+        "items": [
+          "Canvas, formes, découpe, dégradés, SVG",
+          "Filtres d'image GPU et surfaces de shaders",
+          "Particules GPU",
+          "Animation sur une horloge d'images déterministe",
+          "Gestes, survol, curseur, glisser-déposer"
+        ]
+      },
+      "media": {
+        "title": "Médias et données",
+        "items": [
+          "Lecture vidéo et audio",
+          "Visualiseur audio en temps réel",
+          "Graphiques, tous les types courants",
+          "Cartes",
+          "Codes-barres et vues web : WebKit, CEF, WPE, Chromium"
+        ]
+      },
+      "icons": {
+        "title": "Icônes",
+        "items": [
+          "SF Symbols",
+          "Material Symbols",
+          "Lucide",
+          "Font Awesome 7",
+          "Icône native par plateforme, une seule API"
+        ]
+      }
+    },
+    "kit": {
+      "title": "WaterKit",
+      "lead": "Les services de plateforme autour de l'interface : une API Rust par capacité, une implémentation native par plateforme.",
+      "items": [
+        "Caméra",
+        "Localisation",
+        "Notifications",
+        "Permissions",
+        "Biométrie",
+        "Passkeys",
+        "Bluetooth",
+        "NFC",
+        "Haptique",
+        "Presse-papiers",
+        "Contacts",
+        "Calendrier",
+        "Santé",
+        "Capteurs",
+        "Stockage sécurisé",
+        "Feuille de partage",
+        "Voix",
+        "Liens profonds",
+        "Boîtes de dialogue",
+        "Système de fichiers",
+        "Audio",
+        "Vidéo",
+        "Écran",
+        "Tâches en arrière-plan",
+        "Infos système"
+      ]
+    },
+    "testing": {
+      "title": "Tests",
+      "lead": "Des tests fondés sur l'accessibilité tournent sous un simple cargo test face au moteur Hydrolysis. Ni simulateur, ni appareil. Les interactions sont des assertions, et chaque attente pompe jusqu'au repos au lieu de dormir."
+    }
+  },
+  "previews": {
+    "eyebrow": "04",
+    "title": "Aperçus",
+    "lead": "Toute fonction marquée #[preview] se rend en image sans lancer l'application. La même base pilote les tests d'interaction sémantiques et les mesures GPU.",
+    "commands": {
+      "render": "Rendre une vue en PNG",
+      "frame": "Choisir la taille du cadre",
+      "test": "Lancer les tests d'interaction sémantiques",
+      "perf": "Mesurer le coût GPU"
+    },
+    "imageCaption": "Sortie de water preview sur l'exemple {{example}}.",
+    "dogfood": "Chaque capture de cette page a été produite ainsi."
+  },
+  "quickStart": {
+    "eyebrow": "05",
+    "title": "Démarrage rapide",
+    "lead": "Un playground est une crate Rust ordinaire. La CLI garde les projets natifs hors de votre arborescence et les gère à la demande.",
+    "steps": {
+      "install": "Installer la CLI",
+      "create": "Créer un playground",
+      "run": "L'exécuter sur l'hôte"
+    },
+    "copy": "Copier",
+    "copied": "Copié",
+    "elsewhere": "Pour l'exécuter ailleurs",
+    "entryPoint": "C'est là tout le point d'entrée. La crate de l'application dépend de waterui et de rien d'autre.",
+    "tools": {
+      "doctor": "signale ce qui manque à une chaîne d'outils",
+      "devices": "liste les simulateurs et les appareils connectés"
+    },
+    "shipping": "Prêt à livrer ? Le mode App génère des projets de plateforme qui vous appartiennent, pour les personnaliser, les signer et les empaqueter.",
+    "shippingLink": "En savoir plus sur le mode App"
+  },
+  "gallery": {
+    "eyebrow": "06",
+    "title": "Exemples",
+    "lead": "Chaque exemple exécutable du dépôt, capturé par la suite e2e de chaque backend. Choisissez un backend et comparez.",
+    "backend": "Backend",
+    "shotCount": "{{count}} captures",
+    "liveBadge": "live",
+    "backends": {
+      "ios": {
+        "label": "iOS",
+        "caption": "UIKit · simulateur iPhone, capture e2e"
+      },
+      "macos": {
+        "label": "macOS",
+        "caption": "AppKit · Mac, capture e2e"
+      },
+      "android": {
+        "label": "Android",
+        "caption": "Android Views · émulateur, capture e2e"
+      },
+      "gtk": {
+        "label": "GTK4",
+        "caption": "Widgets GTK4 · Linux, capture e2e"
+      },
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "Moteur GPU auto-rendu · water preview"
+      }
+    },
+    "items": {
+      "gallery": "Large vitrine de composants",
+      "form": "Formulaires dérivés et projection réactive de champs",
+      "navigation": "Piles, onglets et état de navigation",
+      "map": "Tuiles de carte GPU et ponts cartographiques natifs",
+      "flow_markdown": "Rendu Markdown en flux",
+      "video_player": "État de lecture et contrôles",
+      "filter": "Filtres d'image GPU",
+      "reply": "Client mail liste-détail Material 3",
+      "markdown": "Texte enrichi et rendu Markdown",
+      "list": "Collections réactives différées par identité",
+      "animation": "Animation sur une horloge de frames déterministe",
+      "gesture": "Gestes tap, drag et pinch",
+      "gradient": "Dégradés mesh et animés",
+      "shape": "Formes, détourage et remplissages",
+      "icons": "Une API d'icônes pour tous les jeux de symboles",
+      "menu": "Menus et menus contextuels",
+      "picker": "Sélecteurs de tous styles",
+      "media_picker": "Sélection de photos et médias",
+      "snackbar": "Notifications snackbar transitoires",
+      "multi_window": "Fenêtres multiples aux styles propres",
+      "locale": "Locale, i18n et direction de mise en page",
+      "typography-rtl": "Fallback CJK et mise en page droite-à-gauche",
+      "hover": "États de survol et contrôle du curseur",
+      "drag_drop": "Glisser-déposer entre vues",
+      "webview": "Contenu web comme vue native",
+      "reminders": "Liste de tâches style Rappels",
+      "starfield": "Champ d'étoiles en particules GPU",
+      "stress": "Test de charge du rendu et des animations",
+      "edge_layout": "Cas limites de mise en page",
+      "edge_list": "Cas limites de liste",
+      "edge_text": "Cas limites de texte",
+      "waterkit_camera_filters": "Filtres caméra sur une surface GPU",
+      "chromium": "Le moteur Chromium comme vue",
+      "webview-cef": "Vue web propulsée par CEF",
+      "liquid_glass": "Matériaux Liquid Glass d'iOS 26"
+    },
+    "viewAll": "Tous les exemples sur GitHub",
+    "runOne": "En lancer un depuis un checkout"
+  },
+  "live": {
+    "eyebrow": "07",
+    "title": "En direct dans votre navigateur",
+    "lead": "Hydrolysis compile le crate de l'exemple lui-même en WebAssembly et exécute le véritable arbre de vues sur un canvas. Cliquez, tapez, glissez — c'est le framework qui tourne, pas un enregistrement.",
+    "examples": "Exemples interactifs",
+    "load": "Lancer {{example}}",
+    "loadHint": "Charge à la demande un build WebAssembly de l'exemple {{example}}.",
+    "caption": "{{example}} · compilé en wasm, rendu par Hydrolysis sur WebGPU",
+    "openFull": "Ouvrir en pleine page",
+    "frameTitle": "L'exemple {{example}} s'exécute en direct dans Hydrolysis"
+  },
+  "footer": {
+    "tagline": "Écrivez une fois, appliquez partout.",
+    "book": "Guide",
+    "api": "Référence API",
+    "github": "GitHub",
+    "discord": "Discord",
+    "twitter": "X",
+    "license": "MIT ou Apache 2.0, au choix.",
+    "contributing": "Visez la branche dev. Ouvrez une issue avant tout changement important."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "animation-example-hydrolysis-df5bd8af",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "app_bg.wasm",
+    "app.js",
+    "app.d.ts"
+  ],
+  "main": "app.js",
+  "types": "app.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
