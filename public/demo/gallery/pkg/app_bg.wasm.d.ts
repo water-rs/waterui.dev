@@ -1,0 +1,30 @@
+/* tslint:disable */
+/* eslint-disable */
+export const memory: WebAssembly.Memory;
+export const __wbg_intounderlyingbytesource_free: (a: number, b: number) => void;
+export const __wbg_intounderlyingsink_free: (a: number, b: number) => void;
+export const __wbg_intounderlyingsource_free: (a: number, b: number) => void;
+export const intounderlyingbytesource_autoAllocateChunkSize: (a: number) => number;
+export const intounderlyingbytesource_cancel: (a: number) => void;
+export const intounderlyingbytesource_pull: (a: number, b: number) => number;
+export const intounderlyingbytesource_start: (a: number, b: number) => void;
+export const intounderlyingbytesource_type: (a: number) => number;
+export const intounderlyingsink_abort: (a: number, b: number) => number;
+export const intounderlyingsink_close: (a: number) => number;
+export const intounderlyingsink_write: (a: number, b: number) => number;
+export const intounderlyingsource_cancel: (a: number) => void;
+export const intounderlyingsource_pull: (a: number, b: number) => number;
+export const start: () => void;
+export const __wasm_bindgen_func_elem_2990: (a: number, b: number, c: number) => void;
+export const __wasm_bindgen_func_elem_28228: (a: number, b: number, c: number, d: number) => void;
+export const __wasm_bindgen_func_elem_28230: (a: number, b: number, c: number, d: number) => void;
+export const __wasm_bindgen_func_elem_25448: (a: number, b: number, c: number) => void;
+export const __wasm_bindgen_func_elem_9509: (a: number, b: number, c: number) => void;
+export const __wasm_bindgen_func_elem_28162: (a: number, b: number) => void;
+export const __wasm_bindgen_func_elem_9402: (a: number, b: number) => void;
+export const __wbindgen_export: (a: number, b: number) => number;
+export const __wbindgen_export2: (a: number, b: number, c: number, d: number) => number;
+export const __wbindgen_export3: (a: number) => void;
+export const __wbindgen_export4: (a: number, b: number) => void;
+export const __wbindgen_add_to_stack_pointer: (a: number) => number;
+export const __wbindgen_start: () => void;

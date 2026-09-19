@@ -6,6 +6,7 @@ import Features from './components/Features'
 import Previews from './components/Previews'
 import QuickStart from './components/QuickStart'
 import Gallery from './components/Gallery'
+import LiveDemo from './components/LiveDemo'
 import Footer from './components/Footer'
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
         <Previews />
         <QuickStart />
         <Gallery />
+        <LiveDemo />
       </main>
       <Footer />
     </div>

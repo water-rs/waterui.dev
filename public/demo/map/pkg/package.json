@@ -1,0 +1,15 @@
+{
+  "name": "map-example-hydrolysis-d7d50144",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "app_bg.wasm",
+    "app.js",
+    "app.d.ts"
+  ],
+  "main": "app.js",
+  "types": "app.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

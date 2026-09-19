@@ -228,18 +228,82 @@
   "gallery": {
     "eyebrow": "06",
     "title": "예제",
-    "lead": "저장소의 실행 가능한 애플리케이션. 프레임워크 자체의 preview 명령으로 렌더링.",
+    "lead": "저장소의 모든 실행 가능한 예제를 각 백엔드의 e2e 스위트로 캡처했습니다. 백엔드를 선택해 비교해 보세요.",
+    "backend": "백엔드",
+    "shotCount": "{{count}}개 캡처",
+    "liveBadge": "라이브",
+    "backends": {
+      "ios": {
+        "label": "iOS",
+        "caption": "UIKit · iPhone 시뮬레이터 e2e 캡처"
+      },
+      "macos": {
+        "label": "macOS",
+        "caption": "AppKit · Mac e2e 캡처"
+      },
+      "android": {
+        "label": "Android",
+        "caption": "Android Views · 에뮬레이터 e2e 캡처"
+      },
+      "gtk": {
+        "label": "GTK4",
+        "caption": "GTK4 위젯 · Linux e2e 캡처"
+      },
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "GPU 자체 렌더러 · water preview"
+      }
+    },
     "items": {
-      "gallery": "컴포넌트 종합 쇼케이스",
-      "form": "파생 폼과 반응형 필드 투영",
+      "gallery": "폭넓은 컴포넌트 쇼케이스",
+      "form": "파생 폼과 반응형 필드 프로젝션",
       "navigation": "스택, 탭, 내비게이션 상태",
+      "map": "GPU 지도 타일과 플랫폼 지도 브리지",
       "flow_markdown": "스트리밍 Markdown 렌더링",
-      "map": "플랫폼별로 구현된 지도 컴포넌트",
       "video_player": "재생 상태와 컨트롤",
-      "filter": "GPU 이미지 필터"
+      "filter": "GPU 이미지 필터",
+      "reply": "Material 3 리스트-상세 메일 클라이언트",
+      "markdown": "리치 텍스트와 Markdown 렌더링",
+      "list": "아이덴티티로 diff되는 반응형 컬렉션",
+      "animation": "결정적 프레임 클록 위의 애니메이션",
+      "gesture": "탭, 드래그, 핀치 제스처",
+      "gradient": "메시와 애니메이션 그라데이션",
+      "shape": "도형, 클리핑, 채우기",
+      "icons": "심볼 세트 전반의 단일 아이콘 API",
+      "menu": "메뉴와 컨텍스트 메뉴",
+      "picker": "모든 스타일의 피커",
+      "media_picker": "사진과 미디어 선택",
+      "snackbar": "일시적인 스낵바 알림",
+      "multi_window": "각자의 스타일을 가진 다중 창",
+      "locale": "로케일, i18n, 레이아웃 방향",
+      "typography-rtl": "CJK 폴백과 오른쪽에서 왼쪽 레이아웃",
+      "hover": "호버 상태와 커서 제어",
+      "drag_drop": "뷰 간 드래그 앤 드롭",
+      "webview": "네이티브 뷰로서의 웹 콘텐츠",
+      "reminders": "미리 알림 스타일의 할 일 목록",
+      "starfield": "GPU 파티클 별밭",
+      "stress": "렌더링과 애니메이션 스트레스 테스트",
+      "edge_layout": "레이아웃 엣지 케이스",
+      "edge_list": "리스트 엣지 케이스",
+      "edge_text": "텍스트 엣지 케이스",
+      "waterkit_camera_filters": "GPU 서피스의 카메라 필터",
+      "chromium": "뷰로서의 Chromium 엔진",
+      "webview-cef": "CEF 기반 웹 뷰",
+      "liquid_glass": "iOS 26 Liquid Glass 머티리얼"
     },
     "viewAll": "GitHub에서 모든 예제 보기",
     "runOne": "체크아웃에서 실행하기"
+  },
+  "live": {
+    "eyebrow": "07",
+    "title": "브라우저에서 라이브 실행",
+    "lead": "Hydrolysis가 예제 크레이트 자체를 WebAssembly로 컴파일해 실제 뷰 트리를 캔버스에서 실행합니다. 클릭하고, 입력하고, 드래그하세요 — 녹화가 아니라 프레임워크가 실제로 동작합니다.",
+    "examples": "인터랙티브 예제",
+    "load": "{{example}} 실행",
+    "loadHint": "{{example}} 예제의 WebAssembly 빌드를 필요할 때 로드합니다.",
+    "caption": "{{example}} · wasm으로 컴파일되어 Hydrolysis가 WebGPU로 렌더링",
+    "openFull": "전체 페이지로 열기",
+    "frameTitle": "Hydrolysis에서 라이브로 실행 중인 {{example}} 예제"
   },
   "footer": {
     "tagline": "한 번 작성하고, 어디서나 적용하세요.",

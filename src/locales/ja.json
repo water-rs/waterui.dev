@@ -228,18 +228,82 @@
   "gallery": {
     "eyebrow": "06",
     "title": "サンプル",
-    "lead": "リポジトリにある実行可能なアプリケーション。フレームワーク自身の preview コマンドで描画。",
+    "lead": "リポジトリの実行可能なすべてのサンプルを、各バックエンドの e2e スイートでキャプチャしました。バックエンドを選んで比較できます。",
+    "backend": "バックエンド",
+    "shotCount": "{{count}} 件",
+    "liveBadge": "ライブ",
+    "backends": {
+      "ios": {
+        "label": "iOS",
+        "caption": "UIKit · iPhone シミュレータで e2e キャプチャ"
+      },
+      "macos": {
+        "label": "macOS",
+        "caption": "AppKit · Mac で e2e キャプチャ"
+      },
+      "android": {
+        "label": "Android",
+        "caption": "Android Views · エミュレータで e2e キャプチャ"
+      },
+      "gtk": {
+        "label": "GTK4",
+        "caption": "GTK4 ウィジェット · Linux で e2e キャプチャ"
+      },
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "GPU 自描画レンダラー · water preview"
+      }
+    },
     "items": {
-      "gallery": "コンポーネントの総覧",
-      "form": "導出フォームとリアクティブなフィールド投影",
+      "gallery": "コンポーネント総合ショーケース",
+      "form": "派生フォームとリアクティブなフィールド投影",
       "navigation": "スタック、タブ、ナビゲーション状態",
-      "flow_markdown": "ストリーミング Markdown 描画",
-      "map": "プラットフォームごとに実装された地図コンポーネント",
+      "map": "GPU マップタイルとプラットフォームの地図ブリッジ",
+      "flow_markdown": "ストリーミング Markdown レンダリング",
       "video_player": "再生状態とコントロール",
-      "filter": "GPU 画像フィルター"
+      "filter": "GPU 画像フィルター",
+      "reply": "Material 3 のリスト詳細メールクライアント",
+      "markdown": "リッチテキストと Markdown レンダリング",
+      "list": "同一性で差分するリアクティブコレクション",
+      "animation": "決定論的フレームクロックのアニメーション",
+      "gesture": "タップ、ドラッグ、ピンチジェスチャー",
+      "gradient": "メッシュとアニメーショングラデーション",
+      "shape": "図形、クリッピング、塗りつぶし",
+      "icons": "シンボルセットをまたぐ単一アイコン API",
+      "menu": "メニューとコンテキストメニュー",
+      "picker": "あらゆるスタイルのピッカー",
+      "media_picker": "写真とメディアの選択",
+      "snackbar": "一時的なスナックバー通知",
+      "multi_window": "それぞれのスタイルを持つ複数ウィンドウ",
+      "locale": "ロケール、i18n、レイアウト方向",
+      "typography-rtl": "CJK フォールバックと右から左へのレイアウト",
+      "hover": "ホバー状態とカーソル制御",
+      "drag_drop": "ビュー間のドラッグ&ドロップ",
+      "webview": "ネイティブビューとしての Web コンテンツ",
+      "reminders": "リマインダー風タスクリスト",
+      "starfield": "GPU パーティクルによる星空",
+      "stress": "レンダリングとアニメーションのストレステスト",
+      "edge_layout": "レイアウトのエッジケース",
+      "edge_list": "リストのエッジケース",
+      "edge_text": "テキストのエッジケース",
+      "waterkit_camera_filters": "GPU サーフェス上のカメラフィルター",
+      "chromium": "ビューとしての Chromium エンジン",
+      "webview-cef": "CEF ベースの Web ビュー",
+      "liquid_glass": "iOS 26 Liquid Glass マテリアル"
     },
     "viewAll": "GitHub ですべてのサンプルを見る",
     "runOne": "チェックアウトから実行する"
+  },
+  "live": {
+    "eyebrow": "07",
+    "title": "ブラウザでライブ実行",
+    "lead": "Hydrolysis はサンプルのクレート自体を WebAssembly にコンパイルし、実際のビューツリーをキャンバス上で実行します。クリック、入力、ドラッグ——録画ではなく、フレームワークそのものが動いています。",
+    "examples": "インタラクティブな例",
+    "load": "{{example}} を実行",
+    "loadHint": "{{example}} サンプルの WebAssembly ビルドを必要時に読み込みます。",
+    "caption": "{{example}} · wasm にコンパイル、Hydrolysis が WebGPU で描画",
+    "openFull": "フルページで開く",
+    "frameTitle": "Hydrolysis でライブ実行中の {{example}} サンプル"
   },
   "footer": {
     "tagline": "一度書けば、どこでも使える。",

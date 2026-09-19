@@ -228,18 +228,82 @@
   "gallery": {
     "eyebrow": "06",
     "title": "Beispiele",
-    "lead": "Lauffähige Anwendungen aus dem Repository, gerendert mit dem eigenen Preview-Befehl des Frameworks.",
+    "lead": "Jedes lauffähige Beispiel des Repositoriums, aufgenommen von der eigenen e2e-Suite jedes Backends. Wählen Sie ein Backend und vergleichen Sie.",
+    "backend": "Backend",
+    "shotCount": "{{count}} Aufnahmen",
+    "liveBadge": "live",
+    "backends": {
+      "ios": {
+        "label": "iOS",
+        "caption": "UIKit · iPhone-Simulator, e2e-Aufnahme"
+      },
+      "macos": {
+        "label": "macOS",
+        "caption": "AppKit · Mac, e2e-Aufnahme"
+      },
+      "android": {
+        "label": "Android",
+        "caption": "Android Views · Emulator, e2e-Aufnahme"
+      },
+      "gtk": {
+        "label": "GTK4",
+        "caption": "GTK4-Widgets · Linux, e2e-Aufnahme"
+      },
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "Selbst gezeichneter GPU-Renderer · water preview"
+      }
+    },
     "items": {
-      "gallery": "Breite Komponentenschau",
+      "gallery": "Breite Komponenten-Übersicht",
       "form": "Abgeleitete Formulare und reaktive Feldprojektion",
       "navigation": "Stacks, Tabs und Navigationszustand",
+      "map": "GPU-Kartenkacheln und Plattform-Karten-Bridges",
       "flow_markdown": "Streaming-Markdown-Rendering",
-      "map": "Kartenkomponente über Plattformumsetzungen hinweg",
-      "video_player": "Wiedergabezustand und Steuerung",
-      "filter": "GPU-Bildfilter"
+      "video_player": "Wiedergabestatus und Steuerung",
+      "filter": "GPU-Bildfilter",
+      "reply": "Material-3-Mailclient mit Liste und Detail",
+      "markdown": "Rich Text und Markdown-Rendering",
+      "list": "Reaktive, per Identität gediffte Sammlungen",
+      "animation": "Animation auf deterministischer Frame-Uhr",
+      "gesture": "Tap-, Drag- und Pinch-Gesten",
+      "gradient": "Mesh- und animierte Farbverläufe",
+      "shape": "Formen, Clipping und Füllungen",
+      "icons": "Eine Icon-API über alle Symbol-Sets",
+      "menu": "Menüs und Kontextmenüs",
+      "picker": "Picker in jeder Variante",
+      "media_picker": "Foto- und Medienauswahl",
+      "snackbar": "Flüchtige Snackbar-Benachrichtigungen",
+      "multi_window": "Mehrere Fenster mit eigenen Stilen",
+      "locale": "Locale, i18n und Layout-Richtung",
+      "typography-rtl": "CJK-Fallback und Rechts-nach-links-Layout",
+      "hover": "Hover-Zustände und Cursor-Steuerung",
+      "drag_drop": "Drag & Drop zwischen Views",
+      "webview": "Webinhalte als native View",
+      "reminders": "Aufgabenliste im Reminders-Stil",
+      "starfield": "GPU-Partikel-Sternenfeld",
+      "stress": "Rendering- und Animations-Stresstest",
+      "edge_layout": "Layout-Grenzfälle",
+      "edge_list": "Listen-Grenzfälle",
+      "edge_text": "Text-Grenzfälle",
+      "waterkit_camera_filters": "Kamerafilter auf einer GPU-Oberfläche",
+      "chromium": "Chromium-Engine als View",
+      "webview-cef": "CEF-gestützte Web-View",
+      "liquid_glass": "iOS-26-Liquid-Glass-Materialien"
     },
     "viewAll": "Alle Beispiele auf GitHub",
     "runOne": "Eines aus einem Checkout starten"
+  },
+  "live": {
+    "eyebrow": "07",
+    "title": "Live im Browser",
+    "lead": "Hydrolysis kompiliert das Beispiel-Crate selbst zu WebAssembly und führt den echten View-Baum auf einem Canvas aus. Klicken, tippen, ziehen — hier läuft das Framework, keine Aufzeichnung.",
+    "examples": "Interaktive Beispiele",
+    "load": "{{example}} ausführen",
+    "loadHint": "Lädt einen WebAssembly-Build des Beispiels {{example}} bei Bedarf.",
+    "caption": "{{example}} · nach wasm kompiliert, von Hydrolysis auf WebGPU gerendert",
+    "openFull": "Ganze Seite öffnen",
+    "frameTitle": "Das Beispiel {{example}} läuft live in Hydrolysis"
   },
   "footer": {
     "tagline": "Einmal schreiben, überall einsetzen.",

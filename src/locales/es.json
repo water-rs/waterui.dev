@@ -228,18 +228,82 @@
   "gallery": {
     "eyebrow": "06",
     "title": "Ejemplos",
-    "lead": "Aplicaciones ejecutables del repositorio, renderizadas por el propio comando de vista previa del framework.",
+    "lead": "Cada ejemplo ejecutable del repositorio, capturado por la suite e2e de cada backend. Elige un backend y compara.",
+    "backend": "Backend",
+    "shotCount": "{{count}} capturas",
+    "liveBadge": "en vivo",
+    "backends": {
+      "ios": {
+        "label": "iOS",
+        "caption": "UIKit · simulador de iPhone, captura e2e"
+      },
+      "macos": {
+        "label": "macOS",
+        "caption": "AppKit · Mac, captura e2e"
+      },
+      "android": {
+        "label": "Android",
+        "caption": "Android Views · emulador, captura e2e"
+      },
+      "gtk": {
+        "label": "GTK4",
+        "caption": "Widgets GTK4 · Linux, captura e2e"
+      },
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "Renderizador GPU autónomo · water preview"
+      }
+    },
     "items": {
-      "gallery": "Muestra amplia de componentes",
+      "gallery": "Amplia muestra de componentes",
       "form": "Formularios derivados y proyección reactiva de campos",
       "navigation": "Pilas, pestañas y estado de navegación",
+      "map": "Teselas de mapa GPU y puentes de mapa nativos",
       "flow_markdown": "Renderizado de Markdown en streaming",
-      "map": "Componente de mapa según la realización de cada plataforma",
       "video_player": "Estado de reproducción y controles",
-      "filter": "Filtros de imagen en GPU"
+      "filter": "Filtros de imagen GPU",
+      "reply": "Cliente de correo lista-detalle Material 3",
+      "markdown": "Texto enriquecido y renderizado Markdown",
+      "list": "Colecciones reactivas con diff por identidad",
+      "animation": "Animación sobre un reloj de fotogramas determinista",
+      "gesture": "Gestos de toque, arrastre y pellizco",
+      "gradient": "Degradados de malla y animados",
+      "shape": "Formas, recorte y rellenos",
+      "icons": "Una API de iconos para todos los conjuntos de símbolos",
+      "menu": "Menús y menús contextuales",
+      "picker": "Selectores de todos los estilos",
+      "media_picker": "Selección de fotos y medios",
+      "snackbar": "Notificaciones snackbar transitorias",
+      "multi_window": "Varias ventanas con estilos propios",
+      "locale": "Configuración regional, i18n y dirección de layout",
+      "typography-rtl": "Fallback CJK y layout de derecha a izquierda",
+      "hover": "Estados hover y control del cursor",
+      "drag_drop": "Arrastrar y soltar entre vistas",
+      "webview": "Contenido web como vista nativa",
+      "reminders": "Lista de tareas estilo Recordatorios",
+      "starfield": "Campo de estrellas con partículas GPU",
+      "stress": "Prueba de estrés de renderizado y animación",
+      "edge_layout": "Casos límite de layout",
+      "edge_list": "Casos límite de lista",
+      "edge_text": "Casos límite de texto",
+      "waterkit_camera_filters": "Filtros de cámara sobre una superficie GPU",
+      "chromium": "El motor Chromium como vista",
+      "webview-cef": "Vista web respaldada por CEF",
+      "liquid_glass": "Materiales Liquid Glass de iOS 26"
     },
     "viewAll": "Todos los ejemplos en GitHub",
     "runOne": "Ejecutar uno desde un checkout"
+  },
+  "live": {
+    "eyebrow": "07",
+    "title": "En vivo en tu navegador",
+    "lead": "Hydrolysis compila el crate del ejemplo a WebAssembly y ejecuta el verdadero árbol de vistas en un canvas. Haz clic, escribe, arrastra — esto es el framework funcionando, no una grabación.",
+    "examples": "Ejemplos interactivos",
+    "load": "Ejecutar {{example}}",
+    "loadHint": "Carga bajo demanda una compilación WebAssembly del ejemplo {{example}}.",
+    "caption": "{{example}} · compilado a wasm, renderizado por Hydrolysis en WebGPU",
+    "openFull": "Abrir página completa",
+    "frameTitle": "El ejemplo {{example}} ejecutándose en vivo en Hydrolysis"
   },
   "footer": {
     "tagline": "Escribe una vez, aplícalo en todas partes.",

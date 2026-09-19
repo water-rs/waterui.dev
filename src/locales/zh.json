@@ -228,18 +228,82 @@
   "gallery": {
     "eyebrow": "06",
     "title": "示例",
-    "lead": "仓库里可运行的应用，由框架自己的 preview 命令渲染。",
+    "lead": "仓库中每个可运行示例在各后端 e2e 套件下的真实截图。选择一个后端逐一对比。",
+    "backend": "后端",
+    "shotCount": "{{count}} 张截图",
+    "liveBadge": "在线",
+    "backends": {
+      "ios": {
+        "label": "iOS",
+        "caption": "UIKit · iPhone 模拟器 e2e 截图"
+      },
+      "macos": {
+        "label": "macOS",
+        "caption": "AppKit · Mac e2e 截图"
+      },
+      "android": {
+        "label": "Android",
+        "caption": "Android Views · 模拟器 e2e 截图"
+      },
+      "gtk": {
+        "label": "GTK4",
+        "caption": "GTK4 组件 · Linux e2e 截图"
+      },
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "自绘 GPU 渲染器 · water preview"
+      }
+    },
     "items": {
       "gallery": "组件总览",
       "form": "派生表单与响应式字段投影",
       "navigation": "导航栈、标签页与导航状态",
+      "map": "GPU 地图瓦片与平台地图桥接",
       "flow_markdown": "流式 Markdown 渲染",
-      "map": "跨平台实现的地图组件",
       "video_player": "播放状态与控制",
-      "filter": "GPU 图像滤镜"
+      "filter": "GPU 图像滤镜",
+      "reply": "Material 3 列表-详情邮件客户端",
+      "markdown": "富文本与 Markdown 渲染",
+      "list": "按标识符 diff 的响应式集合",
+      "animation": "确定性帧时钟上的动画",
+      "gesture": "点按、拖拽与捏合手势",
+      "gradient": "网格与动画渐变",
+      "shape": "形状、裁剪与填充",
+      "icons": "一套图标 API 贯通各符号库",
+      "menu": "菜单与上下文菜单",
+      "picker": "各种样式的选择器",
+      "media_picker": "照片与媒体选取",
+      "snackbar": "瞬时 Snackbar 通知",
+      "multi_window": "各自独立样式的多窗口",
+      "locale": "语言环境、i18n 与布局方向",
+      "typography-rtl": "CJK 回退与从右到左布局",
+      "hover": "悬停状态与光标控制",
+      "drag_drop": "视图间的拖放",
+      "webview": "作为原生视图的网页内容",
+      "reminders": "提醒事项风格的任务列表",
+      "starfield": "GPU 粒子星空",
+      "stress": "渲染与动画压力测试",
+      "edge_layout": "布局边界情况",
+      "edge_list": "列表边界情况",
+      "edge_text": "文本边界情况",
+      "waterkit_camera_filters": "GPU 表面上的相机滤镜",
+      "chromium": "作为视图的 Chromium 引擎",
+      "webview-cef": "CEF 驱动的网页视图",
+      "liquid_glass": "iOS 26 Liquid Glass 材质"
     },
     "viewAll": "GitHub 上的全部示例",
     "runOne": "从源码运行一个示例"
+  },
+  "live": {
+    "eyebrow": "07",
+    "title": "在浏览器中实时运行",
+    "lead": "Hydrolysis 将示例 crate 本身编译为 WebAssembly，在 canvas 上运行真实的视图树。可以点击、输入、拖拽——运行的是框架本身，不是录像。",
+    "examples": "交互示例",
+    "load": "运行 {{example}}",
+    "loadHint": "按需加载 {{example}} 示例的 WebAssembly 构建。",
+    "caption": "{{example}} · 编译为 wasm，由 Hydrolysis 在 WebGPU 上渲染",
+    "openFull": "打开完整页面",
+    "frameTitle": "{{example}} 示例在 Hydrolysis 中实时运行"
   },
   "footer": {
     "tagline": "写一次，处处适用。",

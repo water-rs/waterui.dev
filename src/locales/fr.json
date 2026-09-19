@@ -228,18 +228,82 @@
   "gallery": {
     "eyebrow": "06",
     "title": "Exemples",
-    "lead": "Des applications exécutables du dépôt, rendues par la commande d'aperçu du framework lui-même.",
+    "lead": "Chaque exemple exécutable du dépôt, capturé par la suite e2e de chaque backend. Choisissez un backend et comparez.",
+    "backend": "Backend",
+    "shotCount": "{{count}} captures",
+    "liveBadge": "live",
+    "backends": {
+      "ios": {
+        "label": "iOS",
+        "caption": "UIKit · simulateur iPhone, capture e2e"
+      },
+      "macos": {
+        "label": "macOS",
+        "caption": "AppKit · Mac, capture e2e"
+      },
+      "android": {
+        "label": "Android",
+        "caption": "Android Views · émulateur, capture e2e"
+      },
+      "gtk": {
+        "label": "GTK4",
+        "caption": "Widgets GTK4 · Linux, capture e2e"
+      },
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "Moteur GPU auto-rendu · water preview"
+      }
+    },
     "items": {
-      "gallery": "Vitrine large des composants",
-      "form": "Formulaires dérivés et projection réactive des champs",
+      "gallery": "Large vitrine de composants",
+      "form": "Formulaires dérivés et projection réactive de champs",
       "navigation": "Piles, onglets et état de navigation",
+      "map": "Tuiles de carte GPU et ponts cartographiques natifs",
       "flow_markdown": "Rendu Markdown en flux",
-      "map": "Composant carte selon les réalisations de chaque plateforme",
       "video_player": "État de lecture et contrôles",
-      "filter": "Filtres d'image GPU"
+      "filter": "Filtres d'image GPU",
+      "reply": "Client mail liste-détail Material 3",
+      "markdown": "Texte enrichi et rendu Markdown",
+      "list": "Collections réactives différées par identité",
+      "animation": "Animation sur une horloge de frames déterministe",
+      "gesture": "Gestes tap, drag et pinch",
+      "gradient": "Dégradés mesh et animés",
+      "shape": "Formes, détourage et remplissages",
+      "icons": "Une API d'icônes pour tous les jeux de symboles",
+      "menu": "Menus et menus contextuels",
+      "picker": "Sélecteurs de tous styles",
+      "media_picker": "Sélection de photos et médias",
+      "snackbar": "Notifications snackbar transitoires",
+      "multi_window": "Fenêtres multiples aux styles propres",
+      "locale": "Locale, i18n et direction de mise en page",
+      "typography-rtl": "Fallback CJK et mise en page droite-à-gauche",
+      "hover": "États de survol et contrôle du curseur",
+      "drag_drop": "Glisser-déposer entre vues",
+      "webview": "Contenu web comme vue native",
+      "reminders": "Liste de tâches style Rappels",
+      "starfield": "Champ d'étoiles en particules GPU",
+      "stress": "Test de charge du rendu et des animations",
+      "edge_layout": "Cas limites de mise en page",
+      "edge_list": "Cas limites de liste",
+      "edge_text": "Cas limites de texte",
+      "waterkit_camera_filters": "Filtres caméra sur une surface GPU",
+      "chromium": "Le moteur Chromium comme vue",
+      "webview-cef": "Vue web propulsée par CEF",
+      "liquid_glass": "Matériaux Liquid Glass d'iOS 26"
     },
     "viewAll": "Tous les exemples sur GitHub",
     "runOne": "En lancer un depuis un checkout"
+  },
+  "live": {
+    "eyebrow": "07",
+    "title": "En direct dans votre navigateur",
+    "lead": "Hydrolysis compile le crate de l'exemple lui-même en WebAssembly et exécute le véritable arbre de vues sur un canvas. Cliquez, tapez, glissez — c'est le framework qui tourne, pas un enregistrement.",
+    "examples": "Exemples interactifs",
+    "load": "Lancer {{example}}",
+    "loadHint": "Charge à la demande un build WebAssembly de l'exemple {{example}}.",
+    "caption": "{{example}} · compilé en wasm, rendu par Hydrolysis sur WebGPU",
+    "openFull": "Ouvrir en pleine page",
+    "frameTitle": "L'exemple {{example}} s'exécute en direct dans Hydrolysis"
   },
   "footer": {
     "tagline": "Écrivez une fois, appliquez partout.",

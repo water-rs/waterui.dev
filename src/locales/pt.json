@@ -228,18 +228,82 @@
   "gallery": {
     "eyebrow": "06",
     "title": "Exemplos",
-    "lead": "Aplicações executáveis do repositório, renderizadas pelo próprio comando de prévia do framework.",
+    "lead": "Cada exemplo executável do repositório, capturado pela suite e2e de cada backend. Escolha um backend e compare.",
+    "backend": "Backend",
+    "shotCount": "{{count}} capturas",
+    "liveBadge": "ao vivo",
+    "backends": {
+      "ios": {
+        "label": "iOS",
+        "caption": "UIKit · simulador de iPhone, captura e2e"
+      },
+      "macos": {
+        "label": "macOS",
+        "caption": "AppKit · Mac, captura e2e"
+      },
+      "android": {
+        "label": "Android",
+        "caption": "Android Views · emulador, captura e2e"
+      },
+      "gtk": {
+        "label": "GTK4",
+        "caption": "Widgets GTK4 · Linux, captura e2e"
+      },
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "Renderizador GPU autônomo · water preview"
+      }
+    },
     "items": {
-      "gallery": "Vitrine ampla de componentes",
+      "gallery": "Ampla vitrine de componentes",
       "form": "Formulários derivados e projeção reativa de campos",
       "navigation": "Pilhas, abas e estado de navegação",
+      "map": "Tiles de mapa em GPU e pontes de mapa nativas",
       "flow_markdown": "Renderização de Markdown em streaming",
-      "map": "Componente de mapa conforme a realização de cada plataforma",
       "video_player": "Estado de reprodução e controles",
-      "filter": "Filtros de imagem na GPU"
+      "filter": "Filtros de imagem em GPU",
+      "reply": "Cliente de e-mail lista-detalhe Material 3",
+      "markdown": "Texto rico e renderização Markdown",
+      "list": "Coleções reativas com diff por identidade",
+      "animation": "Animação num relógio de frames determinístico",
+      "gesture": "Gestos de toque, arraste e pinça",
+      "gradient": "Gradientes de malha e animados",
+      "shape": "Formas, recorte e preenchimentos",
+      "icons": "Uma API de ícones para todos os conjuntos de símbolos",
+      "menu": "Menus e menus de contexto",
+      "picker": "Seletores em todos os estilos",
+      "media_picker": "Seleção de fotos e mídia",
+      "snackbar": "Notificações snackbar transitórias",
+      "multi_window": "Várias janelas com estilos próprios",
+      "locale": "Locale, i18n e direção de layout",
+      "typography-rtl": "Fallback CJK e layout da direita para a esquerda",
+      "hover": "Estados de hover e controle do cursor",
+      "drag_drop": "Arrastar e soltar entre views",
+      "webview": "Conteúdo web como view nativa",
+      "reminders": "Lista de tarefas estilo Lembretes",
+      "starfield": "Campo de estrelas com partículas em GPU",
+      "stress": "Teste de estresse de renderização e animação",
+      "edge_layout": "Casos de borda de layout",
+      "edge_list": "Casos de borda de lista",
+      "edge_text": "Casos de borda de texto",
+      "waterkit_camera_filters": "Filtros de câmera numa superfície GPU",
+      "chromium": "O motor Chromium como view",
+      "webview-cef": "View web com CEF",
+      "liquid_glass": "Materiais Liquid Glass do iOS 26"
     },
     "viewAll": "Todos os exemplos no GitHub",
     "runOne": "Rodar um a partir de um checkout"
+  },
+  "live": {
+    "eyebrow": "07",
+    "title": "Ao vivo no seu navegador",
+    "lead": "O Hydrolysis compila o próprio crate do exemplo para WebAssembly e executa a árvore de views real num canvas. Clique, digite, arraste — é o framework a correr, não uma gravação.",
+    "examples": "Exemplos interativos",
+    "load": "Executar {{example}}",
+    "loadHint": "Carrega sob demanda um build WebAssembly do exemplo {{example}}.",
+    "caption": "{{example}} · compilado para wasm, renderizado pelo Hydrolysis em WebGPU",
+    "openFull": "Abrir página inteira",
+    "frameTitle": "O exemplo {{example}} a correr ao vivo no Hydrolysis"
   },
   "footer": {
     "tagline": "Escreva uma vez, aplique em qualquer lugar.",

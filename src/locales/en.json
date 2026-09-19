@@ -228,18 +228,82 @@
   "gallery": {
     "eyebrow": "06",
     "title": "Examples",
-    "lead": "Runnable applications from the repository, rendered by the framework's own preview command.",
+    "lead": "Every runnable example in the repository, captured by each backend's own e2e suite. Pick a backend and compare.",
+    "backend": "Backend",
+    "shotCount": "{{count}} captures",
+    "liveBadge": "live",
+    "backends": {
+      "ios": {
+        "label": "iOS",
+        "caption": "UIKit · iPhone simulator, e2e capture"
+      },
+      "macos": {
+        "label": "macOS",
+        "caption": "AppKit · Mac, e2e capture"
+      },
+      "android": {
+        "label": "Android",
+        "caption": "Android Views · emulator, e2e capture"
+      },
+      "gtk": {
+        "label": "GTK4",
+        "caption": "GTK4 widgets · Linux, e2e capture"
+      },
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "Self-drawn GPU renderer · water preview"
+      }
+    },
     "items": {
       "gallery": "Broad component showcase",
       "form": "Derived forms and reactive field projection",
       "navigation": "Stacks, tabs, and navigation state",
+      "map": "GPU map tiles and platform map bridges",
       "flow_markdown": "Streaming Markdown rendering",
-      "map": "Map component across platform realizations",
       "video_player": "Playback state and controls",
-      "filter": "GPU image filters"
+      "filter": "GPU image filters",
+      "reply": "Material 3 list-detail mail client",
+      "markdown": "Rich text and Markdown rendering",
+      "list": "Reactive collections diffed by identity",
+      "animation": "Animation on a deterministic frame clock",
+      "gesture": "Tap, drag, and pinch gestures",
+      "gradient": "Mesh and animated gradients",
+      "shape": "Shapes, clipping, and fills",
+      "icons": "One icon API across symbol sets",
+      "menu": "Menus and context menus",
+      "picker": "Pickers in every style",
+      "media_picker": "Photos and media picking",
+      "snackbar": "Transient snackbar notifications",
+      "multi_window": "Multiple windows with their own styles",
+      "locale": "Locale, i18n, and layout direction",
+      "typography-rtl": "CJK fallback and right-to-left layout",
+      "hover": "Hover states and cursor control",
+      "drag_drop": "Drag and drop between views",
+      "webview": "Web content as a native view",
+      "reminders": "A reminders-style task list",
+      "starfield": "GPU particle star field",
+      "stress": "Rendering and animation stress test",
+      "edge_layout": "Layout edge cases",
+      "edge_list": "List edge cases",
+      "edge_text": "Text edge cases",
+      "waterkit_camera_filters": "Camera filters on a GPU surface",
+      "chromium": "Chromium engine as a view",
+      "webview-cef": "CEF-backed web view",
+      "liquid_glass": "iOS 26 Liquid Glass materials"
     },
     "viewAll": "All examples on GitHub",
     "runOne": "Run one from a checkout"
+  },
+  "live": {
+    "eyebrow": "07",
+    "title": "Live in your browser",
+    "lead": "Hydrolysis compiles the example crate itself to WebAssembly and runs the real view tree on a canvas. Click, type, drag — this is the framework running, not a recording.",
+    "examples": "Interactive examples",
+    "load": "Run {{example}}",
+    "loadHint": "Loads a WebAssembly build of the {{example}} example on demand.",
+    "caption": "{{example}} · compiled to wasm, rendered by Hydrolysis on WebGPU",
+    "openFull": "Open full page",
+    "frameTitle": "The {{example}} example running live in Hydrolysis"
   },
   "footer": {
     "tagline": "Write once, apply everywhere.",
