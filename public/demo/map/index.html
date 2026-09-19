@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Map Example</title>
+    <style>
+      /* The launch screen paints before anything is fetched, so everything it
+         needs is inline: the page's own stylesheet arrives later. */
+      :root {
+        color-scheme: light dark;
+        --waterui-launch-background: Canvas;
+        --waterui-launch-foreground: CanvasText;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--waterui-launch-background);
+        /* The startup error, should one show, reads on the same background. */
+        color: var(--waterui-launch-foreground);
+      }
+      #waterui-launch {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        background: var(--waterui-launch-background);
+        color: var(--waterui-launch-foreground);
+        transition: opacity 220ms ease-out;
+      }
+      #waterui-launch.waterui-launch-leaving {
+        opacity: 0;
+        pointer-events: none;
+      }
+      #waterui-launch[hidden] {
+        display: none;
+      }
+      .waterui-launch-artwork {
+        width: 128px;
+        height: 128px;
+        display: block;
+      }
+      .waterui-launch-progress {
+        width: 128px;
+        height: 4px;
+        border-radius: 2px;
+        overflow: hidden;
+        background: color-mix(in srgb, currentColor 14%, transparent);
+      }
+      .waterui-launch-progress-bar {
+        height: 100%;
+        width: 0;
+        border-radius: inherit;
+        background: color-mix(in srgb, currentColor 60%, transparent);
+        transition: width 120ms linear;
+      }
+      .waterui-launch-progress.waterui-launch-indeterminate .waterui-launch-progress-bar {
+        width: 40%;
+        animation: waterui-launch-slide 1.2s ease-in-out infinite;
+      }
+      @keyframes waterui-launch-slide {
+        from {
+          transform: translateX(-100%);
+        }
+        to {
+          transform: translateX(350%);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #waterui-launch {
+          transition: none;
+        }
+        .waterui-launch-progress.waterui-launch-indeterminate .waterui-launch-progress-bar {
+          animation: none;
+          width: 100%;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div
+      id="waterui-launch"
+      role="status"
+      aria-label="Loading Map Example"
+      data-wasm-bytes="8666986"
+    >
+      <img class="waterui-launch-artwork" alt="" src="data:image/png;base64,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" />
+      <div class="waterui-launch-progress waterui-launch-indeterminate">
+        <div class="waterui-launch-progress-bar"></div>
+      </div>
+    </div>
+    <canvas id="waterui-canvas"></canvas>
+    <input id="waterui-ime" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    <script type="module" src="./bootstrap.js"></script>
+  </body>
+</html>

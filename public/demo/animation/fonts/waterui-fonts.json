@@ -1,0 +1,17 @@
+{
+  "default_family": "Roboto",
+  "fonts": [
+    {
+      "name": "Roboto",
+      "file_name": "Roboto-Regular.ttf"
+    },
+    {
+      "name": "Noto Sans Arabic",
+      "file_name": "NotoSansArabic-Regular.ttf"
+    },
+    {
+      "name": "Noto Sans Hebrew",
+      "file_name": "NotoSansHebrew-Regular.ttf"
+    }
+  ]
+}
