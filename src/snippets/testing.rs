@@ -1,7 +1,11 @@
-use waterui_testing::{Role, SemanticApp};
+use waterui_testing::UiBuilder;
 
-#[waterui::test(login_view, theme = hydrolysis_m3::install, viewport = (360, 320))]
-fn login_flow(app: &mut SemanticApp) {
-    app.query().role(Role::BUTTON).label("Login").tap();
-    app.query().label("Welcome").assert_exists();
+#[waterui::test]
+fn stepper_updates(ui: UiBuilder) {
+    let value = Binding::i32(2);
+    let for_view = value.clone();
+    let mut app = ui.mount(move || stepper("Limited", &for_view));
+
+    app.query().label("Limited").increment();
+    assert_eq!(value.snapshot(), 3);
 }

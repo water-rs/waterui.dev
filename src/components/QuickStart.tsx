@@ -1,62 +1,60 @@
 import { useTranslation } from 'react-i18next'
-import Section from './Section'
 import Terminal from './Terminal'
-import ButtonLink from './Button'
-import Code from './Code'
-import counterSnippet from '../snippets/counter.rs?raw'
+import { Frame, Heading } from './ui'
+import installCommand from '../snippets/install.sh?raw'
 
 export default function QuickStart() {
   const { t } = useTranslation()
 
   const steps = [
-    { id: 'install', label: t('quickStart.steps.install'), command: 'cargo install waterui-cli' },
-    { id: 'create', label: t('quickStart.steps.create'), command: 'water create counter --mode playground' },
+    { id: 'install', label: t('quickStart.steps.install'), command: installCommand.trim() },
+    { id: 'create', label: t('quickStart.steps.create'), command: 'water create counter' },
     { id: 'run', label: t('quickStart.steps.run'), command: 'cd counter && water run' },
   ]
 
   const elsewhere = [
     { id: 'ios', label: 'iOS', command: 'water run --platform ios' },
     { id: 'android', label: 'Android', command: 'water run --platform android' },
-    { id: 'linux', label: 'Linux', command: 'water run --platform linux' },
+    { id: 'linux', label: 'Linux · Hydrolysis', command: 'water run --platform linux --backend hydrolysis' },
   ]
 
+  const tools = ['doctor', 'devices', 'update'] as const
+
   return (
-    <Section id="quick-start" eyebrow={t('quickStart.eyebrow')} title={t('quickStart.title')} lead={t('quickStart.lead')}>
-      <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
-        <div className="space-y-6 lg:col-span-7">
-          <Terminal commands={steps} title="playground" />
-          <Code code={counterSnippet} language="rust" title="src/lib.rs" />
-          <p className="text-sm text-ink-muted">{t('quickStart.entryPoint')}</p>
-        </div>
-        <div className="space-y-6 lg:col-span-5">
-          <div>
-            <p className="mb-3 font-mono text-xs tracking-wider text-ink-faint uppercase">{t('quickStart.elsewhere')}</p>
-            <Terminal commands={elsewhere} />
+    <section id="quick-start" className="border-t border-rule py-20 md:py-28">
+      <Frame>
+        <Heading number="07" label={t('quickStart.label')} title={t('quickStart.title')} lead={t('quickStart.lead')} />
+        <div className="mt-14 grid gap-10 md:mt-20 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-7">
+            <Terminal commands={steps} title="shell" />
           </div>
-          <dl className="space-y-2 font-mono text-sm">
-            <div className="flex gap-3">
-              <dt className="shrink-0 text-ink">water doctor</dt>
-              <dd className="text-ink-muted">{t('quickStart.tools.doctor')}</dd>
+          <div className="space-y-10 lg:col-span-5">
+            <div>
+              <p className="mb-3 font-mono text-[12px] text-ink-2">{t('quickStart.elsewhere')}</p>
+              <Terminal commands={elsewhere} title="shell" />
             </div>
-            <div className="flex gap-3">
-              <dt className="shrink-0 text-ink">water devices</dt>
-              <dd className="text-ink-muted">{t('quickStart.tools.devices')}</dd>
+            <dl className="border-t border-ink/80">
+              {tools.map((tool) => (
+                <div key={tool} className="flex flex-wrap items-baseline justify-between gap-x-4 border-b border-rule py-3">
+                  <dt className="font-mono text-[13.5px] font-semibold">water {tool}</dt>
+                  <dd className="text-[14.5px] text-ink-2">{t(`quickStart.tools.${tool}`)}</dd>
+                </div>
+              ))}
+            </dl>
+            <div>
+              <p className="text-[17px] leading-relaxed">{t('quickStart.shipping')}</p>
+              <a
+                href="https://github.com/water-rs/waterui#shipping-a-real-app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex h-11 items-center border border-ink/80 px-4 text-[15px] font-semibold transition-colors hover:bg-ink hover:text-paper"
+              >
+                {t('quickStart.shippingLink')} ↗
+              </a>
             </div>
-          </dl>
-          <div className="rounded-lg border border-line p-5">
-            <p className="text-sm leading-relaxed text-ink-muted">{t('quickStart.shipping')}</p>
-            <ButtonLink
-              variant="secondary"
-              href="https://github.com/water-rs/waterui#shipping-a-real-app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4"
-            >
-              {t('quickStart.shippingLink')}
-            </ButtonLink>
           </div>
         </div>
-      </div>
-    </Section>
+      </Frame>
+    </section>
   )
 }

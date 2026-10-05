@@ -1,15 +1,8 @@
 import i18n from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
+import resourcesToBackend from 'i18next-resources-to-backend'
 import { initReactI18next } from 'react-i18next'
 import en from './locales/en.json'
-import zh from './locales/zh.json'
-import ja from './locales/ja.json'
-import ko from './locales/ko.json'
-import de from './locales/de.json'
-import fr from './locales/fr.json'
-import es from './locales/es.json'
-import pt from './locales/pt.json'
-import ru from './locales/ru.json'
 
 /** English is the source of truth; every other locale must carry exactly its keys. */
 type Locale = typeof en
@@ -28,23 +21,36 @@ export const languages = [
 
 export type LanguageCode = (typeof languages)[number]['code']
 
-export const resources = {
-  en: { translation: en },
-  zh: { translation: zh satisfies Locale },
-  ja: { translation: ja satisfies Locale },
-  ko: { translation: ko satisfies Locale },
-  de: { translation: de satisfies Locale },
-  fr: { translation: fr satisfies Locale },
-  es: { translation: es satisfies Locale },
-  pt: { translation: pt satisfies Locale },
-  ru: { translation: ru satisfies Locale },
-} satisfies Record<LanguageCode, { translation: Locale }>
+/**
+ * English ships in the main bundle as the fallback; every other locale is its
+ * own chunk, fetched only when a visitor selects it. Each loader is typed so a
+ * locale file that drifts from English's keys still fails the build.
+ */
+const locales = {
+  zh: () => import('./locales/zh.json').then((module) => module.default satisfies Locale),
+  ja: () => import('./locales/ja.json').then((module) => module.default satisfies Locale),
+  ko: () => import('./locales/ko.json').then((module) => module.default satisfies Locale),
+  de: () => import('./locales/de.json').then((module) => module.default satisfies Locale),
+  fr: () => import('./locales/fr.json').then((module) => module.default satisfies Locale),
+  es: () => import('./locales/es.json').then((module) => module.default satisfies Locale),
+  pt: () => import('./locales/pt.json').then((module) => module.default satisfies Locale),
+  ru: () => import('./locales/ru.json').then((module) => module.default satisfies Locale),
+} satisfies Record<Exclude<LanguageCode, 'en'>, () => Promise<Locale>>
+
+function loadLocale(code: string): Promise<Locale> {
+  if (!(code in locales)) {
+    throw new Error(`no locale file for ${code}`)
+  }
+  return locales[code as keyof typeof locales]()
+}
 
 i18n
   .use(LanguageDetector)
+  .use(resourcesToBackend((code: string) => loadLocale(code)))
   .use(initReactI18next)
   .init({
-    resources,
+    resources: { en: { translation: en } },
+    partialBundledLanguages: true,
     fallbackLng: 'en',
     supportedLngs: languages.map((language) => language.code),
     nonExplicitSupportedLngs: true,
