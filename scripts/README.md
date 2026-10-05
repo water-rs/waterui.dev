@@ -1,5 +1,28 @@
 # scripts
 
+## build-demo.sh
+
+Builds one WaterUI example as a servable Hydrolysis web bundle:
+
+```bash
+WATERUI_DIR=~/checkouts/waterui ./scripts/build-demo.sh <example> public/demo
+```
+
+`WATERUI_DIR` must point at a checkout of `water-rs/waterui` at the revision
+pinned in `src/data/demos.json` (`waterui` key — an exact sha, never a
+branch). The script runs `water package --platform web --backend hydrolysis
+--release` on `examples/<example>` and copies the CLI's packaged site to
+`<out-dir>/<example>/`, so `<out-dir>/<example>/index.html` is the entry
+point. It exits non-zero when the example does not exist or the package step
+fails; the deploy workflow loops it over `examples` under
+`set -euo pipefail`, so a broken demo fails the deploy.
+
+Toolchain: the `water` CLI on `PATH`, built from the same pinned checkout
+(`cargo build --release -p waterui-cli --bin water`), a Rust
+toolchain with the `wasm32-unknown-unknown` target, and `wasm-pack`. Set
+`CARGO_TARGET_DIR` to a shared directory to compile the dependency graph once
+across examples.
+
 ## render-assets.sh
 
 Renders `public/og.png` and `public/apple-touch-icon.png` from `og.html` and `touch-icon.html` with headless Chrome.

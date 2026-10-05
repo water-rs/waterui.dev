@@ -1,104 +1,93 @@
 {
   "meta": {
     "title": "WaterUI — Rust 跨平台 UI 框架",
-    "description": "写一次，处处适用。WaterUI 是 Rust 跨平台 UI 框架，通过 UIKit、AppKit、Android View、GTK4、GPU 或 ESP32 渲染。"
+    "description": "写一次，处处适用。WaterUI 是 Rust 的 UI 框架：一棵视图树，在 Apple 平台和 Android 上变成原生控件，在其他所有地方由它自己的渲染器 Hydrolysis 在 GPU 上绘制。"
   },
   "nav": {
     "book": "文档",
     "api": "API",
     "examples": "示例",
+    "live": "在线",
     "github": "GitHub",
+    "start": "开始使用",
     "menu": "菜单",
-    "closeMenu": "关闭菜单",
+    "closeMenu": "关闭",
     "language": "语言",
     "theme": "主题",
     "themeSystem": "跟随系统",
     "themeLight": "浅色",
-    "themeDark": "深色"
+    "themeDark": "深色",
+    "inspect": "检查布局"
+  },
+  "common": {
+    "copy": "复制",
+    "copied": "已复制"
   },
   "hero": {
-    "eyebrow": "Rust 跨平台 UI 框架",
     "titleLine1": "写一次，",
     "titleLine2": "处处适用。",
-    "lead": "WaterUI 把每个 view 映射到平台自己的工具包：UIKit、AppKit、Android View、GTK4。没有合适的原生控件时，它自己绘制：在 GPU 上，或者在单片机上。",
+    "lead": "WaterUI 是 Rust 的 UI 框架。视图只写一次：在 Apple 平台上变成 UIKit 和 AppKit 控件，在 Android 上变成 Android Views，在其他所有地方由 Hydrolysis 在 GPU 上绘制。",
+    "status": "1.0 之前 · 官方支持：Apple、Android、Hydrolysis",
+    "install": "安装 water CLI。预编译二进制，无需编译。",
     "ctaStart": "开始使用",
     "ctaBook": "阅读文档",
-    "status": "1.0 之前 · Apple 与 Android 后端最完整"
-  },
-  "bond": {
-    "binding": "Binding<i32>",
-    "view": "text!(\"Count: {count}\")",
-    "decrement": "减一",
-    "increment": "加一",
-    "caption": "值变了，读它的 view 就更新。其他什么都不碰。"
-  },
-  "targets": {
-    "eyebrow": "01",
-    "title": "目标平台",
-    "lead": "一棵 view 树，五个后端。每个后端都说平台自己的语言，没有原生控件时就自己绘制。",
-    "rendersThrough": "渲染方式",
-    "items": {
-      "apple": {
-        "platform": "iOS 与 macOS",
-        "backend": "Apple",
-        "renders": "UIKit / AppKit"
-      },
-      "android": {
-        "platform": "Android",
-        "backend": "Android",
-        "renders": "Android View"
-      },
-      "gtk": {
-        "platform": "Linux",
-        "backend": "GTK4",
-        "renders": "GTK4 控件"
-      },
-      "hydrolysis": {
-        "platform": "macOS、Linux、Windows、Web",
-        "backend": "Hydrolysis",
-        "renders": "自绘，GPU（Vello）"
-      },
-      "dew": {
-        "platform": "ESP32-S3 / ESP32-C3",
-        "backend": "Dew",
-        "renders": "自绘，CPU，脏区刷新"
-      }
+    "live": "在这里运行一个示例",
+    "notes": {
+      "derive": "每个字段一个控件",
+      "binding": "表单的状态",
+      "render": "在每个后端上原生呈现"
     },
-    "dewNote": "在 iPhone 上变成 UIKit 控件的那个 view，可以原样跑在没有操作系统、没有 GPU 的单片机上。"
+    "captureAlt": "表单示例在 {{platform}} 上的渲染效果",
+    "figure": "一个 struct，由每个官方支持的后端渲染。这些是示例的真实截图，不是示意图。"
   },
-  "reactivity": {
-    "eyebrow": "02",
-    "title": "状态",
-    "lead": "状态就是普通的值。没有 virtual tree 要 diff，改一个字符串也永远不会重建它周围的子树。",
+  "state": {
+    "label": "状态",
+    "title": "改一个值，只动一个视图。",
+    "lead": "状态就是普通的值。没有需要比对的虚拟树，改动一个字符串也永远不会重建它周围的子树。",
+    "notes": {
+      "binding": "可变状态",
+      "reader": "读取 count",
+      "writer": "写入 count",
+      "collection": "按 id 比对"
+    },
+    "figureContacts": "以标识为键的集合",
     "points": {
       "binding": {
         "title": "Binding<T> 是可变状态",
-        "body": "把值放进 Binding，交给 view。任何读它的 view 都会在它变化时更新。"
+        "body": "把值放进 Binding，交给视图。读取它的每个视图都会在它变化时更新。"
       },
       "computed": {
         "title": "Computed<T> 是派生状态",
-        "body": "把 Binding map 成 Computed。所有响应式 API 两者都接受，而且只有读取者会更新。"
+        "body": "把 Binding 映射成 Computed。接受信号的 API 两者都接受，而且只有读取它的视图会更新。"
       },
       "collections": {
-        "title": "集合按 id 做 diff",
-        "body": "给 List 或 ForEach 一个 Identifiable 元素的响应式集合，成员变化按 id 精确 diff。"
+        "title": "集合按标识比对",
+        "body": "把 Identifiable 元素组成的响应式集合交给 List 或 ForEach，成员变化会按 id 比对。"
       }
     },
-    "flow": {
-      "binding": "Binding",
-      "computed": "Computed",
-      "view": "View"
+    "figureCounter": "图中的计数器：一个 Binding，一个读取者，一个写入者。",
+    "figure": {
+      "model": "更新模型",
+      "models": {
+        "fine": "WaterUI",
+        "rebuild": "重新执行整个 body"
+      },
+      "decrement": "减一",
+      "increment": "加一",
+      "idle": "按 − 或 +",
+      "updated": "{{total}} 个视图中 {{count}} 个已更新",
+      "caption": "每个为该变化做工作的视图都会闪烁。这是更新模型的示意。"
     }
   },
   "features": {
-    "eyebrow": "03",
-    "title": "内置组件",
-    "lead": "布局、控件、表单、导航、媒体、图表，以及围绕它们的平台能力。只需一个依赖。",
+    "label": "开箱即用",
+    "title": "一个依赖。",
+    "lead": "布局、控件、表单、导航、媒体、图表，以及围绕它们的平台服务。",
     "groups": {
       "layout": {
         "title": "布局与文字",
         "items": [
-          "vstack、hstack、zstack、grid、scroll",
+          "vstack, hstack, zstack, grid, scroll",
           "中日韩字体回退的排版",
           "从右到左的布局方向",
           "富文本与内置 Markdown",
@@ -185,64 +174,128 @@
         "屏幕",
         "后台任务",
         "系统信息"
-      ]
+      ],
+      "figure": "WaterKit，每种能力一个 Rust API"
     },
     "testing": {
       "title": "测试",
-      "lead": "以无障碍树为基础的测试，直接在 cargo test 里对着 Hydrolysis 渲染器跑。不需要模拟器，不需要设备。交互本身就是断言，所有等待都等到运行时真正空闲，而不是 sleep。"
+      "lead": "以无障碍树为基础的测试，直接在 cargo test 里对着 Hydrolysis 渲染器跑。不需要模拟器，不需要设备。交互本身就是断言，所有等待都等到运行时真正空闲，而不是 sleep。",
+      "figure": "一个语义测试，由 cargo test 运行",
+      "notes": {
+        "mount": "无头挂载视图",
+        "query": "按无障碍标签找到它",
+        "assert": "断言状态，而不是像素"
+      }
     }
   },
   "previews": {
-    "eyebrow": "04",
-    "title": "预览",
-    "lead": "任何标了 #[preview] 的函数都能不启动 app 直接渲染成图片。同一套机制还驱动语义交互测试和 GPU 性能测量。",
+    "label": "预览",
+    "title": "不运行也能渲染。",
+    "lead": "任何标了 #[preview] 的函数都能不启动 app 直接渲染成图片，同一个预览还能运行语义交互测试。",
     "commands": {
       "render": "把 view 渲染成 PNG",
       "frame": "指定画面尺寸",
-      "test": "运行语义交互测试",
-      "perf": "测量 GPU 开销"
+      "test": "运行语义交互测试"
     },
-    "imageCaption": "water preview 对 {{example}} 示例的输出。",
-    "dogfood": "本页所有截图都是这样生成的。"
+    "figure": "对 {{example}} 示例运行 water preview"
   },
   "quickStart": {
-    "eyebrow": "05",
-    "title": "快速开始",
-    "lead": "playground 就是一个普通的 Rust crate。CLI 把原生工程放在源码树之外，按需管理。",
+    "label": "快速开始",
+    "title": "三条命令。",
+    "lead": "项目就是一个普通的 Rust crate。CLI 把原生工程放在源码树之外，按需管理。",
     "steps": {
       "install": "安装 CLI",
-      "create": "创建 playground",
+      "create": "创建项目",
       "run": "在本机运行"
     },
-    "copy": "复制",
-    "copied": "已复制",
-    "elsewhere": "运行到其他平台",
-    "entryPoint": "整个入口就是这些。app crate 只依赖 waterui，别的什么都不需要。",
+    "elsewhere": "在其他地方运行",
     "tools": {
       "doctor": "报告工具链缺什么",
-      "devices": "列出模拟器和已连接的设备"
+      "devices": "列出模拟器和已连接的设备",
+      "update": "就地升级 CLI"
     },
-    "shipping": "准备发布？App 模式生成属于你自己的平台工程，可以自定义、签名和打包。",
-    "shippingLink": "了解 App 模式"
+    "shipping": "你迭代开发的项目就是发布的那个：CLI 生成各平台工程，然后从 Water.toml 构建、签名并打包应用。",
+    "shippingLink": "发布真正的应用"
   },
   "gallery": {
-    "eyebrow": "06",
-    "title": "示例",
-    "lead": "仓库里可运行的应用，由框架自己的 preview 命令渲染。",
+    "label": "示例",
+    "title": "同一份源码，每个工具包。",
+    "lead": "仓库中每个可运行示例在各后端 e2e 套件下的真实截图。选择一个后端逐一对比。",
+    "backend": "后端",
+    "shotCount": "{{count}} 张截图",
+    "withheld": "{{count}} 个示例在此后端上暂缓展示，直到截图正确为止。",
+    "backends": {
+      "ios": {
+        "label": "iOS",
+        "caption": "UIKit · iPhone 模拟器"
+      },
+      "macos": {
+        "label": "macOS",
+        "caption": "AppKit · Mac"
+      },
+      "android": {
+        "label": "Android",
+        "caption": "Android Views · 模拟器"
+      },
+      "gtk": {
+        "label": "GTK4",
+        "caption": "GTK4 组件 · Linux"
+      }
+    },
     "items": {
       "gallery": "组件总览",
       "form": "派生表单与响应式字段投影",
       "navigation": "导航栈、标签页与导航状态",
+      "map": "GPU 地图瓦片与平台地图桥接",
       "flow_markdown": "流式 Markdown 渲染",
-      "map": "跨平台实现的地图组件",
       "video_player": "播放状态与控制",
-      "filter": "GPU 图像滤镜"
+      "filter": "GPU 图像滤镜",
+      "reply": "Material 3 列表-详情邮件客户端",
+      "markdown": "富文本与 Markdown 渲染",
+      "list": "按标识符 diff 的响应式集合",
+      "animation": "确定性帧时钟上的动画",
+      "gesture": "点按、拖拽与捏合手势",
+      "gradient": "网格与动画渐变",
+      "shape": "形状、裁剪与填充",
+      "icons": "一套图标 API 贯通各符号库",
+      "menu": "菜单与上下文菜单",
+      "picker": "各种样式的选择器",
+      "media_picker": "照片与媒体选取",
+      "snackbar": "瞬时 Snackbar 通知",
+      "multi_window": "各自独立样式的多窗口",
+      "locale": "语言环境、i18n 与布局方向",
+      "typography-rtl": "CJK 回退与从右到左布局",
+      "hover": "悬停状态与光标控制",
+      "drag_drop": "视图间的拖放",
+      "webview": "作为原生视图的网页内容",
+      "reminders": "提醒事项风格的任务列表",
+      "starfield": "GPU 粒子星空",
+      "stress": "渲染与动画压力测试",
+      "edge_layout": "布局边界情况",
+      "edge_list": "列表边界情况",
+      "edge_text": "文本边界情况",
+      "waterkit_camera_filters": "GPU 表面上的相机滤镜",
+      "chromium": "作为视图的 Chromium 引擎",
+      "webview-cef": "CEF 驱动的网页视图",
+      "liquid_glass": "iOS 26 Liquid Glass 材质"
     },
     "viewAll": "GitHub 上的全部示例",
-    "runOne": "从源码运行一个示例"
+    "runOne": "从源码运行一个示例",
+    "experimental": "实验性"
+  },
+  "live": {
+    "label": "在线",
+    "title": "就在这个页面里运行。",
+    "lead": "Hydrolysis 把示例 crate 本身编译成 WebAssembly，在 WebGPU 上运行真实的视图树。可以点击、输入、拖拽。这是框架本身，不是录像。",
+    "examples": "示例",
+    "load": "运行 {{example}}",
+    "loadHint": "下载 {{example}} 的 WebAssembly 构建并在此启动。",
+    "caption": "{{example}} · wasm32 · Hydrolysis 在 WebGPU 上渲染",
+    "openFull": "打开完整页面",
+    "frameTitle": "{{example}} 示例在 Hydrolysis 中实时运行",
+    "source": "源码"
   },
   "footer": {
-    "tagline": "写一次，处处适用。",
     "book": "文档",
     "api": "API 参考",
     "github": "GitHub",
@@ -250,5 +303,112 @@
     "twitter": "X",
     "license": "MIT 或 Apache 2.0，任选其一。",
     "contributing": "向 dev 分支提交。做大改动之前先开 issue。"
+  },
+  "backends": {
+    "label": "后端",
+    "titleLine1": "该原生的地方用原生。",
+    "titleLine2": "其余交给 Hydrolysis。",
+    "lead": "Apple 和 Android 后端把每个视图映射到平台自己的控件。Hydrolysis 则自己在 GPU 上绘制同一棵视图树，随你发布到哪里。",
+    "official": "官方支持",
+    "experimental": "实验性",
+    "experimentalNote": "可用且每晚测试，但暂未要求达到同一标准。",
+    "items": {
+      "apple": {
+        "name": "Apple",
+        "renders": "UIKit / AppKit",
+        "platforms": "iOS、iPadOS、macOS"
+      },
+      "android": {
+        "name": "Android",
+        "renders": "Android Views 与 Material Components",
+        "platforms": "Android"
+      },
+      "hydrolysis": {
+        "name": "Hydrolysis",
+        "renders": "WaterUI 自有的 GPU 渲染器，基于 wgpu",
+        "platforms": "macOS、Windows、Linux、Web、Android"
+      },
+      "gtk": {
+        "name": "GTK4",
+        "renders": "GTK4 控件",
+        "platforms": "Linux"
+      },
+      "winui": {
+        "name": "WinUI",
+        "renders": "WinUI 3 控件",
+        "platforms": "Windows"
+      }
+    }
+  },
+  "engine": {
+    "label": "渲染",
+    "title": "Hydrolysis 自己绘制这棵树。",
+    "lead": "WaterUI 自有的渲染器。它在 GPU 上绘制完整的保留视图树，同一份代码，用于没有原生工具包可映射的地方，或者你不想用原生工具包的地方。",
+    "hydrolysis": {
+      "gpu": {
+        "title": "整棵树，都在 GPU 上",
+        "body": "每个视图都通过 wgpu 绘制。没有悄悄接管的 CPU 回退。"
+      },
+      "platforms": {
+        "title": "桌面、Web 和 Android",
+        "body": "macOS、Windows 和 Linux 窗口，浏览器经由 WebGPU，Android 经由自己的宿主。"
+      },
+      "frames": {
+        "title": "按 120 Hz 做预算",
+        "body": "帧按 120 Hz 显示器做预算；没有变化的窗口什么也不绘制。"
+      },
+      "accessibility": {
+        "title": "通过它的无障碍树测试",
+        "body": "waterui-testing 查询 Hydrolysis 构建的无障碍树，所以每个 UI 测试同时也是无障碍测试。"
+      },
+      "themes": {
+        "title": "主题是包",
+        "body": "Hydrolysis 自己不携带任何控件样式。Material 3 以独立的包发布。"
+      }
+    },
+    "cherenkov": {
+      "title": "Cherenkov，为它打造的引擎。",
+      "lead": "一个围绕 WaterUI 的细粒度响应式和当代 GPU 设计的 GPU 2D 引擎。它把 WaterUI 的信号当作自己的输入，所以一次变化的花销取决于它触及的部分，而不是屏幕上的内容。",
+      "status": "在 dev 通道上，Hydrolysis 已通过 Cherenkov 渲染；稳定版 0.5 仍通过 Vello 渲染。把 WaterUI 的信号直接接入 Cherenkov 的值槽位，正在进行中。",
+      "points": {
+        "slots": {
+          "title": "信号变成引擎操作数",
+          "body": "绑定的值就是引擎里的一个槽位。它变化时，只有读取它的已记录命令会重新生成；帧的其余部分直接复用。"
+        },
+        "animation": {
+          "title": "渲染线程上的动画",
+          "body": "用 .animation() 做出的修改原样到达引擎。渲染线程负责插值，所以一帧的开销跟随的是正在运动的东西，而不是场景的大小。"
+        },
+        "colour": {
+          "title": "为当代显示器打造",
+          "body": "渲染发生在线性、扩展范围的颜色中，使用广色域工作空间，每个窗口会与自己的显示器协商 HDR 或广色域输出。"
+        }
+      }
+    },
+    "figure": {
+      "tag": "{{total}} 条命令中 {{count}} 条重新生成",
+      "caption": "一个绑定到信号的圆角半径。移动它只触及读取它的命令。这是引擎值槽位的示意。"
+    }
+  },
+  "numbers": {
+    "label": "数字",
+    "title": "与替代方案的对比。",
+    "lead": "同一个应用分别用 WaterUI、SwiftUI、Flutter、React Native 和 Electron 构建后的内存、帧时间和包体积。",
+    "placeholderTag": "占位",
+    "placeholderNote": "这些条形是占位的，用来撑住布局。对比正在用一套共享基准测试框架测量中，图表将展示其结果，并标明每项的设备和构建。",
+    "metrics": {
+      "memory": {
+        "title": "内存",
+        "note": "运行中应用的常驻内存，越低越好"
+      },
+      "frame": {
+        "title": "帧时间",
+        "note": "动画期间第 99 百分位帧时间，越低越好"
+      },
+      "size": {
+        "title": "包体积",
+        "note": "用户下载的发布包，越小越好"
+      }
+    }
   }
 }

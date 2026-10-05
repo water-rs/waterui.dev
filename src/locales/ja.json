@@ -1,75 +1,56 @@
 {
   "meta": {
     "title": "WaterUI — Rust のクロスプラットフォーム UI",
-    "description": "一度書けば、どこでも使える。WaterUI は UIKit、AppKit、Android View、GTK4、GPU、ESP32 で描画する Rust のクロスプラットフォーム UI フレームワークです。"
+    "description": "一度書けば、どこでも使える。WaterUI は Rust の UI フレームワークです。ひとつの view ツリーが Apple プラットフォームと Android ではネイティブコントロールになり、その他の環境では独自レンダラー Hydrolysis が GPU で描画します。"
   },
   "nav": {
     "book": "ドキュメント",
     "api": "API",
     "examples": "サンプル",
+    "live": "ライブ",
     "github": "GitHub",
+    "start": "はじめる",
     "menu": "メニュー",
-    "closeMenu": "メニューを閉じる",
+    "closeMenu": "閉じる",
     "language": "言語",
     "theme": "テーマ",
     "themeSystem": "システム",
     "themeLight": "ライト",
-    "themeDark": "ダーク"
+    "themeDark": "ダーク",
+    "inspect": "レイアウトを検査"
+  },
+  "common": {
+    "copy": "コピー",
+    "copied": "コピー済み"
   },
   "hero": {
-    "eyebrow": "Rust のクロスプラットフォーム UI フレームワーク",
     "titleLine1": "一度書けば、",
     "titleLine2": "どこでも使える。",
-    "lead": "WaterUI は各 view をプラットフォーム自身のツールキットへ対応づけます。UIKit、AppKit、Android View、GTK4。適切なネイティブ部品がない場所では、GPU またはマイコン上で自ら描画します。",
+    "lead": "WaterUI は Rust の UI フレームワークです。view は一度書くだけで、Apple プラットフォームでは UIKit と AppKit のコントロールに、Android では Android Views になり、その他の環境では Hydrolysis が GPU で描画します。",
+    "status": "1.0 未満 · 公式サポート: Apple、Android、Hydrolysis",
+    "install": "water CLI をインストールします。ビルド済みバイナリなので、コンパイルは不要です。",
     "ctaStart": "はじめる",
     "ctaBook": "ドキュメントを読む",
-    "status": "1.0 未満 · Apple と Android のバックエンドが最も充実"
-  },
-  "bond": {
-    "binding": "Binding<i32>",
-    "view": "text!(\"Count: {count}\")",
-    "decrement": "減らす",
-    "increment": "増やす",
-    "caption": "値が変わると、それを読む view だけが更新されます。ほかには何も触れません。"
-  },
-  "targets": {
-    "eyebrow": "01",
-    "title": "対応環境",
-    "lead": "ひとつの view ツリー、五つのバックエンド。それぞれがプラットフォーム自身のツールキットで話し、ない場合は自ら描画します。",
-    "rendersThrough": "描画方式",
-    "items": {
-      "apple": {
-        "platform": "iOS と macOS",
-        "backend": "Apple",
-        "renders": "UIKit / AppKit"
-      },
-      "android": {
-        "platform": "Android",
-        "backend": "Android",
-        "renders": "Android View"
-      },
-      "gtk": {
-        "platform": "Linux",
-        "backend": "GTK4",
-        "renders": "GTK4 ウィジェット"
-      },
-      "hydrolysis": {
-        "platform": "macOS、Linux、Windows、Web",
-        "backend": "Hydrolysis",
-        "renders": "自前描画、GPU（Vello）"
-      },
-      "dew": {
-        "platform": "ESP32-S3 / ESP32-C3",
-        "backend": "Dew",
-        "renders": "自前描画、CPU、差分領域更新"
-      }
+    "live": "ここでサンプルを実行",
+    "notes": {
+      "derive": "フィールドごとにひとつのコントロール",
+      "binding": "フォームの状態",
+      "render": "各バックエンドでネイティブ"
     },
-    "dewNote": "iPhone で UIKit のコントロールになる同じ view が、OS も GPU もないマイコンでそのまま動きます。"
+    "captureAlt": "{{platform}} で描画されたフォームのサンプル",
+    "figure": "ひとつの struct を、公式サポートの各バックエンドが描画したものです。モックではなく実際のキャプチャです。"
   },
-  "reactivity": {
-    "eyebrow": "02",
-    "title": "状態",
+  "state": {
+    "label": "状態",
+    "title": "値をひとつ変えれば、view もひとつだけ。",
     "lead": "状態はただの値です。差分を取る仮想ツリーはなく、文字列ひとつの変更が周囲のサブツリーを作り直すこともありません。",
+    "notes": {
+      "binding": "可変の状態",
+      "reader": "count を読む",
+      "writer": "count を書く",
+      "collection": "id で差分"
+    },
+    "figureContacts": "同一性でキー付けされたコレクション",
     "points": {
       "binding": {
         "title": "Binding<T> は可変の状態",
@@ -84,21 +65,29 @@
         "body": "List や ForEach に Identifiable な要素のリアクティブなコレクションを渡すと、要素の増減は id で差分計算されます。"
       }
     },
-    "flow": {
-      "binding": "Binding",
-      "computed": "Computed",
-      "view": "View"
+    "figureCounter": "図のカウンター: Binding がひとつ、読み手がひとつ、書き手がひとつ。",
+    "figure": {
+      "model": "更新モデル",
+      "models": {
+        "fine": "WaterUI",
+        "rebuild": "body 全体を再実行"
+      },
+      "decrement": "減らす",
+      "increment": "増やす",
+      "idle": "− または + を押す",
+      "updated": "{{total}} 個中 {{count}} 個の view が更新",
+      "caption": "変更のために仕事をした view が点滅します。更新モデルの説明図です。"
     }
   },
   "features": {
-    "eyebrow": "03",
-    "title": "同梱機能",
-    "lead": "レイアウト、コントロール、フォーム、ナビゲーション、メディア、チャート、そしてその周りのプラットフォーム機能。依存はひとつだけ。",
+    "label": "標準装備",
+    "title": "依存はひとつだけ。",
+    "lead": "レイアウト、コントロール、フォーム、ナビゲーション、メディア、チャート、そしてその周りのプラットフォームサービス。",
     "groups": {
       "layout": {
         "title": "レイアウトと文字",
         "items": [
-          "vstack、hstack、zstack、grid、scroll",
+          "vstack, hstack, zstack, grid, scroll",
           "CJK フォントフォールバック付きのタイポグラフィ",
           "右から左のレイアウト方向",
           "Markdown 内蔵のリッチテキスト",
@@ -185,64 +174,128 @@
         "画面",
         "バックグラウンドタスク",
         "システム情報"
-      ]
+      ],
+      "figure": "WaterKit。機能ごとにひとつの Rust API"
     },
     "testing": {
       "title": "テスト",
-      "lead": "アクセシビリティ優先のテストが、通常の cargo test で Hydrolysis レンダラーに対して走ります。シミュレーターも実機も不要。操作そのものがアサーションで、待機は sleep ではなくランタイムが静止するまでポンプします。"
+      "lead": "アクセシビリティ優先のテストが、通常の cargo test で Hydrolysis レンダラーに対して走ります。シミュレーターも実機も不要。操作そのものがアサーションで、待機は sleep ではなくランタイムが静止するまでポンプします。",
+      "figure": "cargo test が実行するセマンティックテスト",
+      "notes": {
+        "mount": "view をヘッドレスにマウント",
+        "query": "アクセシブルなラベルで検索",
+        "assert": "ピクセルではなく状態をアサート"
+      }
     }
   },
   "previews": {
-    "eyebrow": "04",
-    "title": "プレビュー",
-    "lead": "#[preview] を付けた関数は、アプリを起動せずに画像として描画できます。同じ仕組みがセマンティックな操作テストと GPU 計測も駆動します。",
+    "label": "プレビュー",
+    "title": "実行せずに描画。",
+    "lead": "#[preview] を付けた関数は、アプリを起動せずに画像として描画でき、同じプレビューでセマンティックな操作テストも実行できます。",
     "commands": {
       "render": "view を PNG に描画",
       "frame": "フレームサイズを指定",
-      "test": "セマンティックな操作テストを実行",
-      "perf": "GPU コストを計測"
+      "test": "セマンティックな操作テストを実行"
     },
-    "imageCaption": "{{example}} サンプルに対する water preview の出力。",
-    "dogfood": "このページのスクリーンショットはすべてこの方法で作られています。"
+    "figure": "{{example}} サンプルに対する water preview"
   },
   "quickStart": {
-    "eyebrow": "05",
-    "title": "クイックスタート",
-    "lead": "playground はただの Rust クレートです。CLI がネイティブプロジェクトをソースツリーの外に置き、必要に応じて管理します。",
+    "label": "クイックスタート",
+    "title": "3 つのコマンド。",
+    "lead": "プロジェクトはただの Rust クレートです。CLI がネイティブプロジェクトをソースツリーの外に置き、必要に応じて管理します。",
     "steps": {
       "install": "CLI をインストール",
-      "create": "playground を作成",
-      "run": "ホストで実行"
+      "create": "プロジェクトを作成",
+      "run": "このマシンで実行"
     },
-    "copy": "コピー",
-    "copied": "コピー済み",
-    "elsewhere": "ほかの環境で実行するには",
-    "entryPoint": "エントリポイントはこれで全部です。アプリのクレートは waterui だけに依存します。",
+    "elsewhere": "ほかの環境へ",
     "tools": {
       "doctor": "ツールチェーンに足りないものを報告",
-      "devices": "シミュレーターと接続中のデバイスを一覧"
+      "devices": "シミュレーターと接続中のデバイスを一覧",
+      "update": "CLI をその場でアップグレード"
     },
-    "shipping": "リリースの準備は？App モードはあなた自身のプラットフォームプロジェクトを生成するので、カスタマイズ、署名、パッケージングができます。",
-    "shippingLink": "App モードについて読む"
+    "shipping": "開発中のプロジェクトがそのままリリースされます。CLI がプラットフォームプロジェクトを生成し、Water.toml からアプリをビルド、署名、パッケージングします。",
+    "shippingLink": "実際のアプリをリリースする"
   },
   "gallery": {
-    "eyebrow": "06",
-    "title": "サンプル",
-    "lead": "リポジトリにある実行可能なアプリケーション。フレームワーク自身の preview コマンドで描画。",
+    "label": "サンプル",
+    "title": "同じソース、どのツールキットでも。",
+    "lead": "リポジトリの実行可能なすべてのサンプルを、各バックエンドの e2e スイートでキャプチャしました。バックエンドを選んで比較できます。",
+    "backend": "バックエンド",
+    "shotCount": "{{count}} 件",
+    "withheld": "{{count}} 件のサンプルは、キャプチャが正しくなるまでこのバックエンドでは掲載を保留しています。",
+    "backends": {
+      "ios": {
+        "label": "iOS",
+        "caption": "UIKit · iPhone シミュレータ"
+      },
+      "macos": {
+        "label": "macOS",
+        "caption": "AppKit · Mac"
+      },
+      "android": {
+        "label": "Android",
+        "caption": "Android Views · エミュレータ"
+      },
+      "gtk": {
+        "label": "GTK4",
+        "caption": "GTK4 ウィジェット · Linux"
+      }
+    },
     "items": {
-      "gallery": "コンポーネントの総覧",
-      "form": "導出フォームとリアクティブなフィールド投影",
+      "gallery": "コンポーネント総合ショーケース",
+      "form": "派生フォームとリアクティブなフィールド投影",
       "navigation": "スタック、タブ、ナビゲーション状態",
-      "flow_markdown": "ストリーミング Markdown 描画",
-      "map": "プラットフォームごとに実装された地図コンポーネント",
+      "map": "GPU マップタイルとプラットフォームの地図ブリッジ",
+      "flow_markdown": "ストリーミング Markdown レンダリング",
       "video_player": "再生状態とコントロール",
-      "filter": "GPU 画像フィルター"
+      "filter": "GPU 画像フィルター",
+      "reply": "Material 3 のリスト詳細メールクライアント",
+      "markdown": "リッチテキストと Markdown レンダリング",
+      "list": "同一性で差分するリアクティブコレクション",
+      "animation": "決定論的フレームクロックのアニメーション",
+      "gesture": "タップ、ドラッグ、ピンチジェスチャー",
+      "gradient": "メッシュとアニメーショングラデーション",
+      "shape": "図形、クリッピング、塗りつぶし",
+      "icons": "シンボルセットをまたぐ単一アイコン API",
+      "menu": "メニューとコンテキストメニュー",
+      "picker": "あらゆるスタイルのピッカー",
+      "media_picker": "写真とメディアの選択",
+      "snackbar": "一時的なスナックバー通知",
+      "multi_window": "それぞれのスタイルを持つ複数ウィンドウ",
+      "locale": "ロケール、i18n、レイアウト方向",
+      "typography-rtl": "CJK フォールバックと右から左へのレイアウト",
+      "hover": "ホバー状態とカーソル制御",
+      "drag_drop": "ビュー間のドラッグ&ドロップ",
+      "webview": "ネイティブビューとしての Web コンテンツ",
+      "reminders": "リマインダー風タスクリスト",
+      "starfield": "GPU パーティクルによる星空",
+      "stress": "レンダリングとアニメーションのストレステスト",
+      "edge_layout": "レイアウトのエッジケース",
+      "edge_list": "リストのエッジケース",
+      "edge_text": "テキストのエッジケース",
+      "waterkit_camera_filters": "GPU サーフェス上のカメラフィルター",
+      "chromium": "ビューとしての Chromium エンジン",
+      "webview-cef": "CEF ベースの Web ビュー",
+      "liquid_glass": "iOS 26 Liquid Glass マテリアル"
     },
     "viewAll": "GitHub ですべてのサンプルを見る",
-    "runOne": "チェックアウトから実行する"
+    "runOne": "チェックアウトから実行する",
+    "experimental": "実験的"
+  },
+  "live": {
+    "label": "ライブ",
+    "title": "このページで動いています。",
+    "lead": "Hydrolysis はサンプルのクレート自体を WebAssembly にコンパイルし、実際のビューツリーを WebGPU 上で実行します。クリック、入力、ドラッグができます。これは録画ではなく、フレームワークそのものです。",
+    "examples": "サンプル",
+    "load": "{{example}} を実行",
+    "loadHint": "{{example}} の WebAssembly ビルドをダウンロードして、ここで起動します。",
+    "caption": "{{example}} · wasm32 · WebGPU 上の Hydrolysis",
+    "openFull": "フルページで開く",
+    "frameTitle": "Hydrolysis でライブ実行中の {{example}} サンプル",
+    "source": "ソース"
   },
   "footer": {
-    "tagline": "一度書けば、どこでも使える。",
     "book": "ドキュメント",
     "api": "API リファレンス",
     "github": "GitHub",
@@ -250,5 +303,112 @@
     "twitter": "X",
     "license": "MIT または Apache 2.0、お好きな方で。",
     "contributing": "dev ブランチへ。大きな変更の前に issue を開いてください。"
+  },
+  "backends": {
+    "label": "バックエンド",
+    "titleLine1": "肝心なところはネイティブに。",
+    "titleLine2": "あとは Hydrolysis が。",
+    "lead": "Apple と Android は各 view をプラットフォーム自身のコントロールに対応づけます。Hydrolysis は同じ view ツリーを GPU で自ら描画し、どこへでも届けます。",
+    "official": "公式サポート",
+    "experimental": "実験的",
+    "experimentalNote": "利用可能で毎晩テストされていますが、まだ同じ水準には達していません。",
+    "items": {
+      "apple": {
+        "name": "Apple",
+        "renders": "UIKit / AppKit",
+        "platforms": "iOS、iPadOS、macOS"
+      },
+      "android": {
+        "name": "Android",
+        "renders": "Android Views と Material Components",
+        "platforms": "Android"
+      },
+      "hydrolysis": {
+        "name": "Hydrolysis",
+        "renders": "wgpu を通じた WaterUI 独自の GPU レンダラー",
+        "platforms": "macOS、Windows、Linux、Web、Android"
+      },
+      "gtk": {
+        "name": "GTK4",
+        "renders": "GTK4 ウィジェット",
+        "platforms": "Linux"
+      },
+      "winui": {
+        "name": "WinUI",
+        "renders": "WinUI 3 コントロール",
+        "platforms": "Windows"
+      }
+    }
+  },
+  "engine": {
+    "label": "レンダリング",
+    "title": "Hydrolysis がツリーを自ら描画します。",
+    "lead": "WaterUI 独自のレンダラーです。保持されるビューツリー全体を GPU で描画します。ひとつのコードベースから、ネイティブツールキットがない場所、あるいは使いたくない場所のどこでも。",
+    "hydrolysis": {
+      "gpu": {
+        "title": "ツリー全体を GPU で",
+        "body": "すべての view が wgpu を通じて描画されます。静かに肩代わりする CPU フォールバックはありません。"
+      },
+      "platforms": {
+        "title": "デスクトップ、Web、Android",
+        "body": "macOS、Windows、Linux のウィンドウ、WebGPU 経由のブラウザ、そして専用ホスト経由の Android。"
+      },
+      "frames": {
+        "title": "120 Hz を想定した予算",
+        "body": "フレームは 120 Hz ディスプレイを想定して予算化されており、変えるものがないウィンドウは何も描きません。"
+      },
+      "accessibility": {
+        "title": "アクセシビリティツリー経由でテスト",
+        "body": "waterui-testing は Hydrolysis が構築するアクセシビリティツリーに問い合わせるので、すべての UI テストがそのままアクセシビリティテストになります。"
+      },
+      "themes": {
+        "title": "テーマはパッケージ",
+        "body": "Hydrolysis 自身はウィジェットスタイルを持ちません。Material 3 は別パッケージとして提供されます。"
+      }
+    },
+    "cherenkov": {
+      "title": "Cherenkov。そのために作られたエンジン。",
+      "lead": "WaterUI のきめ細かいリアクティビティと現行 GPU を中心に設計された GPU 2D エンジンです。WaterUI のシグナルをそのまま入力として受け取るため、変更のコストは画面に映るものではなく、触れたものに比例します。",
+      "status": "dev チャンネルの Hydrolysis は Cherenkov で描画しています。安定版 0.5 はまだ Vello で描画します。WaterUI のシグナルを Cherenkov の値スロットへ直接渡す作業が進行中です。",
+      "points": {
+        "slots": {
+          "title": "シグナルがエンジンのオペランドになる",
+          "body": "バインドされた値はエンジン内のスロットです。値が変わると、それを読む記録済みコマンドだけが再生成され、フレームの残りは再利用されます。"
+        },
+        "animation": {
+          "title": "レンダースレッド上のアニメーション",
+          "body": ".animation() を付けた変更はそのままエンジンに届きます。レンダースレッドが補間するので、フレームのコストはシーンの大きさではなく動いているものに従います。"
+        },
+        "colour": {
+          "title": "現行ディスプレイのために",
+          "body": "レンダリングは広色域の作業空間で、リニアかつ拡張レンジの色で行われ、各ウィンドウは自身のディスプレイと HDR または広色域出力をネゴシエートします。"
+        }
+      }
+    },
+    "figure": {
+      "tag": "{{total}} 件中 {{count}} 件のコマンドを再生成",
+      "caption": "シグナルに束縛された角丸半径。動かすと、それを読むコマンドだけに触れます。エンジンの値スロットの説明図です。"
+    }
+  },
+  "numbers": {
+    "label": "数字",
+    "title": "ほかの選択肢との比較。",
+    "lead": "同じアプリを WaterUI、SwiftUI、Flutter、React Native、Electron でビルドした場合のメモリ、フレーム時間、パッケージサイズです。",
+    "placeholderTag": "プレースホルダー",
+    "placeholderNote": "これらのバーはレイアウトを保つためのプレースホルダーです。比較は共通のベンチマークハーネスで計測中で、グラフにはその結果と、それぞれのデバイスとビルドが表示されます。",
+    "metrics": {
+      "memory": {
+        "title": "メモリ",
+        "note": "実行中アプリの常駐メモリ。低いほどよい"
+      },
+      "frame": {
+        "title": "フレーム時間",
+        "note": "アニメーション中の 99 パーセンタイルのフレーム時間。低いほどよい"
+      },
+      "size": {
+        "title": "パッケージサイズ",
+        "note": "ユーザーがダウンロードするリリースパッケージ。小さいほどよい"
+      }
+    }
   }
 }

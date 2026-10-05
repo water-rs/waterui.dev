@@ -1,99 +1,88 @@
 {
   "meta": {
     "title": "WaterUI — UI multiplataforma para Rust",
-    "description": "Escreva uma vez, aplique em qualquer lugar. WaterUI é um framework de interface multiplataforma para Rust que renderiza via UIKit, AppKit, Android Views, GTK4, GPU ou um ESP32."
+    "description": "Escreva uma vez, aplique em todo lugar. WaterUI é um framework de UI para Rust: uma única árvore de views que vira controles nativos nas plataformas Apple e no Android, e que o seu próprio renderizador, Hydrolysis, desenha na GPU em todos os outros lugares."
   },
   "nav": {
     "book": "Guia",
     "api": "API",
     "examples": "Exemplos",
+    "live": "Ao vivo",
     "github": "GitHub",
+    "start": "Começar",
     "menu": "Menu",
-    "closeMenu": "Fechar menu",
+    "closeMenu": "Fechar",
     "language": "Idioma",
     "theme": "Tema",
     "themeSystem": "Sistema",
     "themeLight": "Claro",
-    "themeDark": "Escuro"
+    "themeDark": "Escuro",
+    "inspect": "Inspecionar layout"
+  },
+  "common": {
+    "copy": "Copiar",
+    "copied": "Copiado"
   },
   "hero": {
-    "eyebrow": "Framework de interface multiplataforma para Rust",
     "titleLine1": "Escreva uma vez,",
     "titleLine2": "aplique em qualquer lugar.",
-    "lead": "O WaterUI mapeia cada view para o toolkit da própria plataforma: UIKit, AppKit, Android Views, GTK4. Onde nada nativo serve, ele desenha a view por conta própria, na GPU ou em um microcontrolador.",
+    "lead": "WaterUI é um framework de UI para Rust. Escreva uma view uma vez: ela vira controles UIKit e AppKit nas plataformas Apple, Android Views no Android, e é desenhada na GPU pelo Hydrolysis em todos os outros lugares.",
+    "status": "Pré-1.0 · Suporte oficial: Apple, Android, Hydrolysis",
+    "install": "Instale a CLI water. Um binário pré-compilado, nada para compilar.",
     "ctaStart": "Começar",
     "ctaBook": "Ler o guia",
-    "status": "Pré-1.0 · Apple e Android são os backends mais completos"
-  },
-  "bond": {
-    "binding": "Binding<i32>",
-    "view": "text!(\"Count: {count}\")",
-    "decrement": "Diminuir",
-    "increment": "Aumentar",
-    "caption": "Um valor muda e seus leitores se atualizam. Nada mais é tocado."
-  },
-  "targets": {
-    "eyebrow": "01",
-    "title": "Alvos",
-    "lead": "Uma árvore de views, cinco backends. Cada um fala o toolkit da sua plataforma, ou desenha a view por conta própria quando não há nenhum.",
-    "rendersThrough": "Renderiza via",
-    "items": {
-      "apple": {
-        "platform": "iOS e macOS",
-        "backend": "Apple",
-        "renders": "UIKit / AppKit"
-      },
-      "android": {
-        "platform": "Android",
-        "backend": "Android",
-        "renders": "Android Views"
-      },
-      "gtk": {
-        "platform": "Linux",
-        "backend": "GTK4",
-        "renders": "Widgets GTK4"
-      },
-      "hydrolysis": {
-        "platform": "macOS, Linux, Windows, web",
-        "backend": "Hydrolysis",
-        "renders": "Desenho próprio, GPU via Vello"
-      },
-      "dew": {
-        "platform": "ESP32-S3 / ESP32-C3",
-        "backend": "Dew",
-        "renders": "Desenho próprio, CPU, só regiões alteradas"
-      }
+    "live": "Rodar um exemplo aqui",
+    "notes": {
+      "derive": "um controle por campo",
+      "binding": "o estado do formulário",
+      "render": "nativo em cada backend"
     },
-    "dewNote": "A mesma view que vira um controle UIKit no iPhone roda em um microcontrolador sem sistema operacional e sem GPU."
+    "captureAlt": "O exemplo form renderizado em {{platform}}",
+    "figure": "Uma struct, renderizada por cada backend com suporte oficial. São capturas do exemplo, não mockups."
   },
-  "reactivity": {
-    "eyebrow": "02",
-    "title": "Estado",
-    "lead": "Estado são valores comuns. Não há árvore virtual para comparar, e mudar uma string nunca reconstrói a subárvore ao redor dela.",
+  "state": {
+    "label": "Estado",
+    "title": "Mude um valor. Toque uma view.",
+    "lead": "O estado são valores simples. Não há árvore virtual para comparar, e mudar uma string nunca reconstrói a subárvore ao redor dela.",
+    "notes": {
+      "binding": "estado mutável",
+      "reader": "lê count",
+      "writer": "escreve count",
+      "collection": "comparado por id"
+    },
+    "figureContacts": "Uma coleção indexada por identidade",
     "points": {
       "binding": {
         "title": "Binding<T> é estado mutável",
-        "body": "Coloque um valor em um Binding e entregue-o às views. Qualquer view que o leia se atualiza quando ele muda."
+        "body": "Coloque um valor em um Binding e entregue-o às views. Toda view que o lê é atualizada quando ele muda."
       },
       "computed": {
         "title": "Computed<T> é estado derivado",
-        "body": "Aplique map a um Binding para obter um Computed. APIs sensíveis a sinais aceitam ambos, e só seus leitores se atualizam."
+        "body": "Mapeie um Binding em um Computed. APIs que aceitam sinais recebem qualquer um dos dois, e só os seus leitores são atualizados."
       },
       "collections": {
-        "title": "Coleções são comparadas por identidade",
-        "body": "Dê a List ou ForEach uma coleção reativa de itens Identifiable e as mudanças de composição são comparadas por id."
+        "title": "Coleções comparadas por identidade",
+        "body": "Dê a List ou ForEach uma coleção reativa de itens Identifiable, e as mudanças de membros são comparadas por id."
       }
     },
-    "flow": {
-      "binding": "Binding",
-      "computed": "Computed",
-      "view": "View"
+    "figureCounter": "O contador da figura: um Binding, um leitor, um escritor.",
+    "figure": {
+      "model": "Modelo de atualização",
+      "models": {
+        "fine": "WaterUI",
+        "rebuild": "Reexecutar o body inteiro"
+      },
+      "decrement": "Diminuir",
+      "increment": "Aumentar",
+      "idle": "pressione − ou +",
+      "updated": "{{count}} de {{total}} views atualizadas",
+      "caption": "Cada view que trabalha para a mudança pisca. Uma ilustração do modelo de atualização."
     }
   },
   "features": {
-    "eyebrow": "03",
-    "title": "Incluso",
-    "lead": "Layouts, controles, formulários, navegação, mídia, gráficos e os serviços de plataforma ao redor. Uma única dependência.",
+    "label": "Tudo incluído",
+    "title": "Uma dependência.",
+    "lead": "Layouts, controles, formulários, navegação, mídia, gráficos e os serviços de plataforma ao redor deles.",
     "groups": {
       "layout": {
         "title": "Layout e texto",
@@ -185,64 +174,128 @@
         "Tela",
         "Tarefas em segundo plano",
         "Informações do sistema"
-      ]
+      ],
+      "figure": "WaterKit, uma API Rust por recurso"
     },
     "testing": {
       "title": "Testes",
-      "lead": "Testes baseados em acessibilidade rodam em um cargo test comum contra o renderizador Hydrolysis. Sem simulador, sem dispositivo. Interações são asserções, e toda espera bombeia até o repouso em vez de dormir."
+      "lead": "Testes baseados em acessibilidade rodam em um cargo test comum contra o renderizador Hydrolysis. Sem simulador, sem dispositivo. Interações são asserções, e toda espera bombeia até o repouso em vez de dormir.",
+      "figure": "Um teste semântico, executado por cargo test",
+      "notes": {
+        "mount": "monta a view sem tela",
+        "query": "encontra-a pelo rótulo acessível",
+        "assert": "verifica o estado, não os pixels"
+      }
     }
   },
   "previews": {
-    "eyebrow": "04",
-    "title": "Prévias",
-    "lead": "Qualquer função marcada com #[preview] é renderizada em imagem sem abrir o app. A mesma base move os testes de interação semânticos e as medições de GPU.",
+    "label": "Prévias",
+    "title": "Renderize sem executar.",
+    "lead": "Qualquer função marcada com #[preview] é renderizada em uma imagem sem abrir o app, e a mesma prévia executa testes semânticos de interação.",
     "commands": {
       "render": "Renderizar uma view em PNG",
       "frame": "Escolher o tamanho do quadro",
-      "test": "Rodar testes de interação semânticos",
-      "perf": "Medir o custo de GPU"
+      "test": "Rodar testes de interação semânticos"
     },
-    "imageCaption": "Saída de water preview no exemplo {{example}}.",
-    "dogfood": "Toda captura nesta página foi produzida assim."
+    "figure": "water preview no exemplo {{example}}"
   },
   "quickStart": {
-    "eyebrow": "05",
-    "title": "Início rápido",
-    "lead": "Um playground é uma crate Rust comum. A CLI mantém os projetos nativos fora da sua árvore de código e os gerencia sob demanda.",
+    "label": "Início rápido",
+    "title": "Três comandos.",
+    "lead": "Um projeto é um crate Rust comum. A CLI mantém os projetos nativos fora da sua árvore de código e os gerencia sob demanda.",
     "steps": {
       "install": "Instalar a CLI",
-      "create": "Criar um playground",
-      "run": "Rodar no host"
+      "create": "Criar um projeto",
+      "run": "Executar nesta máquina"
     },
-    "copy": "Copiar",
-    "copied": "Copiado",
-    "elsewhere": "Para rodar em outro lugar",
-    "entryPoint": "Esse é todo o ponto de entrada. A crate do app depende de waterui e de nada mais.",
+    "elsewhere": "Em outro lugar",
     "tools": {
       "doctor": "informa o que falta em uma toolchain",
-      "devices": "lista simuladores e dispositivos conectados"
+      "devices": "lista simuladores e dispositivos conectados",
+      "update": "atualiza a CLI no lugar"
     },
-    "shipping": "Pronto para publicar? O modo App gera projetos de plataforma que pertencem a você, para personalizar, assinar e empacotar.",
-    "shippingLink": "Ler sobre o modo App"
+    "shipping": "O projeto em que você itera é o que vai para produção: a CLI gera os projetos de plataforma e então compila, assina e empacota o app a partir do Water.toml.",
+    "shippingLink": "Publicar um app de verdade"
   },
   "gallery": {
-    "eyebrow": "06",
-    "title": "Exemplos",
-    "lead": "Aplicações executáveis do repositório, renderizadas pelo próprio comando de prévia do framework.",
+    "label": "Exemplos",
+    "title": "Mesmo código, todos os toolkits.",
+    "lead": "Cada exemplo do repositório, capturado pela suíte de ponta a ponta de cada backend. Escolha um backend e compare.",
+    "backend": "Backend",
+    "shotCount": "{{count}} capturas",
+    "withheld": "{{count}} exemplos estão retidos neste backend até que a captura esteja correta.",
+    "backends": {
+      "ios": {
+        "label": "iOS",
+        "caption": "UIKit · simulador de iPhone"
+      },
+      "macos": {
+        "label": "macOS",
+        "caption": "AppKit · Mac"
+      },
+      "android": {
+        "label": "Android",
+        "caption": "Android Views · emulador"
+      },
+      "gtk": {
+        "label": "GTK4",
+        "caption": "Widgets GTK4 · Linux"
+      }
+    },
     "items": {
-      "gallery": "Vitrine ampla de componentes",
+      "gallery": "Ampla vitrine de componentes",
       "form": "Formulários derivados e projeção reativa de campos",
       "navigation": "Pilhas, abas e estado de navegação",
+      "map": "Tiles de mapa em GPU e pontes de mapa nativas",
       "flow_markdown": "Renderização de Markdown em streaming",
-      "map": "Componente de mapa conforme a realização de cada plataforma",
       "video_player": "Estado de reprodução e controles",
-      "filter": "Filtros de imagem na GPU"
+      "filter": "Filtros de imagem em GPU",
+      "reply": "Cliente de e-mail lista-detalhe Material 3",
+      "markdown": "Texto rico e renderização Markdown",
+      "list": "Coleções reativas com diff por identidade",
+      "animation": "Animação num relógio de frames determinístico",
+      "gesture": "Gestos de toque, arraste e pinça",
+      "gradient": "Gradientes de malha e animados",
+      "shape": "Formas, recorte e preenchimentos",
+      "icons": "Uma API de ícones para todos os conjuntos de símbolos",
+      "menu": "Menus e menus de contexto",
+      "picker": "Seletores em todos os estilos",
+      "media_picker": "Seleção de fotos e mídia",
+      "snackbar": "Notificações snackbar transitórias",
+      "multi_window": "Várias janelas com estilos próprios",
+      "locale": "Locale, i18n e direção de layout",
+      "typography-rtl": "Fallback CJK e layout da direita para a esquerda",
+      "hover": "Estados de hover e controle do cursor",
+      "drag_drop": "Arrastar e soltar entre views",
+      "webview": "Conteúdo web como view nativa",
+      "reminders": "Lista de tarefas estilo Lembretes",
+      "starfield": "Campo de estrelas com partículas em GPU",
+      "stress": "Teste de estresse de renderização e animação",
+      "edge_layout": "Casos de borda de layout",
+      "edge_list": "Casos de borda de lista",
+      "edge_text": "Casos de borda de texto",
+      "waterkit_camera_filters": "Filtros de câmera numa superfície GPU",
+      "chromium": "O motor Chromium como view",
+      "webview-cef": "View web com CEF",
+      "liquid_glass": "Materiais Liquid Glass do iOS 26"
     },
     "viewAll": "Todos os exemplos no GitHub",
-    "runOne": "Rodar um a partir de um checkout"
+    "runOne": "Rodar um a partir de um checkout",
+    "experimental": "Experimental"
+  },
+  "live": {
+    "label": "Ao vivo",
+    "title": "Rodando nesta página.",
+    "lead": "O Hydrolysis compila o próprio crate do exemplo para WebAssembly e executa a árvore de views real sobre WebGPU. Clique, digite, arraste. Isto é o framework, não uma gravação.",
+    "examples": "Exemplos",
+    "load": "Executar {{example}}",
+    "loadHint": "Baixa um build WebAssembly de {{example}} e o inicia aqui.",
+    "caption": "{{example}} · wasm32 · Hydrolysis sobre WebGPU",
+    "openFull": "Abrir página inteira",
+    "frameTitle": "O exemplo {{example}} a correr ao vivo no Hydrolysis",
+    "source": "Código-fonte"
   },
   "footer": {
-    "tagline": "Escreva uma vez, aplique em qualquer lugar.",
     "book": "Guia",
     "api": "Referência da API",
     "github": "GitHub",
@@ -250,5 +303,112 @@
     "twitter": "X",
     "license": "MIT ou Apache 2.0, à sua escolha.",
     "contributing": "Mire na branch dev. Abra uma issue antes de qualquer mudança grande."
+  },
+  "backends": {
+    "label": "Backends",
+    "titleLine1": "Nativo onde importa.",
+    "titleLine2": "Hydrolysis em todo o resto.",
+    "lead": "Apple e Android mapeiam cada view para os controles da própria plataforma. O Hydrolysis desenha a mesma árvore de views por conta própria, na GPU, onde quer que você publique.",
+    "official": "Suporte oficial",
+    "experimental": "Experimental",
+    "experimentalNote": "Utilizáveis e testados todas as noites, mas ainda não mantidos no mesmo padrão.",
+    "items": {
+      "apple": {
+        "name": "Apple",
+        "renders": "UIKit e AppKit",
+        "platforms": "iOS, iPadOS, macOS"
+      },
+      "android": {
+        "name": "Android",
+        "renders": "Android Views e Material Components",
+        "platforms": "Android"
+      },
+      "hydrolysis": {
+        "name": "Hydrolysis",
+        "renders": "O renderizador de GPU do próprio WaterUI, via wgpu",
+        "platforms": "macOS, Windows, Linux, web, Android"
+      },
+      "gtk": {
+        "name": "GTK4",
+        "renders": "Widgets GTK4",
+        "platforms": "Linux"
+      },
+      "winui": {
+        "name": "WinUI",
+        "renders": "Controles WinUI 3",
+        "platforms": "Windows"
+      }
+    }
+  },
+  "engine": {
+    "label": "Renderização",
+    "title": "O Hydrolysis desenha a árvore sozinho.",
+    "lead": "O renderizador do próprio WaterUI. Ele desenha a árvore de views retida inteira na GPU, a partir de um único código, onde não há toolkit nativo para mapear, ou onde você prefere não usar um.",
+    "hydrolysis": {
+      "gpu": {
+        "title": "A árvore inteira, na GPU",
+        "body": "Toda view é desenhada via wgpu. Não há fallback para CPU assumindo em silêncio."
+      },
+      "platforms": {
+        "title": "Desktop, web e Android",
+        "body": "Janelas no macOS, Windows e Linux, o navegador via WebGPU e o Android por meio do seu próprio host."
+      },
+      "frames": {
+        "title": "Orçamento para 120 Hz",
+        "body": "Os frames são orçados para telas de 120 Hz, e uma janela sem nada para mudar não desenha nada."
+      },
+      "accessibility": {
+        "title": "Testado pela árvore de acessibilidade",
+        "body": "O waterui-testing consulta a árvore de acessibilidade que o Hydrolysis constrói, então todo teste de UI também é um teste de acessibilidade."
+      },
+      "themes": {
+        "title": "Temas são pacotes",
+        "body": "O Hydrolysis não traz estilo de widget próprio. O Material 3 é distribuído como um pacote separado."
+      }
+    },
+    "cherenkov": {
+      "title": "Cherenkov, o engine feito para ele.",
+      "lead": "Um engine 2D de GPU projetado em torno da reatividade granular do WaterUI e das GPUs atuais. Ele recebe os sinais do WaterUI como entradas próprias, então uma mudança custa o que ela toca, não o que está na tela.",
+      "status": "No canal dev, o Hydrolysis renderiza via Cherenkov; a versão estável 0.5 ainda renderiza via Vello. Levar os sinais do WaterUI diretamente aos slots de valor do Cherenkov está em andamento.",
+      "points": {
+        "slots": {
+          "title": "Sinais viram operandos do engine",
+          "body": "Um valor vinculado é um slot no engine. Quando ele muda, só os comandos gravados que o leem são regerados; o resto do frame é reaproveitado."
+        },
+        "animation": {
+          "title": "Animação na thread de renderização",
+          "body": "Uma mudança feita com .animation() chega ao engine como está. A thread de renderização a interpola, então o custo de um frame acompanha o que se move, não o tamanho da cena."
+        },
+        "colour": {
+          "title": "Feito para as telas atuais",
+          "body": "A renderização acontece em cor linear de faixa estendida com espaço de trabalho de gama ampla, e cada janela negocia com sua tela a saída HDR ou de gama ampla."
+        }
+      }
+    },
+    "figure": {
+      "tag": "{{count}} de {{total}} comandos regerados",
+      "caption": "Um raio de canto vinculado a um sinal. Movê-lo só toca os comandos que o leem. Uma ilustração dos slots de valor do engine."
+    }
+  },
+  "numbers": {
+    "label": "Números",
+    "title": "Frente às alternativas.",
+    "lead": "Memória, tempo de frame e tamanho do pacote, para o mesmo app feito com WaterUI, SwiftUI, Flutter, React Native e Electron.",
+    "placeholderTag": "provisório",
+    "placeholderNote": "Estas barras são provisórias e só ocupam o layout. A comparação está sendo medida com um harness de benchmark compartilhado, e os gráficos vão mostrar os resultados, com o dispositivo e o build de cada um.",
+    "metrics": {
+      "memory": {
+        "title": "Memória",
+        "note": "Memória residente do app em execução; menor é melhor"
+      },
+      "frame": {
+        "title": "Tempo de frame",
+        "note": "Tempo de frame no percentil 99 durante animação; menor é melhor"
+      },
+      "size": {
+        "title": "Tamanho do pacote",
+        "note": "O pacote de release que o usuário baixa; menor é melhor"
+      }
+    }
   }
 }
