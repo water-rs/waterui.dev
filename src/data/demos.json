@@ -1,4 +1,9 @@
 {
-  "waterui": "46552dd30ef8fcd84b85b7003496d7b3e5606d3d",
-  "examples": []
+  "waterui": "843598388604bb68031a680a0c0c8d56c9105a18",
+  "examples": [
+    "form",
+    "animation",
+    "gallery",
+    "map"
+  ]
 }
