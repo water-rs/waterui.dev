@@ -79,6 +79,12 @@ jobs:
           workspaces: waterui
           cache-directories: .cargo-target
 
+      # The native libraries a Linux build of the CLI links (udev among them),
+      # from the pinned checkout's own action, so the list moves with the CLI.
+      - name: Install the CLI's native dependencies
+        if: steps.demos.outputs.count != '0'
+        uses: ./waterui/.github/actions/setup-linux-deps
+
       # The CLI is a member of the waterui workspace, so the pinned revision
       # supplies the CLI and the framework the demos are built against.
       - name: Build the water CLI
