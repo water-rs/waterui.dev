@@ -60,7 +60,7 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={cycle}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink-muted transition-colors hover:border-line-strong hover:text-ink"
+      className="flex h-9 w-9 items-center justify-center border border-rule text-ink-2 transition-colors hover:border-ink hover:text-ink"
       aria-label={`${t('nav.theme')}: ${labels[theme]}`}
       title={`${t('nav.theme')}: ${labels[theme]}`}
     >

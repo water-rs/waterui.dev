@@ -4,3 +4,4 @@ dist
 *.log
 .vite
 ci-shots
+public/demo/

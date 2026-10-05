@@ -1,75 +1,56 @@
 {
   "meta": {
     "title": "WaterUI — UI multiplataforma para Rust",
-    "description": "Escribe una vez, aplícalo en todas partes. WaterUI es un framework de interfaz multiplataforma para Rust que renderiza mediante UIKit, AppKit, Android Views, GTK4, la GPU o un ESP32."
+    "description": "Escribe una vez, aplícalo en todas partes. WaterUI es un framework de interfaz para Rust: un único árbol de vistas que se convierte en controles nativos en las plataformas Apple y Android, y que dibuja en la GPU su propio renderizador, Hydrolysis, en todas las demás."
   },
   "nav": {
     "book": "Guía",
     "api": "API",
     "examples": "Ejemplos",
+    "live": "En vivo",
     "github": "GitHub",
+    "start": "Empezar",
     "menu": "Menú",
-    "closeMenu": "Cerrar menú",
+    "closeMenu": "Cerrar",
     "language": "Idioma",
     "theme": "Tema",
     "themeSystem": "Sistema",
     "themeLight": "Claro",
-    "themeDark": "Oscuro"
+    "themeDark": "Oscuro",
+    "inspect": "Inspeccionar layout"
+  },
+  "common": {
+    "copy": "Copiar",
+    "copied": "Copiado"
   },
   "hero": {
-    "eyebrow": "Framework de interfaz multiplataforma para Rust",
     "titleLine1": "Escribe una vez,",
     "titleLine2": "aplícalo en todas partes.",
-    "lead": "WaterUI proyecta cada vista sobre el toolkit propio de la plataforma: UIKit, AppKit, Android Views, GTK4. Donde nada nativo encaja, dibuja la vista por sí mismo, en la GPU o en un microcontrolador.",
+    "lead": "WaterUI es un framework de interfaz para Rust. Escribe una vista una sola vez: se convierte en controles UIKit y AppKit en las plataformas Apple, en Android Views en Android, y Hydrolysis la dibuja en la GPU en todas las demás.",
+    "status": "Pre-1.0 · Soporte oficial: Apple, Android, Hydrolysis",
+    "install": "Instala la CLI water. Un binario precompilado, nada que compilar.",
     "ctaStart": "Empezar",
     "ctaBook": "Leer la guía",
-    "status": "Antes de 1.0 · Apple y Android son los backends más completos"
-  },
-  "bond": {
-    "binding": "Binding<i32>",
-    "view": "text!(\"Count: {count}\")",
-    "decrement": "Restar",
-    "increment": "Sumar",
-    "caption": "Un valor cambia y sus lectores se actualizan. Nada más se toca."
-  },
-  "targets": {
-    "eyebrow": "01",
-    "title": "Destinos",
-    "lead": "Un árbol de vistas, cinco backends. Cada uno habla el toolkit de su plataforma o dibuja la vista por sí mismo cuando no lo hay.",
-    "rendersThrough": "Renderiza mediante",
-    "items": {
-      "apple": {
-        "platform": "iOS y macOS",
-        "backend": "Apple",
-        "renders": "UIKit / AppKit"
-      },
-      "android": {
-        "platform": "Android",
-        "backend": "Android",
-        "renders": "Android Views"
-      },
-      "gtk": {
-        "platform": "Linux",
-        "backend": "GTK4",
-        "renders": "Widgets GTK4"
-      },
-      "hydrolysis": {
-        "platform": "macOS, Linux, Windows, web",
-        "backend": "Hydrolysis",
-        "renders": "Dibujo propio, GPU vía Vello"
-      },
-      "dew": {
-        "platform": "ESP32-S3 / ESP32-C3",
-        "backend": "Dew",
-        "renders": "Dibujo propio, CPU, solo regiones cambiadas"
-      }
+    "live": "Ejecuta un ejemplo aquí",
+    "notes": {
+      "derive": "un control por campo",
+      "binding": "el estado del formulario",
+      "render": "nativo en cada backend"
     },
-    "dewNote": "La misma vista que se convierte en un control UIKit en un iPhone corre en un microcontrolador sin sistema operativo ni GPU."
+    "captureAlt": "El ejemplo de formulario renderizado en {{platform}}",
+    "figure": "Un solo struct, renderizado por cada backend con soporte oficial. Son capturas del ejemplo, no maquetas."
   },
-  "reactivity": {
-    "eyebrow": "02",
-    "title": "Estado",
+  "state": {
+    "label": "Estado",
+    "title": "Cambia un valor. Toca una vista.",
     "lead": "El estado son valores corrientes. No hay un árbol virtual que comparar, y cambiar una cadena nunca reconstruye el subárbol que la rodea.",
+    "notes": {
+      "binding": "estado mutable",
+      "reader": "lee count",
+      "writer": "escribe count",
+      "collection": "diff por id"
+    },
+    "figureContacts": "Una colección indexada por identidad",
     "points": {
       "binding": {
         "title": "Binding<T> es estado mutable",
@@ -84,16 +65,24 @@
         "body": "Dale a List o ForEach una colección reactiva de elementos Identifiable y los cambios de membresía se comparan por id."
       }
     },
-    "flow": {
-      "binding": "Binding",
-      "computed": "Computed",
-      "view": "View"
+    "figureCounter": "El contador de la figura: un Binding, un lector, un escritor.",
+    "figure": {
+      "model": "Modelo de actualización",
+      "models": {
+        "fine": "WaterUI",
+        "rebuild": "Reejecutar todo el body"
+      },
+      "decrement": "Restar",
+      "increment": "Sumar",
+      "idle": "pulsa − o +",
+      "updated": "{{count}} de {{total}} vistas actualizadas",
+      "caption": "Cada vista que trabaja para el cambio parpadea. Una ilustración del modelo de actualización."
     }
   },
   "features": {
-    "eyebrow": "03",
-    "title": "Incluido",
-    "lead": "Layouts, controles, formularios, navegación, medios, gráficas y los servicios de plataforma a su alrededor. Una sola dependencia.",
+    "label": "De serie",
+    "title": "Una dependencia.",
+    "lead": "Layouts, controles, formularios, navegación, medios, gráficas y los servicios de plataforma a su alrededor.",
     "groups": {
       "layout": {
         "title": "Layout y texto",
@@ -185,73 +174,72 @@
         "Pantalla",
         "Tareas en segundo plano",
         "Información del sistema"
-      ]
+      ],
+      "figure": "WaterKit, una API de Rust por capacidad"
     },
     "testing": {
       "title": "Pruebas",
-      "lead": "Pruebas basadas en accesibilidad que corren con un cargo test corriente contra el renderizador Hydrolysis. Sin simulador ni dispositivo. Las interacciones son aserciones, y cada espera bombea hasta el reposo en lugar de dormir."
+      "lead": "Pruebas basadas en accesibilidad que corren con un cargo test corriente contra el renderizador Hydrolysis. Sin simulador ni dispositivo. Las interacciones son aserciones, y cada espera bombea hasta el reposo en lugar de dormir.",
+      "figure": "Una prueba semántica, ejecutada por cargo test",
+      "notes": {
+        "mount": "monta la vista en headless",
+        "query": "la encuentra por su etiqueta accesible",
+        "assert": "afirma sobre el estado, no sobre los píxeles"
+      }
     }
   },
   "previews": {
-    "eyebrow": "04",
-    "title": "Vistas previas",
-    "lead": "Cualquier función marcada con #[preview] se renderiza a una imagen sin lanzar la app. La misma base impulsa las pruebas de interacción semánticas y las mediciones de GPU.",
+    "label": "Vistas previas",
+    "title": "Renderiza sin ejecutar.",
+    "lead": "Cualquier función marcada con #[preview] se renderiza a una imagen sin lanzar la app, y la misma vista previa ejecuta pruebas de interacción semánticas.",
     "commands": {
       "render": "Renderizar una vista a PNG",
       "frame": "Elegir el tamaño del marco",
-      "test": "Ejecutar pruebas de interacción semánticas",
-      "perf": "Medir el coste en GPU"
+      "test": "Ejecutar pruebas de interacción semánticas"
     },
-    "imageCaption": "Salida de water preview sobre el ejemplo {{example}}.",
-    "dogfood": "Cada captura de esta página se produjo así."
+    "figure": "water preview sobre el ejemplo {{example}}"
   },
   "quickStart": {
-    "eyebrow": "05",
-    "title": "Inicio rápido",
-    "lead": "Un playground es un crate de Rust corriente. La CLI mantiene los proyectos nativos fuera de tu árbol de fuentes y los gestiona bajo demanda.",
+    "label": "Inicio rápido",
+    "title": "Tres comandos.",
+    "lead": "Un proyecto es un crate de Rust corriente. La CLI mantiene los proyectos nativos fuera de tu árbol de fuentes y los gestiona bajo demanda.",
     "steps": {
       "install": "Instalar la CLI",
-      "create": "Crear un playground",
-      "run": "Ejecutarlo en el host"
+      "create": "Crear un proyecto",
+      "run": "Ejecutarlo en esta máquina"
     },
-    "copy": "Copiar",
-    "copied": "Copiado",
-    "elsewhere": "Para ejecutarlo en otro sitio",
-    "entryPoint": "Ese es todo el punto de entrada. El crate de la app depende de waterui y de nada más.",
+    "elsewhere": "En otro sitio",
     "tools": {
       "doctor": "informa de lo que le falta a una toolchain",
-      "devices": "lista simuladores y dispositivos conectados"
+      "devices": "lista simuladores y dispositivos conectados",
+      "update": "actualiza la CLI in situ"
     },
-    "shipping": "¿Listo para publicar? El modo App genera proyectos de plataforma que te pertenecen, para personalizarlos, firmarlos y empaquetarlos.",
-    "shippingLink": "Leer sobre el modo App"
+    "shipping": "El proyecto sobre el que iteras es el que se publica: la CLI genera los proyectos de plataforma y luego compila, firma y empaqueta la app desde Water.toml.",
+    "shippingLink": "Publicar una app real"
   },
   "gallery": {
-    "eyebrow": "06",
-    "title": "Ejemplos",
+    "label": "Ejemplos",
+    "title": "La misma fuente, cada toolkit.",
     "lead": "Cada ejemplo ejecutable del repositorio, capturado por la suite e2e de cada backend. Elige un backend y compara.",
     "backend": "Backend",
     "shotCount": "{{count}} capturas",
-    "liveBadge": "en vivo",
+    "withheld": "{{count}} ejemplos se retienen en este backend hasta que su captura sea correcta.",
     "backends": {
       "ios": {
         "label": "iOS",
-        "caption": "UIKit · simulador de iPhone, captura e2e"
+        "caption": "UIKit · simulador de iPhone"
       },
       "macos": {
         "label": "macOS",
-        "caption": "AppKit · Mac, captura e2e"
+        "caption": "AppKit · Mac"
       },
       "android": {
         "label": "Android",
-        "caption": "Android Views · emulador, captura e2e"
+        "caption": "Android Views · emulador"
       },
       "gtk": {
         "label": "GTK4",
-        "caption": "Widgets GTK4 · Linux, captura e2e"
-      },
-      "hydrolysis": {
-        "label": "Hydrolysis",
-        "caption": "Renderizador GPU autónomo · water preview"
+        "caption": "Widgets GTK4 · Linux"
       }
     },
     "items": {
@@ -292,21 +280,22 @@
       "liquid_glass": "Materiales Liquid Glass de iOS 26"
     },
     "viewAll": "Todos los ejemplos en GitHub",
-    "runOne": "Ejecutar uno desde un checkout"
+    "runOne": "Ejecutar uno desde un checkout",
+    "experimental": "Experimental"
   },
   "live": {
-    "eyebrow": "07",
-    "title": "En vivo en tu navegador",
-    "lead": "Hydrolysis compila el crate del ejemplo a WebAssembly y ejecuta el verdadero árbol de vistas en un canvas. Haz clic, escribe, arrastra — esto es el framework funcionando, no una grabación.",
-    "examples": "Ejemplos interactivos",
+    "label": "En vivo",
+    "title": "Ejecutándose en esta página.",
+    "lead": "Hydrolysis compila el propio crate del ejemplo a WebAssembly y ejecuta el verdadero árbol de vistas sobre WebGPU. Haz clic, escribe, arrastra. Esto es el framework, no una grabación.",
+    "examples": "Ejemplos",
     "load": "Ejecutar {{example}}",
-    "loadHint": "Carga bajo demanda una compilación WebAssembly del ejemplo {{example}}.",
-    "caption": "{{example}} · compilado a wasm, renderizado por Hydrolysis en WebGPU",
+    "loadHint": "Descarga una compilación WebAssembly de {{example}} y la inicia aquí.",
+    "caption": "{{example}} · wasm32 · Hydrolysis en WebGPU",
     "openFull": "Abrir página completa",
-    "frameTitle": "El ejemplo {{example}} ejecutándose en vivo en Hydrolysis"
+    "frameTitle": "El ejemplo {{example}} ejecutándose en vivo en Hydrolysis",
+    "source": "Fuente"
   },
   "footer": {
-    "tagline": "Escribe una vez, aplícalo en todas partes.",
     "book": "Guía",
     "api": "Referencia de la API",
     "github": "GitHub",
@@ -314,5 +303,112 @@
     "twitter": "X",
     "license": "MIT o Apache 2.0, a tu elección.",
     "contributing": "Apunta a la rama dev. Abre un issue antes de cualquier cambio sustancial."
+  },
+  "backends": {
+    "label": "Backends",
+    "titleLine1": "Nativo donde importa.",
+    "titleLine2": "Hydrolysis en el resto.",
+    "lead": "Apple y Android proyectan cada vista sobre los controles propios de la plataforma. Hydrolysis dibuja el mismo árbol de vistas por sí mismo, en la GPU, dondequiera que publiques.",
+    "official": "Soporte oficial",
+    "experimental": "Experimental",
+    "experimentalNote": "Usable y probado cada noche, pero aún no medido con el mismo rasero.",
+    "items": {
+      "apple": {
+        "name": "Apple",
+        "renders": "UIKit / AppKit",
+        "platforms": "iOS, iPadOS, macOS"
+      },
+      "android": {
+        "name": "Android",
+        "renders": "Android Views y Material Components",
+        "platforms": "Android"
+      },
+      "hydrolysis": {
+        "name": "Hydrolysis",
+        "renders": "El renderizador GPU propio de WaterUI, a través de wgpu",
+        "platforms": "macOS, Windows, Linux, web, Android"
+      },
+      "gtk": {
+        "name": "GTK4",
+        "renders": "Widgets GTK4",
+        "platforms": "Linux"
+      },
+      "winui": {
+        "name": "WinUI",
+        "renders": "Controles WinUI 3",
+        "platforms": "Windows"
+      }
+    }
+  },
+  "engine": {
+    "label": "Renderizado",
+    "title": "Hydrolysis dibuja el árbol por sí mismo.",
+    "lead": "El renderizador propio de WaterUI. Dibuja el árbol de vistas retenido completo en la GPU, desde una sola base de código, donde no haya un toolkit nativo sobre el que proyectar, o donde prefieras no usarlo.",
+    "hydrolysis": {
+      "gpu": {
+        "title": "Todo el árbol, en la GPU",
+        "body": "Cada vista se dibuja a través de wgpu. No hay un fallback de CPU que tome el relevo en silencio."
+      },
+      "platforms": {
+        "title": "Escritorio, web y Android",
+        "body": "Ventanas de macOS, Windows y Linux, el navegador a través de WebGPU, y Android a través de su propio host."
+      },
+      "frames": {
+        "title": "Presupuestado para 120 Hz",
+        "body": "Los fotogramas están presupuestados para pantallas de 120 Hz, y una ventana sin nada que cambiar no dibuja nada."
+      },
+      "accessibility": {
+        "title": "Probado a través de su árbol de accesibilidad",
+        "body": "waterui-testing consulta el árbol de accesibilidad que construye Hydrolysis, así que cada prueba de UI es también una prueba de accesibilidad."
+      },
+      "themes": {
+        "title": "Los temas son paquetes",
+        "body": "Hydrolysis no lleva ningún estilo de widget propio. Material 3 se distribuye como paquete aparte."
+      }
+    },
+    "cherenkov": {
+      "title": "Cherenkov, el motor construido para él.",
+      "lead": "Un motor 2D de GPU diseñado alrededor de la reactividad fina de WaterUI y de las GPU actuales. Toma las señales de WaterUI como entradas propias, así que un cambio cuesta lo que toca, no lo que hay en pantalla.",
+      "status": "En el canal dev, Hydrolysis renderiza a través de Cherenkov; la versión estable 0.5 aún renderiza a través de Vello. Llevar las señales de WaterUI directamente a las ranuras de valor de Cherenkov está en curso.",
+      "points": {
+        "slots": {
+          "title": "Las señales se vuelven operandos del motor",
+          "body": "Un valor enlazado es una ranura en el motor. Cuando cambia, solo se regeneran los comandos registrados que lo leen; el resto del fotograma se reutiliza."
+        },
+        "animation": {
+          "title": "Animación en el hilo de renderizado",
+          "body": "Un cambio hecho con .animation() llega al motor tal cual. El hilo de renderizado lo interpola, así que el coste de un fotograma sigue lo que se mueve, no el tamaño de la escena."
+        },
+        "colour": {
+          "title": "Hecho para las pantallas actuales",
+          "body": "El renderizado ocurre en color lineal de rango extendido con un espacio de trabajo de amplia gama, y cada ventana negocia salida HDR o de amplia gama con su pantalla."
+        }
+      }
+    },
+    "figure": {
+      "tag": "{{count}} de {{total}} comandos regenerados",
+      "caption": "Un radio de esquina enlazado a una señal. Moverlo toca solo los comandos que lo leen. Una ilustración de los slots de valores del motor."
+    }
+  },
+  "numbers": {
+    "label": "Números",
+    "title": "Frente a las alternativas.",
+    "lead": "Memoria, tiempo de fotograma y tamaño de paquete, para la misma app construida con WaterUI, SwiftUI, Flutter, React Native y Electron.",
+    "placeholderTag": "provisional",
+    "placeholderNote": "Estas barras son placeholders que mantienen el layout. La comparación se está midiendo con un harness de benchmark compartido, y las gráficas mostrarán sus resultados, con el dispositivo y la compilación de cada una.",
+    "metrics": {
+      "memory": {
+        "title": "Memoria",
+        "note": "Memoria residente de la app en ejecución, menos es mejor"
+      },
+      "frame": {
+        "title": "Tiempo de fotograma",
+        "note": "Tiempo de fotograma del percentil 99 mientras anima, menos es mejor"
+      },
+      "size": {
+        "title": "Tamaño del paquete",
+        "note": "El paquete de release que descarga un usuario, más pequeño es mejor"
+      }
+    }
   }
 }

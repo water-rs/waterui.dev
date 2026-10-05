@@ -3,45 +3,54 @@ import { useTranslation } from 'react-i18next'
 import { Mark } from './Logo'
 import LanguageSwitch from './LanguageSwitch'
 import ThemeToggle from './ThemeToggle'
+import { Frame } from './ui'
+import { InspectorSwitch } from './inspector'
+import { hasLiveDemos } from './LiveDemo'
 
 const links = [
   { key: 'book', href: 'https://book.waterui.dev', external: true },
   { key: 'api', href: 'https://docs.rs/waterui', external: true },
   { key: 'examples', href: '#examples', external: false },
+  ...(hasLiveDemos ? [{ key: 'live', href: '#live', external: false } as const] : []),
   { key: 'github', href: 'https://github.com/water-rs/waterui', external: true },
 ] as const
+
+const link = 'text-[15px] font-medium text-ink-2 transition-colors hover:text-ink'
 
 export default function Nav() {
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
 
-  const items = links.map((link) => (
+  const items = links.map((item) => (
     <a
-      key={link.key}
-      href={link.href}
-      target={link.external ? '_blank' : undefined}
-      rel={link.external ? 'noopener noreferrer' : undefined}
+      key={item.key}
+      href={item.href}
+      target={item.external ? '_blank' : undefined}
+      rel={item.external ? 'noopener noreferrer' : undefined}
       onClick={() => setOpen(false)}
-      className="font-mono text-sm text-ink-muted transition-colors hover:text-ink"
+      className={link}
     >
-      {t(`nav.${link.key}`)}
+      {t(`nav.${item.key}`)}
     </a>
   ))
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a href="#top" className="flex items-center gap-3 text-ink" aria-label="WaterUI">
-          <Mark className="h-6 w-auto" />
-          <span className="font-mono text-base font-semibold tracking-tight">WaterUI</span>
+    <nav className="relative z-20">
+      <Frame className="flex h-16 items-center justify-between gap-6">
+        <a href="#top" className="flex items-center gap-2.5" aria-label="WaterUI">
+          <Mark className="h-[17px] w-auto" />
+          <span className="text-[17px] font-bold tracking-[-0.02em]">WaterUI</span>
         </a>
 
-        <div className="hidden items-center gap-7 md:flex">
-          {items}
-          <div className="ml-2 flex items-center gap-2 border-l border-line pl-6">
-            <LanguageSwitch />
-            <ThemeToggle />
-          </div>
+        <div className="hidden items-center gap-7 lg:flex">{items}</div>
+
+        <div className="hidden items-center gap-2 lg:flex">
+          <InspectorSwitch label={t('nav.inspect')} />
+          <LanguageSwitch />
+          <ThemeToggle />
+          <a href="#quick-start" className="ml-2 flex h-9 items-center bg-ink px-4 text-[15px] font-semibold text-paper transition-colors hover:bg-guide hover:text-guide-ink">
+            {t('nav.start')}
+          </a>
         </div>
 
         <button
@@ -49,20 +58,21 @@ export default function Nav() {
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
           aria-controls="mobile-menu"
-          className="inline-flex h-9 items-center rounded-md border border-line px-3 font-mono text-xs text-ink-muted md:hidden"
+          className="flex h-9 items-center border border-rule px-3 text-[15px] font-medium lg:hidden"
         >
           {open ? t('nav.closeMenu') : t('nav.menu')}
         </button>
-      </div>
+      </Frame>
 
-      <div id="mobile-menu" hidden={!open} className="border-t border-line md:hidden">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-5">
+      <div id="mobile-menu" hidden={!open} className="border-y border-rule bg-paper lg:hidden">
+        <Frame className="flex flex-col gap-4 py-5">
           {items}
-          <div className="flex items-center gap-2 pt-2">
+          <div className="flex flex-wrap items-center gap-2 pt-1">
+            <InspectorSwitch label={t('nav.inspect')} />
             <LanguageSwitch />
             <ThemeToggle />
           </div>
-        </div>
+        </Frame>
       </div>
     </nav>
   )

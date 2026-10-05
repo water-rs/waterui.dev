@@ -1,3 +1,6 @@
+use waterui::prelude::*;
+use waterui::Identifiable;
+
 #[derive(Clone, Identifiable)]
 struct Contact {
     #[id]
@@ -11,7 +14,5 @@ fn contacts() -> impl View {
         Contact { id: 2, name: "Bob Smith" },
     ];
 
-    List::for_each(contacts, |contact| {
-        ListItem::new(text(contact.name))
-    })
+    List::for_each(contacts, |contact| ListItem::new(text(contact.name)))
 }

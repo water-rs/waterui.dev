@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './i18n'
 import './index.css'
@@ -11,6 +11,9 @@ if (root === null) {
 
 createRoot(root).render(
   <StrictMode>
-    <App />
+    {/* A visitor's locale other than English loads as its own chunk; the page renders once it arrives. */}
+    <Suspense fallback={null}>
+      <App />
+    </Suspense>
   </StrictMode>,
 )
