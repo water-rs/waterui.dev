@@ -30,7 +30,7 @@ export default function ExampleRunner({ example, onClose }: { example: string; o
         }
       }}
       aria-label={t('gallery.runner.title', { example })}
-      className="m-auto h-[min(820px,calc(100dvh-32px))] w-[min(1180px,calc(100vw-32px))] max-w-none border border-rule bg-paper p-0 text-ink backdrop:bg-black/55 max-sm:h-dvh max-sm:w-screen max-sm:border-0"
+      className="m-auto h-[min(820px,calc(100dvh-32px))] w-[min(1180px,calc(100vw-32px))] max-h-none max-w-none border border-rule bg-paper p-0 text-ink backdrop:bg-black/55 max-sm:h-dvh max-sm:w-screen max-sm:border-0"
     >
       <div className="flex h-full flex-col">
         <header className="flex flex-wrap items-center gap-x-5 gap-y-1 border-b border-rule px-4 py-3">
