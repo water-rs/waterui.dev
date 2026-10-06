@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Box } from './inspector'
+import { Outline } from './outline'
 import { Frame, Heading } from './ui'
 import { frameworks, metrics, type Metric } from '../data/benchmarks'
 
@@ -11,7 +11,7 @@ function Chart({ metric }: { metric: Metric }) {
   const measured = metric.rows.every((row) => row.measured)
   return (
     <figure>
-      <Box kind="Chart" always readout={measured ? metric.unit : t('numbers.placeholderTag')} className="border border-rule bg-raised px-4 pt-9 pb-4">
+      <Outline readout={measured ? metric.unit : t('numbers.placeholderTag')} className="border border-rule bg-raised px-4 pt-9 pb-4">
         <h3 className="text-[17px] font-semibold tracking-[-0.01em]">{t(`numbers.metrics.${metric.id}.title`)}</h3>
         <p className="mt-0.5 text-[13.5px] text-ink-2">{t(`numbers.metrics.${metric.id}.note`)}</p>
         <ol className="mt-5 space-y-2.5">
@@ -31,7 +31,7 @@ function Chart({ metric }: { metric: Metric }) {
             )
           })}
         </ol>
-      </Box>
+      </Outline>
     </figure>
   )
 }

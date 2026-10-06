@@ -7,7 +7,6 @@
     "book": "ドキュメント",
     "api": "API",
     "examples": "サンプル",
-    "live": "ライブ",
     "github": "GitHub",
     "start": "はじめる",
     "menu": "メニュー",
@@ -16,8 +15,7 @@
     "theme": "テーマ",
     "themeSystem": "システム",
     "themeLight": "ライト",
-    "themeDark": "ダーク",
-    "inspect": "レイアウトを検査"
+    "themeDark": "ダーク"
   },
   "common": {
     "copy": "コピー",
@@ -28,9 +26,7 @@
     "titleLine2": "どこでも使える。",
     "lead": "WaterUI は Rust の UI フレームワークです。view は一度書くだけで、Apple プラットフォームでは UIKit と AppKit のコントロールに、Android では Android Views になり、その他の環境では Hydrolysis が GPU で描画します。",
     "status": "1.0 未満 · 公式サポート: Apple、Android、Hydrolysis",
-    "install": "water CLI をインストールします。ビルド済みバイナリなので、コンパイルは不要です。",
     "ctaStart": "はじめる",
-    "ctaBook": "ドキュメントを読む",
     "live": "ここでサンプルを実行",
     "notes": {
       "derive": "フィールドごとにひとつのコントロール",
@@ -38,7 +34,13 @@
       "render": "各バックエンドでネイティブ"
     },
     "captureAlt": "{{platform}} で描画されたフォームのサンプル",
-    "figure": "ひとつの struct を、公式サポートの各バックエンドが描画したものです。モックではなく実際のキャプチャです。"
+    "figure": "ひとつの struct を、公式サポートの各バックエンドが描画したものです。モックではなく実際のキャプチャです。",
+    "quickStart": "クイックスタート",
+    "steps": {
+      "install": "CLI をインストール",
+      "create": "プロジェクトを作成",
+      "run": "このマシンで実行"
+    }
   },
   "state": {
     "label": "状態",
@@ -199,28 +201,10 @@
     },
     "figure": "{{example}} サンプルに対する water preview"
   },
-  "quickStart": {
-    "label": "クイックスタート",
-    "title": "3 つのコマンド。",
-    "lead": "プロジェクトはただの Rust クレートです。CLI がネイティブプロジェクトをソースツリーの外に置き、必要に応じて管理します。",
-    "steps": {
-      "install": "CLI をインストール",
-      "create": "プロジェクトを作成",
-      "run": "このマシンで実行"
-    },
-    "elsewhere": "ほかの環境へ",
-    "tools": {
-      "doctor": "ツールチェーンに足りないものを報告",
-      "devices": "シミュレーターと接続中のデバイスを一覧",
-      "update": "CLI をその場でアップグレード"
-    },
-    "shipping": "開発中のプロジェクトがそのままリリースされます。CLI がプラットフォームプロジェクトを生成し、Water.toml からアプリをビルド、署名、パッケージングします。",
-    "shippingLink": "実際のアプリをリリースする"
-  },
   "gallery": {
     "label": "サンプル",
     "title": "同じソース、どのツールキットでも。",
-    "lead": "リポジトリの実行可能なすべてのサンプルを、各バックエンドの e2e スイートでキャプチャしました。バックエンドを選んで比較できます。",
+    "lead": "リポジトリのすべての例を、各バックエンド自身のエンドツーエンドテストで撮影しました。バックエンドを選んで比べてください。「実行」のある例は、このページで Hydrolysis を使って動きます。",
     "backend": "バックエンド",
     "shotCount": "{{count}} 件",
     "withheld": "{{count}} 件のサンプルは、キャプチャが正しくなるまでこのバックエンドでは掲載を保留しています。",
@@ -281,19 +265,18 @@
     },
     "viewAll": "GitHub ですべてのサンプルを見る",
     "runOne": "チェックアウトから実行する",
-    "experimental": "実験的"
-  },
-  "live": {
-    "label": "ライブ",
-    "title": "このページで動いています。",
-    "lead": "Hydrolysis はサンプルのクレート自体を WebAssembly にコンパイルし、実際のビューツリーを WebGPU 上で実行します。クリック、入力、ドラッグができます。これは録画ではなく、フレームワークそのものです。",
-    "examples": "サンプル",
-    "load": "{{example}} を実行",
-    "loadHint": "{{example}} の WebAssembly ビルドをダウンロードして、ここで起動します。",
-    "caption": "{{example}} · wasm32 · WebGPU 上の Hydrolysis",
-    "openFull": "フルページで開く",
-    "frameTitle": "Hydrolysis でライブ実行中の {{example}} サンプル",
-    "source": "ソース"
+    "experimental": "実験的",
+    "run": "実行",
+    "runLabel": "{{example}} をこのページで実行",
+    "showAll": "{{count}} 件の例をすべて表示",
+    "showFewer": "折りたたむ",
+    "runner": {
+      "title": "Hydrolysis でライブ実行中の {{example}} サンプル",
+      "caption": "wasm32 · WebGPU 上の Hydrolysis",
+      "source": "ソース",
+      "openFull": "フルページで開く",
+      "close": "閉じる"
+    }
   },
   "footer": {
     "book": "ドキュメント",

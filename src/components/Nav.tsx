@@ -4,14 +4,11 @@ import { Mark } from './Logo'
 import LanguageSwitch from './LanguageSwitch'
 import ThemeToggle from './ThemeToggle'
 import { Frame } from './ui'
-import { InspectorSwitch } from './inspector'
-import { hasLiveDemos } from './LiveDemo'
 
 const links = [
   { key: 'book', href: 'https://book.waterui.dev', external: true },
   { key: 'api', href: 'https://docs.rs/waterui', external: true },
   { key: 'examples', href: '#examples', external: false },
-  ...(hasLiveDemos ? [{ key: 'live', href: '#live', external: false } as const] : []),
   { key: 'github', href: 'https://github.com/water-rs/waterui', external: true },
 ] as const
 
@@ -45,10 +42,9 @@ export default function Nav() {
         <div className="hidden items-center gap-7 lg:flex">{items}</div>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <InspectorSwitch label={t('nav.inspect')} />
           <LanguageSwitch />
           <ThemeToggle />
-          <a href="#quick-start" className="ml-2 flex h-9 items-center bg-ink px-4 text-[15px] font-semibold text-paper transition-colors hover:bg-guide hover:text-guide-ink">
+          <a href="https://book.waterui.dev" target="_blank" rel="noopener noreferrer" className="ml-2 flex h-9 items-center bg-ink px-4 text-[15px] font-semibold text-paper transition-colors hover:bg-guide hover:text-guide-ink">
             {t('nav.start')}
           </a>
         </div>
@@ -68,7 +64,6 @@ export default function Nav() {
         <Frame className="flex flex-col gap-4 py-5">
           {items}
           <div className="flex flex-wrap items-center gap-2 pt-1">
-            <InspectorSwitch label={t('nav.inspect')} />
             <LanguageSwitch />
             <ThemeToggle />
           </div>
