@@ -7,7 +7,6 @@
     "book": "Guide",
     "api": "API",
     "examples": "Exemples",
-    "live": "En direct",
     "github": "GitHub",
     "start": "Commencer",
     "menu": "Menu",
@@ -16,8 +15,7 @@
     "theme": "Thème",
     "themeSystem": "Système",
     "themeLight": "Clair",
-    "themeDark": "Sombre",
-    "inspect": "Inspecter la mise en page"
+    "themeDark": "Sombre"
   },
   "common": {
     "copy": "Copier",
@@ -28,9 +26,7 @@
     "titleLine2": "appliquez partout.",
     "lead": "WaterUI est un framework d'interface pour Rust. Écrivez une vue une fois : elle devient des contrôles UIKit et AppKit sur les plateformes Apple, des Android Views sur Android, et Hydrolysis la dessine sur le GPU partout ailleurs.",
     "status": "Avant 1.0 · Officiellement pris en charge : Apple, Android, Hydrolysis",
-    "install": "Installez la CLI water. Un binaire précompilé, rien à compiler.",
     "ctaStart": "Commencer",
-    "ctaBook": "Lire le guide",
     "live": "Exécuter un exemple ici",
     "notes": {
       "derive": "un contrôle par champ",
@@ -38,7 +34,13 @@
       "render": "natif sur chaque backend"
     },
     "captureAlt": "L'exemple de formulaire rendu sur {{platform}}",
-    "figure": "Une seule struct, rendue par chaque backend officiellement pris en charge. Ce sont des captures de l'exemple, pas des maquettes."
+    "figure": "Une seule struct, rendue par chaque backend officiellement pris en charge. Ce sont des captures de l'exemple, pas des maquettes.",
+    "quickStart": "Démarrage rapide",
+    "steps": {
+      "install": "Installer la CLI",
+      "create": "Créer un projet",
+      "run": "L'exécuter sur cette machine"
+    }
   },
   "state": {
     "label": "État",
@@ -199,28 +201,10 @@
     },
     "figure": "water preview sur l'exemple {{example}}"
   },
-  "quickStart": {
-    "label": "Démarrage rapide",
-    "title": "Trois commandes.",
-    "lead": "Un projet est une crate Rust ordinaire. La CLI garde les projets natifs hors de votre arborescence et les gère à la demande.",
-    "steps": {
-      "install": "Installer la CLI",
-      "create": "Créer un projet",
-      "run": "L'exécuter sur cette machine"
-    },
-    "elsewhere": "Ailleurs",
-    "tools": {
-      "doctor": "signale ce qui manque à une chaîne d'outils",
-      "devices": "liste les simulateurs et les appareils connectés",
-      "update": "met à jour la CLI sur place"
-    },
-    "shipping": "Le projet sur lequel vous itérez est celui qui part en production : la CLI génère les projets de plateforme, puis compile, signe et empaquette l'application depuis Water.toml.",
-    "shippingLink": "Livrer une vraie application"
-  },
   "gallery": {
     "label": "Exemples",
     "title": "Même source, chaque boîte à outils.",
-    "lead": "Chaque exemple exécutable du dépôt, capturé par la suite e2e de chaque backend. Choisissez un backend et comparez.",
+    "lead": "Chaque exemple du dépôt, capturé par la suite de bout en bout de chaque backend. Choisissez un backend et comparez ; les exemples marqués « Lancer » démarrent dans cette page avec Hydrolysis.",
     "backend": "Backend",
     "shotCount": "{{count}} captures",
     "withheld": "{{count}} exemples sont retenus sur ce backend jusqu'à ce que leur capture soit correcte.",
@@ -281,19 +265,18 @@
     },
     "viewAll": "Tous les exemples sur GitHub",
     "runOne": "En lancer un depuis un checkout",
-    "experimental": "Expérimental"
-  },
-  "live": {
-    "label": "En direct",
-    "title": "En cours d'exécution dans cette page.",
-    "lead": "Hydrolysis compile la crate de l'exemple elle-même en WebAssembly et exécute le véritable arbre de vues sur WebGPU. Cliquez, tapez, glissez. C'est le framework, pas un enregistrement.",
-    "examples": "Exemples",
-    "load": "Lancer {{example}}",
-    "loadHint": "Télécharge un build WebAssembly de {{example}} et le démarre ici.",
-    "caption": "{{example}} · wasm32 · Hydrolysis sur WebGPU",
-    "openFull": "Ouvrir en pleine page",
-    "frameTitle": "L'exemple {{example}} s'exécute en direct dans Hydrolysis",
-    "source": "Source"
+    "experimental": "Expérimental",
+    "run": "Lancer",
+    "runLabel": "Lancer {{example}} dans cette page",
+    "showAll": "Afficher les {{count}} exemples",
+    "showFewer": "Afficher moins",
+    "runner": {
+      "title": "L'exemple {{example}} s'exécute en direct dans Hydrolysis",
+      "caption": "wasm32 · Hydrolysis sur WebGPU",
+      "source": "Source",
+      "openFull": "Ouvrir en pleine page",
+      "close": "Fermer"
+    }
   },
   "footer": {
     "book": "Guide",

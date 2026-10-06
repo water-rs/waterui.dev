@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import Code from './Code'
 import { lineOf } from './snippet'
-import { Box } from './inspector'
+import { Outline } from './outline'
 import { Caption, Frame, Heading } from './ui'
 import testingSnippet from '../snippets/testing.rs?raw'
 import { stringList } from '../i18n'
@@ -10,7 +10,7 @@ const groups = ['layout', 'controls', 'navigation', 'graphics', 'media', 'icons'
 /** WaterKit as a Grid container: one capability per cell. */
 function KitGrid({ items }: { items: string[] }) {
   return (
-    <Box kind="Grid" always className="border border-rule bg-raised pt-6">
+    <Outline className="border border-rule bg-raised pt-6">
       <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
         {items.map((item) => (
           <li key={item} className="flex min-h-16 items-end border-t border-r border-rule p-2.5 text-[14px] leading-tight transition-colors hover:bg-guide-soft">
@@ -18,7 +18,7 @@ function KitGrid({ items }: { items: string[] }) {
           </li>
         ))}
       </ul>
-    </Box>
+    </Outline>
   )
 }
 

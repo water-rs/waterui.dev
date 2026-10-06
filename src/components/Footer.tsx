@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 import { Mark } from './Logo'
-import { Box } from './inspector'
 import { Frame } from './ui'
 
 const links = [
@@ -18,7 +17,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-rule">
       <Frame className="py-14">
-        <Box kind="HStack" className="grid border border-rule md:grid-cols-12">
+        <div className="grid border border-rule md:grid-cols-12">
           <div className="border-b border-rule p-5 md:col-span-5 md:border-r md:border-r-rule md:border-b-0">
             <Mark className="h-7 w-auto" title="WaterUI" />
             <p className="display mt-6 text-[clamp(30px,3.4vw,46px)]">{t('hero.titleLine1')} {t('hero.titleLine2')}</p>
@@ -42,7 +41,7 @@ export default function Footer() {
             </div>
             <p className="font-mono text-[12px]">© {new Date().getFullYear()} WaterUI · waterui.dev</p>
           </div>
-        </Box>
+        </div>
       </Frame>
     </footer>
   )

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box } from './inspector'
+import { Outline } from './outline'
 import { Caption, Frame, Heading } from './ui'
 
 const hydrolysisPoints = ['gpu', 'platforms', 'frames', 'accessibility', 'themes'] as const
@@ -61,7 +61,7 @@ function SlotFigure() {
           </label>
         </div>
 
-        <Box kind="DisplayList" always className="border border-rule bg-raised pt-7 pb-2">
+        <Outline label="DisplayList" className="border border-rule bg-raised pt-7 pb-2">
           <ol className="font-mono text-[12px]">
             {COMMANDS.map((command, index) => (
               <li key={index} className={`relative grid grid-cols-[2ch_7ch_6ch_1fr] gap-2 px-3 py-1 ${command.slot ? 'text-ink' : 'text-ink-3'}`}>
@@ -73,7 +73,7 @@ function SlotFigure() {
               </li>
             ))}
           </ol>
-        </Box>
+        </Outline>
       </div>
       <Caption tag={t('engine.figure.tag', { count: regenerated, total: COMMANDS.length })}>{t('engine.figure.caption')}</Caption>
     </figure>

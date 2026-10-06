@@ -7,7 +7,6 @@
     "book": "Book",
     "api": "API",
     "examples": "Examples",
-    "live": "Live",
     "github": "GitHub",
     "start": "Get started",
     "menu": "Menu",
@@ -16,8 +15,7 @@
     "theme": "Theme",
     "themeSystem": "System",
     "themeLight": "Light",
-    "themeDark": "Dark",
-    "inspect": "Inspect layout"
+    "themeDark": "Dark"
   },
   "common": {
     "copy": "Copy",
@@ -28,9 +26,7 @@
     "titleLine2": "apply everywhere.",
     "lead": "WaterUI is a UI framework for Rust. Write a view once: it becomes UIKit and AppKit controls on Apple platforms, Android Views on Android, and is drawn on the GPU by Hydrolysis everywhere else.",
     "status": "Pre-1.0 · Officially supported: Apple, Android, Hydrolysis",
-    "install": "Install the water CLI. A prebuilt binary, nothing to compile.",
     "ctaStart": "Get started",
-    "ctaBook": "Read the book",
     "live": "Run an example here",
     "notes": {
       "derive": "one control per field",
@@ -38,7 +34,13 @@
       "render": "native on each backend"
     },
     "captureAlt": "The form example rendered on {{platform}}",
-    "figure": "One struct, rendered by each officially supported backend. These are captures of the example, not mockups."
+    "figure": "One struct, rendered by each officially supported backend. These are captures of the example, not mockups.",
+    "quickStart": "Quick start",
+    "steps": {
+      "install": "Install the CLI",
+      "create": "Create a project",
+      "run": "Run it on this machine"
+    }
   },
   "state": {
     "label": "State",
@@ -199,28 +201,10 @@
     },
     "figure": "water preview on the {{example}} example"
   },
-  "quickStart": {
-    "label": "Quick start",
-    "title": "Three commands.",
-    "lead": "A project is a plain Rust crate. The CLI keeps native projects out of your source tree and manages them on demand.",
-    "steps": {
-      "install": "Install the CLI",
-      "create": "Create a project",
-      "run": "Run it on this machine"
-    },
-    "elsewhere": "Somewhere else",
-    "tools": {
-      "doctor": "reports what a toolchain is missing",
-      "devices": "lists simulators and connected devices",
-      "update": "upgrades the CLI in place"
-    },
-    "shipping": "The project you iterate on is the one that ships: the CLI generates the platform projects, then builds, signs and packages the app from Water.toml.",
-    "shippingLink": "Shipping a real app"
-  },
   "gallery": {
     "label": "Examples",
     "title": "Same source, every toolkit.",
-    "lead": "Each example in the repository, captured by each backend's own end-to-end suite. Pick a backend and compare.",
+    "lead": "Each example in the repository, captured by each backend's own end-to-end suite. Pick a backend and compare; examples marked Run start in this page on Hydrolysis.",
     "backend": "Backend",
     "shotCount": "{{count}} captures",
     "withheld": "{{count}} examples are held back on this backend until their capture is correct.",
@@ -281,19 +265,18 @@
     },
     "viewAll": "All examples on GitHub",
     "runOne": "Run one from a checkout",
-    "experimental": "Experimental"
-  },
-  "live": {
-    "label": "Live",
-    "title": "Running in this page.",
-    "lead": "Hydrolysis compiles the example crate itself to WebAssembly and runs the real view tree on WebGPU. Click, type, drag. This is the framework, not a recording.",
-    "examples": "Examples",
-    "load": "Run {{example}}",
-    "loadHint": "Downloads a WebAssembly build of {{example}} and starts it here.",
-    "caption": "{{example}} · wasm32 · Hydrolysis on WebGPU",
-    "openFull": "Open full page",
-    "frameTitle": "The {{example}} example running live in Hydrolysis",
-    "source": "Source"
+    "experimental": "Experimental",
+    "run": "Run",
+    "runLabel": "Run {{example}} in this page",
+    "showAll": "Show all {{count}} examples",
+    "showFewer": "Show fewer",
+    "runner": {
+      "title": "The {{example}} example running live in Hydrolysis",
+      "caption": "wasm32 · Hydrolysis on WebGPU",
+      "source": "Source",
+      "openFull": "Open full page",
+      "close": "Close"
+    }
   },
   "footer": {
     "book": "Book",

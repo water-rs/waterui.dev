@@ -1,27 +1,38 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Code from './Code'
+import ExampleRunner from './ExampleRunner'
 import { Frame, Heading, PrimaryLink } from './ui'
 import { backends, examples, shotUrl, sourceUrl, type BackendId } from '../data/examples'
+import { runsLive } from '../data/demos'
 import runExample from '../snippets/run-example.sh?raw'
+
+/** Two rows of the grid at its widest: what the section shows before "Show all". */
+const COLLAPSED = { portrait: 10, landscape: 6 } as const
 
 /**
  * The examples, one backend at a time: a contact sheet of each native
  * backend's own end-to-end captures of the same source example. Captures that
- * do not show the example are withheld, and the count of them is stated.
+ * do not show the example are withheld, and the count of them is stated. An
+ * example that builds for the Hydrolysis web backend also runs in the page.
  */
 export default function Gallery() {
   const { t } = useTranslation()
   const [backend, setBackend] = useState<BackendId>('ios')
+  const [expanded, setExpanded] = useState(false)
+  const [running, setRunning] = useState<string | null>(null)
+  const section = useRef<HTMLElement>(null)
   const active = backends.find((candidate) => candidate.id === backend) ?? backends[0]
   const visible = examples.filter((example) => example.shots.includes(backend))
   const withheld = examples.filter((example) => example.withheld[backend] !== undefined).length
   const portrait = active.orientation === 'portrait'
+  const collapsedCount = portrait ? COLLAPSED.portrait : COLLAPSED.landscape
+  const shown = expanded ? visible : visible.slice(0, collapsedCount)
 
   return (
-    <section id="examples" className="border-t border-rule py-20 md:py-28">
+    <section ref={section} id="examples" className="border-t border-rule py-20 md:py-28">
       <Frame>
-        <Heading number="08" label={t('gallery.label')} title={t('gallery.title')} lead={t('gallery.lead')} />
+        <Heading number="07" label={t('gallery.label')} title={t('gallery.title')} lead={t('gallery.lead')} />
 
         <div className="mt-14 flex flex-wrap items-end justify-between gap-x-8 gap-y-4 border-b border-rule md:mt-20">
           <div role="tablist" aria-label={t('gallery.backend')} className="-mb-px flex flex-wrap items-end">
@@ -59,8 +70,8 @@ export default function Gallery() {
             portrait ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5' : 'sm:grid-cols-2 lg:grid-cols-3'
           }`}
         >
-          {visible.map((example, index) => (
-            <li key={example.id}>
+          {shown.map((example, index) => (
+            <li key={example.id} className="flex flex-col">
               <a href={sourceUrl(example)} target="_blank" rel="noopener noreferrer" className="group block">
                 <div className={`overflow-hidden border border-rule bg-paper ${portrait ? 'aspect-[9/19.5]' : 'aspect-[4/3]'}`}>
                   <img
@@ -76,9 +87,36 @@ export default function Gallery() {
                 </p>
                 <p className="mt-0.5 text-[13.5px] leading-snug text-ink-2">{t(`gallery.items.${example.id}`)}</p>
               </a>
+              {runsLive(example.id) ? (
+                <button
+                  type="button"
+                  onClick={() => setRunning(example.id)}
+                  aria-label={t('gallery.runLabel', { example: example.id })}
+                  className="mt-2.5 flex h-8 w-fit items-center gap-2 bg-ink px-3 text-[13px] font-semibold text-paper transition-colors hover:bg-guide hover:text-guide-ink"
+                >
+                  <span aria-hidden>▶</span>
+                  {t('gallery.run')}
+                </button>
+              ) : null}
             </li>
           ))}
         </ul>
+        {visible.length > collapsedCount ? (
+          <button
+            type="button"
+            aria-expanded={expanded}
+            onClick={() => {
+              if (expanded) {
+                section.current?.scrollIntoView({ block: 'start' })
+              }
+              setExpanded(!expanded)
+            }}
+            className="flex h-12 w-full items-center justify-center border-x border-b border-rule bg-raised text-[14.5px] font-semibold transition-colors hover:bg-ink hover:text-paper"
+          >
+            {expanded ? t('gallery.showFewer') : t('gallery.showAll', { count: visible.length })}
+          </button>
+        ) : null}
+        {running === null ? null : <ExampleRunner example={running} onClose={() => setRunning(null)} />}
         {withheld === 0 ? null : <p className="mt-3 font-mono text-[12px] text-ink-2">{t('gallery.withheld', { count: withheld })}</p>}
 
         <div className="mt-16 grid gap-8 lg:grid-cols-12">
