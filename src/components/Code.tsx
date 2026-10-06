@@ -16,7 +16,7 @@ const theme: PrismTheme = {
   ],
 }
 
-/** A callout on one source line, printed in the margin the way an inspector labels a node. */
+/** A callout on one source line, printed in the margin. */
 export type Note = { line: number; text: string }
 
 type CodeProps = {

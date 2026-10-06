@@ -3,10 +3,9 @@
 @import '@fontsource-variable/jetbrains-mono';
 
 /*
- * The page is drawn the way WaterUI lays it out. Ink and paper carry the
- * content; one colour, the guide blue, is reserved for the layout inspector:
- * container outlines, measured sizes, padding and spacing. Nothing else on the
- * page uses it, so wherever it appears it is explaining the layout.
+ * Ink and paper carry the content; one colour, the guide blue, draws the
+ * frame motif (outlines, hatched padding and spacing) and nothing else, so
+ * wherever it appears it marks a figure.
  */
 :root {
   --paper: #f5f4f0;
@@ -116,7 +115,7 @@
   text-wrap: balance;
 }
 
-/* Inspector annotations: the monospace readouts a layout debugger prints. */
+/* The monospace tags on outlined figures. */
 @utility readout {
   font-family: var(--font-mono);
   font-size: 10.5px;

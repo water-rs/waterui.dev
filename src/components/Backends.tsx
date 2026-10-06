@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next'
-import { Box } from './inspector'
 import { Frame, Heading } from './ui'
 
 type BackendId = 'apple' | 'android' | 'hydrolysis' | 'gtk' | 'winui'
@@ -38,20 +37,20 @@ export default function Backends() {
         />
         <div className="mt-14 grid gap-12 md:mt-20 md:grid-cols-12 md:gap-8">
           <p className="font-mono text-[12px] text-ink-2 md:col-span-3 md:pt-6">{t('backends.official')}</p>
-          <Box kind="List" as="ul" className="border-t border-ink md:col-span-9">
+          <ul className="border-t border-ink md:col-span-9">
             {official.map((id) => (
               <Row key={id} id={id} muted={false} />
             ))}
-          </Box>
+          </ul>
           <div className="md:col-span-3 md:pt-6">
             <p className="font-mono text-[12px] text-ink-2">{t('backends.experimental')}</p>
             <p className="mt-2 max-w-[30ch] text-[14px] leading-snug text-ink-3">{t('backends.experimentalNote')}</p>
           </div>
-          <Box kind="List" as="ul" className="border-t border-rule md:col-span-9">
+          <ul className="border-t border-rule md:col-span-9">
             {experimental.map((id) => (
               <Row key={id} id={id} muted />
             ))}
-          </Box>
+          </ul>
         </div>
       </Frame>
     </section>

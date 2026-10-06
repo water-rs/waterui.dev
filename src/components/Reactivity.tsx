@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Code from './Code'
-import { Box } from './inspector'
+import { Outline } from './outline'
 import { lineOf } from './snippet'
 import { Caption, Frame, Heading } from './ui'
 import counterSnippet from '../snippets/counter.rs?raw'
@@ -37,7 +37,7 @@ function UpdateFigure() {
   }
   // A fresh element per change restarts the flash animation without remounting the view it covers.
   const flash = (reads: boolean) =>
-    generation > 0 && (model === 'rebuild' || reads) ? <span key={generation} data-inspector-overlay="" className="update-flash pointer-events-none absolute inset-0" aria-hidden /> : null
+    generation > 0 && (model === 'rebuild' || reads) ? <span key={generation} data-outline-overlay="" className="update-flash pointer-events-none absolute inset-0" aria-hidden /> : null
   const updated = VIEWS.filter((view) => model === 'rebuild' || view.reads).length
 
   const step = 'h-10 w-11 text-[20px] leading-none transition-colors select-none hover:bg-ink hover:text-paper'
@@ -63,17 +63,17 @@ function UpdateFigure() {
       </div>
 
       <div className="mt-4 flex-1 border border-rule bg-raised p-4 sm:p-6">
-        <Box kind="VStack" always className="flex flex-col gap-5 p-5 pt-9 sm:p-7 sm:pt-10">
+        <Outline label="VStack" className="flex flex-col gap-5 p-5 pt-9 sm:p-7 sm:pt-10">
           {flash(VIEWS[0].reads)}
-          <Box kind="Text" always className="px-2 pt-6 pb-2">
+          <Outline label="Text" className="px-2 pt-6 pb-2">
             {flash(VIEWS[1].reads)}
             <p className="text-[26px] font-semibold tracking-[-0.02em]">Hello, WaterUI!</p>
-          </Box>
-          <Box kind="Text" always className="px-2 pt-6 pb-2">
+          </Outline>
+          <Outline label="Text" className="px-2 pt-6 pb-2">
             {flash(VIEWS[2].reads)}
             <p className="font-mono text-[17px] tabular-nums" aria-live="polite">Count: {count}</p>
-          </Box>
-          <Box kind="Stepper" always className="flex items-center justify-between gap-4 px-2 pt-7 pb-2">
+          </Outline>
+          <Outline label="Stepper" className="flex items-center justify-between gap-4 px-2 pt-7 pb-2">
             {flash(VIEWS[3].reads)}
             <span className="text-[16px]">Count</span>
             <span className="flex border border-ink/80">
@@ -84,8 +84,8 @@ function UpdateFigure() {
                 +
               </button>
             </span>
-          </Box>
-        </Box>
+          </Outline>
+        </Outline>
       </div>
 
       <Caption tag={generation === 0 ? t('state.figure.idle') : t('state.figure.updated', { count: updated, total: VIEWS.length })}>{t('state.figure.caption')}</Caption>

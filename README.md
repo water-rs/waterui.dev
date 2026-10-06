@@ -13,7 +13,7 @@ bun run dev
 
 ## Design
 
-The page is drawn the way WaterUI lays it out. Ink and paper carry the content; one colour, the guide blue, is reserved for a layout inspector over the page: containers outlined and named after the WaterUI container they stand for (`VStack`, `HStack`, `Grid`), with their stretch axis, their measured size, and their padding and stack spacing as hatching. The sizes are measured from the live page, so they change as it resizes. `Box` in `src/components/inspector.tsx` draws one; the "Inspect layout" switch in the navigation draws every box on the page, and the choice is stored under `waterui.inspector`.
+Ink and paper carry the content; one colour, the guide blue, draws the page's frame motif: figures outlined, with their padding and stack spacing hatched. `Outline` in `src/components/outline.tsx` draws one. A tag names what the figure shows (a platform, the view types of the update illustration, a capture's own size) and is given explicitly; the page never labels its own HTML as WaterUI, because it is not built with WaterUI.
 
 Colour tokens live in `src/index.css` and switch with the viewer's colour scheme; a manual override is stored under `waterui.theme`. A `band-dark` section takes the dark tokens in either scheme.
 

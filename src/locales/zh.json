@@ -7,7 +7,6 @@
     "book": "文档",
     "api": "API",
     "examples": "示例",
-    "live": "在线",
     "github": "GitHub",
     "start": "开始使用",
     "menu": "菜单",
@@ -16,8 +15,7 @@
     "theme": "主题",
     "themeSystem": "跟随系统",
     "themeLight": "浅色",
-    "themeDark": "深色",
-    "inspect": "检查布局"
+    "themeDark": "深色"
   },
   "common": {
     "copy": "复制",
@@ -28,9 +26,7 @@
     "titleLine2": "处处适用。",
     "lead": "WaterUI 是 Rust 的 UI 框架。视图只写一次：在 Apple 平台上变成 UIKit 和 AppKit 控件，在 Android 上变成 Android Views，在其他所有地方由 Hydrolysis 在 GPU 上绘制。",
     "status": "1.0 之前 · 官方支持：Apple、Android、Hydrolysis",
-    "install": "安装 water CLI。预编译二进制，无需编译。",
     "ctaStart": "开始使用",
-    "ctaBook": "阅读文档",
     "live": "在这里运行一个示例",
     "notes": {
       "derive": "每个字段一个控件",
@@ -38,7 +34,13 @@
       "render": "在每个后端上原生呈现"
     },
     "captureAlt": "表单示例在 {{platform}} 上的渲染效果",
-    "figure": "一个 struct，由每个官方支持的后端渲染。这些是示例的真实截图，不是示意图。"
+    "figure": "一个 struct，由每个官方支持的后端渲染。这些是示例的真实截图，不是示意图。",
+    "quickStart": "快速开始",
+    "steps": {
+      "install": "安装 CLI",
+      "create": "创建项目",
+      "run": "在本机运行"
+    }
   },
   "state": {
     "label": "状态",
@@ -199,28 +201,10 @@
     },
     "figure": "对 {{example}} 示例运行 water preview"
   },
-  "quickStart": {
-    "label": "快速开始",
-    "title": "三条命令。",
-    "lead": "项目就是一个普通的 Rust crate。CLI 把原生工程放在源码树之外，按需管理。",
-    "steps": {
-      "install": "安装 CLI",
-      "create": "创建项目",
-      "run": "在本机运行"
-    },
-    "elsewhere": "在其他地方运行",
-    "tools": {
-      "doctor": "报告工具链缺什么",
-      "devices": "列出模拟器和已连接的设备",
-      "update": "就地升级 CLI"
-    },
-    "shipping": "你迭代开发的项目就是发布的那个：CLI 生成各平台工程，然后从 Water.toml 构建、签名并打包应用。",
-    "shippingLink": "发布真正的应用"
-  },
   "gallery": {
     "label": "示例",
     "title": "同一份源码，每个工具包。",
-    "lead": "仓库中每个可运行示例在各后端 e2e 套件下的真实截图。选择一个后端逐一对比。",
+    "lead": "仓库里的每个示例，由各后端自己的端到端测试截取。选一个后端对比；带“运行”按钮的示例可以直接在本页用 Hydrolysis 运行。",
     "backend": "后端",
     "shotCount": "{{count}} 张截图",
     "withheld": "{{count}} 个示例在此后端上暂缓展示，直到截图正确为止。",
@@ -281,19 +265,18 @@
     },
     "viewAll": "GitHub 上的全部示例",
     "runOne": "从源码运行一个示例",
-    "experimental": "实验性"
-  },
-  "live": {
-    "label": "在线",
-    "title": "就在这个页面里运行。",
-    "lead": "Hydrolysis 把示例 crate 本身编译成 WebAssembly，在 WebGPU 上运行真实的视图树。可以点击、输入、拖拽。这是框架本身，不是录像。",
-    "examples": "示例",
-    "load": "运行 {{example}}",
-    "loadHint": "下载 {{example}} 的 WebAssembly 构建并在此启动。",
-    "caption": "{{example}} · wasm32 · Hydrolysis 在 WebGPU 上渲染",
-    "openFull": "打开完整页面",
-    "frameTitle": "{{example}} 示例在 Hydrolysis 中实时运行",
-    "source": "源码"
+    "experimental": "实验性",
+    "run": "运行",
+    "runLabel": "在本页运行 {{example}}",
+    "showAll": "显示全部 {{count}} 个示例",
+    "showFewer": "收起",
+    "runner": {
+      "title": "{{example}} 示例在 Hydrolysis 中实时运行",
+      "caption": "wasm32 · Hydrolysis 在 WebGPU 上渲染",
+      "source": "源码",
+      "openFull": "打开完整页面",
+      "close": "关闭"
+    }
   },
   "footer": {
     "book": "文档",

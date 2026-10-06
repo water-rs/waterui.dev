@@ -7,7 +7,6 @@
     "book": "문서",
     "api": "API",
     "examples": "예제",
-    "live": "라이브",
     "github": "GitHub",
     "start": "시작하기",
     "menu": "메뉴",
@@ -16,8 +15,7 @@
     "theme": "테마",
     "themeSystem": "시스템",
     "themeLight": "라이트",
-    "themeDark": "다크",
-    "inspect": "레이아웃 검사"
+    "themeDark": "다크"
   },
   "common": {
     "copy": "복사",
@@ -28,9 +26,7 @@
     "titleLine2": "어디서나 적용하세요.",
     "lead": "WaterUI는 Rust용 UI 프레임워크입니다. 뷰를 한 번만 작성하면 Apple 플랫폼에서는 UIKit와 AppKit 컨트롤이 되고, Android에서는 Android Views가 되며, 그 외 환경에서는 Hydrolysis가 GPU로 그립니다.",
     "status": "1.0 이전 · 공식 지원: Apple, Android, Hydrolysis",
-    "install": "water CLI를 설치하세요. 미리 빌드된 바이너리라서 컴파일할 필요가 없습니다.",
     "ctaStart": "시작하기",
-    "ctaBook": "문서 읽기",
     "live": "여기서 예제 실행",
     "notes": {
       "derive": "필드당 하나의 컨트롤",
@@ -38,7 +34,13 @@
       "render": "각 백엔드에서 네이티브"
     },
     "captureAlt": "{{platform}}에서 렌더링된 폼 예제",
-    "figure": "하나의 struct를 공식 지원되는 각 백엔드가 렌더링한 것입니다. 목업이 아니라 실제 캡처입니다."
+    "figure": "하나의 struct를 공식 지원되는 각 백엔드가 렌더링한 것입니다. 목업이 아니라 실제 캡처입니다.",
+    "quickStart": "빠른 시작",
+    "steps": {
+      "install": "CLI 설치",
+      "create": "프로젝트 만들기",
+      "run": "이 머신에서 실행"
+    }
   },
   "state": {
     "label": "상태",
@@ -199,28 +201,10 @@
     },
     "figure": "{{example}} 예제에 대한 water preview"
   },
-  "quickStart": {
-    "label": "빠른 시작",
-    "title": "명령어 세 개.",
-    "lead": "프로젝트는 평범한 Rust 크레이트입니다. CLI가 네이티브 프로젝트를 소스 트리 밖에 두고 필요할 때 관리합니다.",
-    "steps": {
-      "install": "CLI 설치",
-      "create": "프로젝트 만들기",
-      "run": "이 머신에서 실행"
-    },
-    "elsewhere": "다른 환경",
-    "tools": {
-      "doctor": "툴체인에 빠진 것을 보고",
-      "devices": "시뮬레이터와 연결된 기기 목록",
-      "update": "CLI를 그 자리에서 업그레이드"
-    },
-    "shipping": "여러분이 반복 작업하는 프로젝트가 그대로 출시됩니다. CLI가 플랫폼 프로젝트를 생성한 뒤 Water.toml에서 앱을 빌드, 서명, 패키징합니다.",
-    "shippingLink": "실제 앱 출시하기"
-  },
   "gallery": {
     "label": "예제",
     "title": "같은 소스, 모든 툴킷.",
-    "lead": "저장소의 모든 실행 가능한 예제를 각 백엔드의 e2e 스위트로 캡처했습니다. 백엔드를 선택해 비교해 보세요.",
+    "lead": "저장소의 모든 예제를 각 백엔드의 엔드투엔드 테스트가 직접 캡처했습니다. 백엔드를 골라 비교해 보세요. '실행' 버튼이 있는 예제는 이 페이지에서 Hydrolysis로 바로 실행됩니다.",
     "backend": "백엔드",
     "shotCount": "{{count}}개 캡처",
     "withheld": "{{count}}개 예제는 캡처가 정확해질 때까지 이 백엔드에서 보류됩니다.",
@@ -281,19 +265,18 @@
     },
     "viewAll": "GitHub에서 모든 예제 보기",
     "runOne": "체크아웃에서 실행하기",
-    "experimental": "실험적"
-  },
-  "live": {
-    "label": "라이브",
-    "title": "이 페이지에서 실행 중.",
-    "lead": "Hydrolysis가 예제 크레이트 자체를 WebAssembly로 컴파일해 실제 뷰 트리를 WebGPU에서 실행합니다. 클릭하고, 입력하고, 드래그하세요. 녹화가 아니라 프레임워크 그 자체입니다.",
-    "examples": "예제",
-    "load": "{{example}} 실행",
-    "loadHint": "{{example}}의 WebAssembly 빌드를 다운로드해 여기서 시작합니다.",
-    "caption": "{{example}} · wasm32 · WebGPU의 Hydrolysis",
-    "openFull": "전체 페이지로 열기",
-    "frameTitle": "Hydrolysis에서 라이브로 실행 중인 {{example}} 예제",
-    "source": "소스"
+    "experimental": "실험적",
+    "run": "실행",
+    "runLabel": "이 페이지에서 {{example}} 실행",
+    "showAll": "예제 {{count}}개 모두 보기",
+    "showFewer": "접기",
+    "runner": {
+      "title": "Hydrolysis에서 라이브로 실행 중인 {{example}} 예제",
+      "caption": "wasm32 · WebGPU의 Hydrolysis",
+      "source": "소스",
+      "openFull": "전체 페이지로 열기",
+      "close": "닫기"
+    }
   },
   "footer": {
     "book": "문서",

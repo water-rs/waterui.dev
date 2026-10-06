@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react'
-import { Box } from './inspector'
 
 /** The page's measure: a centred column with the 16px phone gutter. */
 export function Frame({ children, className = '' }: { children: ReactNode; className?: string }) {
@@ -9,7 +8,7 @@ export function Frame({ children, className = '' }: { children: ReactNode; class
 /** A section's heading block: its number and name in the readout face, then the statement and the lead. */
 export function Heading({ number, label, title, lead, className = '' }: { number: string; label: string; title: ReactNode; lead?: ReactNode; className?: string }) {
   return (
-    <Box kind="VStack" as="header" className={`grid gap-6 md:grid-cols-12 md:gap-8 ${className}`}>
+    <header className={`grid gap-6 md:grid-cols-12 md:gap-8 ${className}`}>
       <p className="font-mono text-[12px] text-ink-2 md:col-span-3 md:pt-3">
         <span className="mr-2 text-guide">{number}</span>
         {label}
@@ -18,7 +17,7 @@ export function Heading({ number, label, title, lead, className = '' }: { number
         <h2 className="display text-[clamp(38px,6vw,84px)]">{title}</h2>
         {lead === undefined ? null : <p className="mt-6 max-w-[48ch] text-[clamp(18px,1.6vw,21px)] leading-[1.45] text-ink-2">{lead}</p>}
       </div>
-    </Box>
+    </header>
   )
 }
 
