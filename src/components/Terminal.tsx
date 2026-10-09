@@ -1,9 +1,11 @@
+import { Check, Copy } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useCopy } from './useCopy'
 
 export type Command = {
   id: string
-  label: string
+  /** What the command does, shown as a shell comment above it. */
+  label?: string
   command: string
 }
 
@@ -13,24 +15,28 @@ type TerminalProps = {
   className?: string
 }
 
-/** Shell commands, one per row: the label above, the command, a copy button. */
+/** Shell commands in a terminal card, each with its own copy button. */
 export default function Terminal({ commands, title, className = '' }: TerminalProps) {
   const { t } = useTranslation()
   const { copied, copy } = useCopy<string>()
 
   return (
-    <div className={`border border-rule bg-raised ${className}`}>
-      <p className="border-b border-rule px-3 py-1.5 font-mono text-[11.5px] text-ink-2">{title}</p>
-      <ol>
-        {commands.map((command, index) => (
-          <li key={command.id} className="flex items-stretch border-b border-rule last:border-b-0">
-            <span className="w-9 shrink-0 pt-3 text-center font-mono text-[11px] text-guide" aria-hidden>
-              {String(index + 1).padStart(2, '0')}
-            </span>
-            <div className="min-w-0 flex-1 py-2.5 pr-3">
-              <p className="text-[13px] text-ink-2">{command.label}</p>
-              <code className="mt-0.5 block overflow-x-auto font-mono text-[12.5px] leading-6 whitespace-nowrap md:text-[13px]">
-                <span className="mr-2 text-ink-3 select-none" aria-hidden>
+    <div className={`overflow-hidden rounded-xl bg-[#14161b] text-[#eceef2] ${className}`}>
+      <p className="flex items-center gap-2 border-b border-white/10 px-4 py-2.5 text-[14px] font-semibold text-[#a4a9b4]">
+        <span className="flex gap-1.5" aria-hidden>
+          <span className="size-2.5 rounded-full bg-white/15" />
+          <span className="size-2.5 rounded-full bg-white/15" />
+          <span className="size-2.5 rounded-full bg-white/15" />
+        </span>
+        <span className="ml-2">{title}</span>
+      </p>
+      <ol className="py-2">
+        {commands.map((command) => (
+          <li key={command.id} className="flex items-center gap-2 py-1.5 pr-2 pl-4">
+            <div className="min-w-0 flex-1">
+              {command.label === undefined ? null : <p className="font-mono text-[13.5px] text-[#7d838e]"># {command.label}</p>}
+              <code className="block overflow-x-auto font-mono text-[14.5px] leading-7 whitespace-nowrap">
+                <span className="mr-2.5 text-[#6d737e] select-none" aria-hidden>
                   $
                 </span>
                 {command.command}
@@ -39,10 +45,11 @@ export default function Terminal({ commands, title, className = '' }: TerminalPr
             <button
               type="button"
               onClick={() => void copy(command.id, command.command)}
-              className="shrink-0 border-l border-rule px-3 text-[12.5px] font-semibold text-ink-2 transition-colors hover:bg-ink hover:text-paper"
+              className="shrink-0 rounded-md p-2 text-[#a4a9b4] transition-colors hover:bg-white/10 hover:text-white"
               aria-label={`${t('common.copy')}: ${command.command}`}
+              title={copied === command.id ? t('common.copied') : t('common.copy')}
             >
-              {copied === command.id ? t('common.copied') : t('common.copy')}
+              {copied === command.id ? <Check size={17} aria-hidden /> : <Copy size={17} aria-hidden />}
             </button>
           </li>
         ))}

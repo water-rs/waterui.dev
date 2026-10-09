@@ -39,7 +39,7 @@ export default function Footer() {
               <p>{t('footer.license')}</p>
               <p>{t('footer.contributing')}</p>
             </div>
-            <p className="font-mono text-[12px]">© {new Date().getFullYear()} WaterUI · waterui.dev</p>
+            <p className="text-[14px]">© {new Date().getFullYear()} WaterUI · waterui.dev</p>
           </div>
         </div>
       </Frame>

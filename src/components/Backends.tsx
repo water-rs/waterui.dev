@@ -1,30 +1,66 @@
+import type { ReactNode } from 'react'
+import { Droplets } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { PlatformIcon, type PlatformId } from './icons'
 import { Frame, Heading } from './ui'
 
-type BackendId = 'apple' | 'android' | 'hydrolysis' | 'gtk' | 'winui'
+type BackendId = 'apple' | 'hydrolysis' | 'gtk' | 'winui'
 
-const official: readonly BackendId[] = ['apple', 'android', 'hydrolysis']
-const experimental: readonly BackendId[] = ['gtk', 'winui']
+type Backend = {
+  id: BackendId
+  mark: ReactNode
+  /** The platforms the backend ships to, each with its own mark. */
+  platforms: { icon: PlatformId; name: string }[]
+}
 
-function Row({ id, muted }: { id: BackendId; muted: boolean }) {
-  const { t } = useTranslation()
+const official: Backend[] = [
+  {
+    id: 'apple',
+    mark: <PlatformIcon id="apple" size={28} />,
+    platforms: [
+      { icon: 'apple', name: 'iOS' },
+      { icon: 'apple', name: 'iPadOS' },
+      { icon: 'apple', name: 'macOS' },
+    ],
+  },
+  {
+    id: 'hydrolysis',
+    mark: <Droplets size={28} aria-hidden />,
+    platforms: [
+      { icon: 'android', name: 'Android' },
+      { icon: 'apple', name: 'macOS' },
+      { icon: 'windows', name: 'Windows' },
+      { icon: 'linux', name: 'Linux' },
+      { icon: 'web', name: 'Web' },
+    ],
+  },
+]
+
+const experimental: Pick<Backend, 'id' | 'mark'>[] = [
+  { id: 'gtk', mark: <PlatformIcon id="gtk" size={22} /> },
+  { id: 'winui', mark: <PlatformIcon id="windows" size={22} /> },
+]
+
+function Platforms({ platforms }: { platforms: Backend['platforms'] }) {
   return (
-    <li className={`grid gap-x-8 gap-y-1.5 border-b border-rule py-5 last:border-b-0 sm:grid-cols-12 sm:items-baseline ${muted ? 'text-ink-2' : ''}`}>
-      <p className={`sm:col-span-3 ${muted ? 'text-[20px] font-semibold' : 'text-[clamp(24px,2.4vw,32px)] font-bold tracking-[-0.025em]'}`}>{t(`backends.items.${id}.name`)}</p>
-      <p className="text-[16px] leading-snug sm:col-span-5">{t(`backends.items.${id}.renders`)}</p>
-      <p className="font-mono text-[12.5px] text-ink-2 sm:col-span-4">{t(`backends.items.${id}.platforms`)}</p>
-    </li>
+    <ul className="flex flex-wrap gap-2">
+      {platforms.map((platform) => (
+        <li key={platform.name} className="flex items-center gap-2 rounded-full border border-rule px-3 py-1.5 text-[15px]">
+          <PlatformIcon id={platform.icon} size={16} />
+          {platform.name}
+        </li>
+      ))}
+    </ul>
   )
 }
 
-/** The backends: the three officially supported ones, then the experimental ones, set apart. */
+/** The backends: the two officially supported ones as cards, then the experimental ones, set apart. */
 export default function Backends() {
   const { t } = useTranslation()
   return (
     <section id="backends" className="border-t border-rule py-20 md:py-28">
       <Frame>
         <Heading
-          number="01"
           label={t('backends.label')}
           title={
             <>
@@ -35,20 +71,36 @@ export default function Backends() {
           }
           lead={t('backends.lead')}
         />
-        <div className="mt-14 grid gap-12 md:mt-20 md:grid-cols-12 md:gap-8">
-          <p className="font-mono text-[12px] text-ink-2 md:col-span-3 md:pt-6">{t('backends.official')}</p>
-          <ul className="border-t border-ink md:col-span-9">
-            {official.map((id) => (
-              <Row key={id} id={id} muted={false} />
-            ))}
-          </ul>
-          <div className="md:col-span-3 md:pt-6">
-            <p className="font-mono text-[12px] text-ink-2">{t('backends.experimental')}</p>
-            <p className="mt-2 max-w-[30ch] text-[14px] leading-snug text-ink-3">{t('backends.experimentalNote')}</p>
+        <ul className="mt-14 grid gap-5 md:mt-20 md:grid-cols-2">
+          {official.map((backend) => (
+            <li key={backend.id} className="flex flex-col gap-8 rounded-2xl border border-rule bg-raised p-7 md:p-9">
+              <div className="flex items-center gap-4">
+                <span className="grid size-14 shrink-0 place-items-center rounded-xl bg-ink text-paper">{backend.mark}</span>
+                <div>
+                  <h3 className="text-[clamp(26px,2.4vw,32px)] leading-tight font-bold tracking-[-0.025em]">{t(`backends.items.${backend.id}.name`)}</h3>
+                  <p className="mt-0.5 text-[17px] text-ink-2">{t(`backends.items.${backend.id}.renders`)}</p>
+                </div>
+              </div>
+              <Platforms platforms={backend.platforms} />
+            </li>
+          ))}
+        </ul>
+        <div className="mt-12 flex flex-col gap-5 md:flex-row md:items-start md:gap-8">
+          <div className="md:w-1/3">
+            <h3 className="text-[19px] font-semibold">{t('backends.experimental')}</h3>
+            <p className="mt-1.5 text-[16px] leading-snug text-ink-2">{t('backends.experimentalNote')}</p>
           </div>
-          <ul className="border-t border-rule md:col-span-9">
-            {experimental.map((id) => (
-              <Row key={id} id={id} muted />
+          <ul className="grid flex-1 gap-5 sm:grid-cols-2">
+            {experimental.map((backend) => (
+              <li key={backend.id} className="flex items-center gap-4 rounded-2xl border border-rule p-5 text-ink-2">
+                <span className="grid size-11 shrink-0 place-items-center rounded-lg border border-rule">{backend.mark}</span>
+                <div>
+                  <h4 className="text-[19px] font-semibold text-ink">{t(`backends.items.${backend.id}.name`)}</h4>
+                  <p className="text-[15px]">
+                    {t(`backends.items.${backend.id}.renders`)} · {t(`backends.items.${backend.id}.platforms`)}
+                  </p>
+                </div>
+              </li>
             ))}
           </ul>
         </div>

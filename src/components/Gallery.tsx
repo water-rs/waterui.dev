@@ -1,24 +1,33 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, type ReactNode } from 'react'
+import { Droplets, Play } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import Code from './Code'
 import ExampleRunner from './ExampleRunner'
+import { PlatformIcon } from './icons'
 import { Frame, Heading, PrimaryLink } from './ui'
-import { backends, examples, shotUrl, sourceUrl, type BackendId } from '../data/examples'
-import { runsLive } from '../data/demos'
+import { backends, blocked, desktopOnly, examples, shotUrl, sourceUrl, type BackendId } from '../data/examples'
 import runExample from '../snippets/run-example.sh?raw'
+
+/** Each backend's mark on its tab. */
+const marks: Record<BackendId, ReactNode> = {
+  ios: <PlatformIcon id="apple" size={17} />,
+  macos: <PlatformIcon id="apple" size={17} />,
+  hydrolysis: <Droplets size={17} aria-hidden />,
+  gtk: <PlatformIcon id="gtk" size={17} />,
+}
 
 /** Two rows of the grid at its widest: what the section shows before "Show all". */
 const COLLAPSED = { portrait: 10, landscape: 6 } as const
 
 /**
- * The examples, one backend at a time: a contact sheet of each native
- * backend's own end-to-end captures of the same source example. Captures that
- * do not show the example are withheld, and the count of them is stated. An
- * example that builds for the Hydrolysis web backend also runs in the page.
+ * The examples, one backend at a time: a contact sheet of each backend's
+ * captures of the same source example. Captures that do not show the example
+ * are withheld, and the count of them is stated. Under Hydrolysis every
+ * example also runs in the page.
  */
 export default function Gallery() {
   const { t } = useTranslation()
-  const [backend, setBackend] = useState<BackendId>('ios')
+  const [backend, setBackend] = useState<BackendId>('hydrolysis')
   const [expanded, setExpanded] = useState(false)
   const [running, setRunning] = useState<string | null>(null)
   const section = useRef<HTMLElement>(null)
@@ -32,7 +41,7 @@ export default function Gallery() {
   return (
     <section ref={section} id="examples" className="border-t border-rule py-20 md:py-28">
       <Frame>
-        <Heading number="07" label={t('gallery.label')} title={t('gallery.title')} lead={t('gallery.lead')} />
+        <Heading label={t('gallery.label')} title={t('gallery.title')} lead={t('gallery.lead')} />
 
         <div className="mt-14 flex flex-wrap items-end justify-between gap-x-8 gap-y-4 border-b border-rule md:mt-20">
           <div role="tablist" aria-label={t('gallery.backend')} className="-mb-px flex flex-wrap items-end">
@@ -42,24 +51,25 @@ export default function Gallery() {
               return (
                 <div key={candidate.id} className="flex items-end">
                   {firstExperimental ? (
-                    <span className="mr-1 ml-3 self-center border-l border-rule pl-4 font-mono text-[11px] text-ink-3 sm:ml-5">{t('gallery.experimental')}</span>
+                    <span className="mr-1 ml-3 self-center border-l border-rule pl-4 text-[14px] text-ink-3 sm:ml-5">{t('gallery.experimental')}</span>
                   ) : null}
                   <button
                     type="button"
                     role="tab"
                     aria-selected={selected}
                     onClick={() => setBackend(candidate.id)}
-                    className={`border border-b-0 px-4 py-2.5 text-[16px] font-semibold transition-colors sm:px-6 ${
+                    className={`flex items-center gap-2 border border-b-0 px-4 py-2.5 text-[16px] font-semibold transition-colors sm:px-6 ${
                       selected ? 'border-rule bg-raised' : 'border-transparent text-ink-2 hover:text-ink'
                     } ${candidate.experimental && !selected ? 'text-ink-3' : ''}`}
                   >
+                    {marks[candidate.id]}
                     {t(`gallery.backends.${candidate.id}.label`)}
                   </button>
                 </div>
               )
             })}
           </div>
-          <p className="pb-2.5 font-mono text-[12px] text-ink-2">
+          <p className="pb-2.5 text-[15px] text-ink-2">
             {t(`gallery.backends.${active.id}.caption`)} · {t('gallery.shotCount', { count: visible.length })}
           </p>
         </div>
@@ -70,7 +80,7 @@ export default function Gallery() {
             portrait ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5' : 'sm:grid-cols-2 lg:grid-cols-3'
           }`}
         >
-          {shown.map((example, index) => (
+          {shown.map((example) => (
             <li key={example.id} className="flex flex-col">
               <a href={sourceUrl(example)} target="_blank" rel="noopener noreferrer" className="group block">
                 <div className={`overflow-hidden border border-rule bg-paper ${portrait ? 'aspect-[9/19.5]' : 'aspect-[4/3]'}`}>
@@ -81,20 +91,17 @@ export default function Gallery() {
                     className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
-                <p className="mt-2.5 flex items-baseline gap-2">
-                  <span className="font-mono text-[11px] text-ink-3">{String(index + 1).padStart(2, '0')}</span>
-                  <span className="font-mono text-[13.5px] font-semibold group-hover:text-guide">{example.id}</span>
-                </p>
-                <p className="mt-0.5 text-[13.5px] leading-snug text-ink-2">{t(`gallery.items.${example.id}`)}</p>
+                <p className="mt-3 font-mono text-[14.5px] font-semibold group-hover:text-guide">{example.id}</p>
+                <p className="mt-1 text-[15px] leading-snug text-ink-2">{t(`gallery.items.${example.id}`)}</p>
               </a>
-              {runsLive(example.id) ? (
+              {active.runs ? (
                 <button
                   type="button"
                   onClick={() => setRunning(example.id)}
                   aria-label={t('gallery.runLabel', { example: example.id })}
-                  className="mt-2.5 flex h-8 w-fit items-center gap-2 bg-ink px-3 text-[13px] font-semibold text-paper transition-colors hover:bg-guide hover:text-guide-ink"
+                  className="mt-3 flex h-9 w-fit items-center gap-2 rounded-full bg-ink px-4 text-[14.5px] font-semibold text-paper transition-colors hover:bg-guide hover:text-guide-ink"
                 >
-                  <span aria-hidden>▶</span>
+                  <Play size={14} fill="currentColor" aria-hidden />
                   {t('gallery.run')}
                 </button>
               ) : null}
@@ -117,11 +124,30 @@ export default function Gallery() {
           </button>
         ) : null}
         {running === null ? null : <ExampleRunner example={running} onClose={() => setRunning(null)} />}
-        {withheld === 0 ? null : <p className="mt-3 font-mono text-[12px] text-ink-2">{t('gallery.withheld', { count: withheld })}</p>}
+        {withheld === 0 ? null : <p className="mt-3 text-[15px] text-ink-2">{t('gallery.withheld', { count: withheld })}</p>}
+        {active.runs ? (
+          <div className="mt-5 space-y-3 text-[15px] text-ink-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="mr-1">{t('gallery.blocked')}</span>
+              {blocked.map((entry) => (
+                <a
+                  key={entry.id}
+                  href={entry.issue}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-rule px-3 py-1 font-mono text-[13.5px] text-ink transition-colors hover:border-guide hover:text-guide"
+                >
+                  {entry.id} ↗
+                </a>
+              ))}
+            </div>
+            <p>{t('gallery.desktopOnly', { list: desktopOnly.join(', ') })}</p>
+          </div>
+        ) : null}
 
         <div className="mt-16 grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="font-mono text-[12px] text-ink-2">{t('gallery.runOne')}</p>
+            <h3 className="text-[22px] font-semibold tracking-[-0.01em]">{t('gallery.runOne')}</h3>
             <div className="mt-4">
               <PrimaryLink href="https://github.com/water-rs/waterui/tree/dev/examples" external>
                 {t('gallery.viewAll')} ↗

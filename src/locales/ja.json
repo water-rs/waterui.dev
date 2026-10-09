@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "WaterUI — Rust のクロスプラットフォーム UI",
-    "description": "一度書けば、どこでも使える。WaterUI は Rust の UI フレームワークです。ひとつの view ツリーが Apple プラットフォームと Android ではネイティブコントロールになり、その他の環境では独自レンダラー Hydrolysis が GPU で描画します。"
+    "description": "一度書けば、どこでも動く。WaterUI は Rust の UI フレームワークです。ひとつの view ツリーが Apple プラットフォームではネイティブコントロールになり、Android を含むその他の環境では独自のレンダラー Hydrolysis が描画します。"
   },
   "nav": {
     "book": "ドキュメント",
@@ -24,23 +24,13 @@
   "hero": {
     "titleLine1": "一度書けば、",
     "titleLine2": "どこでも使える。",
-    "lead": "WaterUI は Rust の UI フレームワークです。view は一度書くだけで、Apple プラットフォームでは UIKit と AppKit のコントロールに、Android では Android Views になり、その他の環境では Hydrolysis が GPU で描画します。",
-    "status": "1.0 未満 · 公式サポート: Apple、Android、Hydrolysis",
+    "lead": "WaterUI は Rust の UI フレームワークです。view は一度書くだけで、Apple プラットフォームでは UIKit と AppKit のコントロールになり、Android を含むその他の環境では Hydrolysis が GPU で描画します。",
+    "status": "1.0 未満 · 公式サポート: Apple、Hydrolysis",
     "ctaStart": "はじめる",
     "live": "ここでサンプルを実行",
-    "notes": {
-      "derive": "フィールドごとにひとつのコントロール",
-      "binding": "フォームの状態",
-      "render": "各バックエンドでネイティブ"
-    },
     "captureAlt": "{{platform}} で描画されたフォームのサンプル",
     "figure": "ひとつの struct を、公式サポートの各バックエンドが描画したものです。モックではなく実際のキャプチャです。",
-    "quickStart": "クイックスタート",
-    "steps": {
-      "install": "CLI をインストール",
-      "create": "プロジェクトを作成",
-      "run": "このマシンで実行"
-    }
+    "quickStart": "クイックスタート"
   },
   "state": {
     "label": "状態",
@@ -52,7 +42,6 @@
       "writer": "count を書く",
       "collection": "id で差分"
     },
-    "figureContacts": "同一性でキー付けされたコレクション",
     "points": {
       "binding": {
         "title": "Binding<T> は可変の状態",
@@ -67,7 +56,6 @@
         "body": "List や ForEach に Identifiable な要素のリアクティブなコレクションを渡すと、要素の増減は id で差分計算されます。"
       }
     },
-    "figureCounter": "図のカウンター: Binding がひとつ、読み手がひとつ、書き手がひとつ。",
     "figure": {
       "model": "更新モデル",
       "models": {
@@ -150,39 +138,37 @@
     "kit": {
       "title": "WaterKit",
       "lead": "UI の周りのプラットフォーム機能。機能ごとにひとつの Rust API、プラットフォームごとにネイティブ実装。",
-      "items": [
-        "カメラ",
-        "位置情報",
-        "通知",
-        "権限",
-        "生体認証",
-        "パスキー",
-        "Bluetooth",
-        "NFC",
-        "触覚フィードバック",
-        "クリップボード",
-        "連絡先",
-        "カレンダー",
-        "ヘルスケア",
-        "センサー",
-        "セキュアストレージ",
-        "共有シート",
-        "音声",
-        "ディープリンク",
-        "ダイアログ",
-        "ファイルシステム",
-        "オーディオ",
-        "ビデオ",
-        "画面",
-        "バックグラウンドタスク",
-        "システム情報"
-      ],
-      "figure": "WaterKit。機能ごとにひとつの Rust API"
+      "items": {
+        "camera": "カメラ",
+        "location": "位置情報",
+        "notifications": "通知",
+        "permissions": "権限",
+        "biometrics": "生体認証",
+        "passkeys": "パスキー",
+        "bluetooth": "Bluetooth",
+        "nfc": "NFC",
+        "haptics": "触覚フィードバック",
+        "clipboard": "クリップボード",
+        "contacts": "連絡先",
+        "calendar": "カレンダー",
+        "health": "ヘルスケア",
+        "sensors": "センサー",
+        "secureStorage": "セキュアストレージ",
+        "share": "共有シート",
+        "speech": "音声",
+        "deepLinks": "ディープリンク",
+        "dialogs": "ダイアログ",
+        "fileSystem": "ファイルシステム",
+        "audio": "オーディオ",
+        "video": "ビデオ",
+        "screen": "画面",
+        "backgroundTasks": "バックグラウンドタスク",
+        "systemInfo": "システム情報"
+      }
     },
     "testing": {
       "title": "テスト",
       "lead": "アクセシビリティ優先のテストが、通常の cargo test で Hydrolysis レンダラーに対して走ります。シミュレーターも実機も不要。操作そのものがアサーションで、待機は sleep ではなくランタイムが静止するまでポンプします。",
-      "figure": "cargo test が実行するセマンティックテスト",
       "notes": {
         "mount": "view をヘッドレスにマウント",
         "query": "アクセシブルなラベルで検索",
@@ -204,7 +190,7 @@
   "gallery": {
     "label": "サンプル",
     "title": "同じソース、どのツールキットでも。",
-    "lead": "リポジトリのすべての例を、各バックエンド自身のエンドツーエンドテストで撮影しました。バックエンドを選んで比べてください。「実行」のある例は、このページで Hydrolysis を使って動きます。",
+    "lead": "リポジトリのすべての例を、各バックエンドで撮影しました。Hydrolysis ではこのページでそのまま動きます。まだ動かない例は、追跡している issue とともに載せています。",
     "backend": "バックエンド",
     "shotCount": "{{count}} 件",
     "withheld": "{{count}} 件のサンプルは、キャプチャが正しくなるまでこのバックエンドでは掲載を保留しています。",
@@ -217,9 +203,9 @@
         "label": "macOS",
         "caption": "AppKit · Mac"
       },
-      "android": {
-        "label": "Android",
-        "caption": "Android Views · エミュレータ"
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "WebGPU · このブラウザで実行"
       },
       "gtk": {
         "label": "GTK4",
@@ -261,7 +247,10 @@
       "waterkit_camera_filters": "GPU サーフェス上のカメラフィルター",
       "chromium": "ビューとしての Chromium エンジン",
       "webview-cef": "CEF ベースの Web ビュー",
-      "liquid_glass": "iOS 26 Liquid Glass マテリアル"
+      "liquid_glass": "iOS 26 Liquid Glass マテリアル",
+      "anchored_overlay": "view に固定され、画面内に収まるオーバーレイ",
+      "keyboard_panel": "キーボードのセーフエリアに沿う入力欄",
+      "multi_scene": "アプリのシーンごとに独立した状態"
     },
     "viewAll": "GitHub ですべてのサンプルを見る",
     "runOne": "チェックアウトから実行する",
@@ -276,7 +265,9 @@
       "source": "ソース",
       "openFull": "フルページで開く",
       "close": "閉じる"
-    }
+    },
+    "desktopOnly": "{{list}} はデスクトップ用ブラウザーエンジン（CEF）を組み込むため、デスクトップの Hydrolysis では動きますが、ブラウザーでは動きません。",
+    "blocked": "まだブラウザーで動かない例："
   },
   "footer": {
     "book": "ドキュメント",
@@ -291,25 +282,17 @@
     "label": "バックエンド",
     "titleLine1": "肝心なところはネイティブに。",
     "titleLine2": "あとは Hydrolysis が。",
-    "lead": "Apple と Android は各 view をプラットフォーム自身のコントロールに対応づけます。Hydrolysis は同じ view ツリーを GPU で自ら描画し、どこへでも届けます。",
-    "official": "公式サポート",
+    "lead": "Apple は各 view を UIKit と AppKit に対応づけます。それ以外の Android、デスクトップ、Web では、Hydrolysis が同じ view ツリーを GPU で自ら描画します。",
     "experimental": "実験的",
     "experimentalNote": "利用可能で毎晩テストされていますが、まだ同じ水準には達していません。",
     "items": {
       "apple": {
         "name": "Apple",
-        "renders": "UIKit / AppKit",
-        "platforms": "iOS、iPadOS、macOS"
-      },
-      "android": {
-        "name": "Android",
-        "renders": "Android Views と Material Components",
-        "platforms": "Android"
+        "renders": "UIKit / AppKit"
       },
       "hydrolysis": {
         "name": "Hydrolysis",
-        "renders": "wgpu を通じた WaterUI 独自の GPU レンダラー",
-        "platforms": "macOS、Windows、Linux、Web、Android"
+        "renders": "wgpu を通じた WaterUI 独自の GPU レンダラー"
       },
       "gtk": {
         "name": "GTK4",
@@ -329,24 +312,19 @@
     "lead": "WaterUI 独自のレンダラーです。保持されるビューツリー全体を GPU で描画します。ひとつのコードベースから、ネイティブツールキットがない場所、あるいは使いたくない場所のどこでも。",
     "hydrolysis": {
       "gpu": {
-        "title": "ツリー全体を GPU で",
-        "body": "すべての view が wgpu を通じて描画されます。静かに肩代わりする CPU フォールバックはありません。"
+        "title": "ツリー全体を GPU で"
       },
       "platforms": {
-        "title": "デスクトップ、Web、Android",
-        "body": "macOS、Windows、Linux のウィンドウ、WebGPU 経由のブラウザ、そして専用ホスト経由の Android。"
+        "title": "デスクトップ、Web、Android"
       },
       "frames": {
-        "title": "120 Hz を想定した予算",
-        "body": "フレームは 120 Hz ディスプレイを想定して予算化されており、変えるものがないウィンドウは何も描きません。"
+        "title": "120 Hz を想定した予算"
       },
       "accessibility": {
-        "title": "アクセシビリティツリー経由でテスト",
-        "body": "waterui-testing は Hydrolysis が構築するアクセシビリティツリーに問い合わせるので、すべての UI テストがそのままアクセシビリティテストになります。"
+        "title": "アクセシビリティツリー経由でテスト"
       },
       "themes": {
-        "title": "テーマはパッケージ",
-        "body": "Hydrolysis 自身はウィジェットスタイルを持ちません。Material 3 は別パッケージとして提供されます。"
+        "title": "テーマはパッケージ"
       }
     },
     "cherenkov": {

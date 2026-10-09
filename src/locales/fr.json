@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "WaterUI — UI multiplateforme pour Rust",
-    "description": "Écrivez une fois, appliquez partout. WaterUI est un framework d'interface pour Rust : un seul arbre de vues qui devient des contrôles natifs sur les plateformes Apple et Android, et qui est dessiné sur le GPU par son propre moteur, Hydrolysis, partout ailleurs."
+    "description": "Écrire une fois, appliquer partout. WaterUI est un framework d'interface pour Rust : un arbre de vues qui devient des contrôles natifs sur les plateformes Apple et que son propre moteur de rendu, Hydrolysis, dessine partout ailleurs, Android compris."
   },
   "nav": {
     "book": "Guide",
@@ -24,23 +24,13 @@
   "hero": {
     "titleLine1": "Écrivez une fois,",
     "titleLine2": "appliquez partout.",
-    "lead": "WaterUI est un framework d'interface pour Rust. Écrivez une vue une fois : elle devient des contrôles UIKit et AppKit sur les plateformes Apple, des Android Views sur Android, et Hydrolysis la dessine sur le GPU partout ailleurs.",
-    "status": "Avant 1.0 · Officiellement pris en charge : Apple, Android, Hydrolysis",
+    "lead": "WaterUI est un framework d'interface pour Rust. Écrivez une vue une fois : elle devient des contrôles UIKit et AppKit sur les plateformes Apple, et Hydrolysis la dessine sur le GPU partout ailleurs, Android compris.",
+    "status": "Avant 1.0 · Officiellement pris en charge : Apple, Hydrolysis",
     "ctaStart": "Commencer",
     "live": "Exécuter un exemple ici",
-    "notes": {
-      "derive": "un contrôle par champ",
-      "binding": "l'état du formulaire",
-      "render": "natif sur chaque backend"
-    },
     "captureAlt": "L'exemple de formulaire rendu sur {{platform}}",
     "figure": "Une seule struct, rendue par chaque backend officiellement pris en charge. Ce sont des captures de l'exemple, pas des maquettes.",
-    "quickStart": "Démarrage rapide",
-    "steps": {
-      "install": "Installer la CLI",
-      "create": "Créer un projet",
-      "run": "L'exécuter sur cette machine"
-    }
+    "quickStart": "Démarrage rapide"
   },
   "state": {
     "label": "État",
@@ -52,7 +42,6 @@
       "writer": "écrit count",
       "collection": "comparée par id"
     },
-    "figureContacts": "Une collection indexée par identité",
     "points": {
       "binding": {
         "title": "Binding<T> est l'état mutable",
@@ -67,7 +56,6 @@
         "body": "Donnez à List ou ForEach une collection réactive d'éléments Identifiable, et les changements de composition sont comparés par id."
       }
     },
-    "figureCounter": "Le compteur de la figure : un Binding, un lecteur, un écrivain.",
     "figure": {
       "model": "Modèle de mise à jour",
       "models": {
@@ -150,39 +138,37 @@
     "kit": {
       "title": "WaterKit",
       "lead": "Les services de plateforme autour de l'interface : une API Rust par capacité, une implémentation native par plateforme.",
-      "items": [
-        "Caméra",
-        "Localisation",
-        "Notifications",
-        "Permissions",
-        "Biométrie",
-        "Passkeys",
-        "Bluetooth",
-        "NFC",
-        "Haptique",
-        "Presse-papiers",
-        "Contacts",
-        "Calendrier",
-        "Santé",
-        "Capteurs",
-        "Stockage sécurisé",
-        "Feuille de partage",
-        "Voix",
-        "Liens profonds",
-        "Boîtes de dialogue",
-        "Système de fichiers",
-        "Audio",
-        "Vidéo",
-        "Écran",
-        "Tâches en arrière-plan",
-        "Infos système"
-      ],
-      "figure": "WaterKit, une API Rust par capacité"
+      "items": {
+        "camera": "Caméra",
+        "location": "Localisation",
+        "notifications": "Notifications",
+        "permissions": "Permissions",
+        "biometrics": "Biométrie",
+        "passkeys": "Passkeys",
+        "bluetooth": "Bluetooth",
+        "nfc": "NFC",
+        "haptics": "Haptique",
+        "clipboard": "Presse-papiers",
+        "contacts": "Contacts",
+        "calendar": "Calendrier",
+        "health": "Santé",
+        "sensors": "Capteurs",
+        "secureStorage": "Stockage sécurisé",
+        "share": "Feuille de partage",
+        "speech": "Voix",
+        "deepLinks": "Liens profonds",
+        "dialogs": "Boîtes de dialogue",
+        "fileSystem": "Système de fichiers",
+        "audio": "Audio",
+        "video": "Vidéo",
+        "screen": "Écran",
+        "backgroundTasks": "Tâches en arrière-plan",
+        "systemInfo": "Infos système"
+      }
     },
     "testing": {
       "title": "Tests",
       "lead": "Des tests fondés sur l'accessibilité tournent sous un simple cargo test face au moteur Hydrolysis. Ni simulateur, ni appareil. Les interactions sont des assertions, et chaque attente pompe jusqu'au repos au lieu de dormir.",
-      "figure": "Un test sémantique, exécuté par cargo test",
       "notes": {
         "mount": "monte la vue en headless",
         "query": "la trouve par son label accessible",
@@ -204,7 +190,7 @@
   "gallery": {
     "label": "Exemples",
     "title": "Même source, chaque boîte à outils.",
-    "lead": "Chaque exemple du dépôt, capturé par la suite de bout en bout de chaque backend. Choisissez un backend et comparez ; les exemples marqués « Lancer » démarrent dans cette page avec Hydrolysis.",
+    "lead": "Chaque exemple du dépôt, capturé sur chaque backend. Avec Hydrolysis, ils tournent directement dans cette page ; ceux qui ne le peuvent pas encore sont listés avec l'issue qui les suit.",
     "backend": "Backend",
     "shotCount": "{{count}} captures",
     "withheld": "{{count}} exemples sont retenus sur ce backend jusqu'à ce que leur capture soit correcte.",
@@ -217,9 +203,9 @@
         "label": "macOS",
         "caption": "AppKit · Mac"
       },
-      "android": {
-        "label": "Android",
-        "caption": "Android Views · émulateur"
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "WebGPU · dans ce navigateur"
       },
       "gtk": {
         "label": "GTK4",
@@ -261,7 +247,10 @@
       "waterkit_camera_filters": "Filtres caméra sur une surface GPU",
       "chromium": "Le moteur Chromium comme vue",
       "webview-cef": "Vue web propulsée par CEF",
-      "liquid_glass": "Matériaux Liquid Glass d'iOS 26"
+      "liquid_glass": "Matériaux Liquid Glass d'iOS 26",
+      "anchored_overlay": "Superpositions ancrées à une vue, qui restent à l'écran",
+      "keyboard_panel": "Un champ de saisie qui suit la zone du clavier",
+      "multi_scene": "Un état propre à chaque scène d'une app"
     },
     "viewAll": "Tous les exemples sur GitHub",
     "runOne": "En lancer un depuis un checkout",
@@ -276,7 +265,9 @@
       "source": "Source",
       "openFull": "Ouvrir en pleine page",
       "close": "Fermer"
-    }
+    },
+    "desktopOnly": "{{list}} embarquent un moteur de navigateur de bureau (CEF) : ils tournent avec Hydrolysis sur le bureau, mais pas dans un navigateur.",
+    "blocked": "Ne tournent pas encore dans le navigateur :"
   },
   "footer": {
     "book": "Guide",
@@ -291,25 +282,17 @@
     "label": "Backends",
     "titleLine1": "Natif là où ça compte.",
     "titleLine2": "Hydrolysis partout ailleurs.",
-    "lead": "Apple et Android projettent chaque vue sur les contrôles propres à la plateforme. Hydrolysis dessine le même arbre de vues lui-même, sur le GPU, où que vous livriez.",
-    "official": "Officiellement pris en charge",
+    "lead": "Apple projette chaque vue sur UIKit et AppKit. Hydrolysis dessine le même arbre de vues lui-même, sur le GPU, partout ailleurs : Android, le bureau et le web.",
     "experimental": "Expérimental",
     "experimentalNote": "Utilisable et testé chaque nuit, mais pas encore tenu au même niveau d'exigence.",
     "items": {
       "apple": {
         "name": "Apple",
-        "renders": "UIKit / AppKit",
-        "platforms": "iOS, iPadOS, macOS"
-      },
-      "android": {
-        "name": "Android",
-        "renders": "Android Views et Material Components",
-        "platforms": "Android"
+        "renders": "UIKit / AppKit"
       },
       "hydrolysis": {
         "name": "Hydrolysis",
-        "renders": "Le moteur GPU propre à WaterUI, via wgpu",
-        "platforms": "macOS, Windows, Linux, web, Android"
+        "renders": "Le moteur GPU propre à WaterUI, via wgpu"
       },
       "gtk": {
         "name": "GTK4",
@@ -329,24 +312,19 @@
     "lead": "Le moteur de rendu propre à WaterUI. Il dessine l'arbre de vues retenu complet sur le GPU, à partir d'une seule base de code, partout où il n'y a pas de boîte à outils native sur laquelle se projeter — ou là où vous préférez ne pas en utiliser.",
     "hydrolysis": {
       "gpu": {
-        "title": "Tout l'arbre, sur le GPU",
-        "body": "Chaque vue est dessinée via wgpu. Il n'y a pas de repli CPU qui prendrait le relais en silence."
+        "title": "Tout l'arbre, sur le GPU"
       },
       "platforms": {
-        "title": "Desktop, web et Android",
-        "body": "Des fenêtres macOS, Windows et Linux, le navigateur via WebGPU, et Android via son propre hôte."
+        "title": "Desktop, web et Android"
       },
       "frames": {
-        "title": "Budgété pour 120 Hz",
-        "body": "Les images sont budgétées pour des écrans 120 Hz, et une fenêtre sans rien à changer ne dessine rien."
+        "title": "Budgété pour 120 Hz"
       },
       "accessibility": {
-        "title": "Testé via son arbre d'accessibilité",
-        "body": "waterui-testing interroge l'arbre d'accessibilité que construit Hydrolysis : chaque test d'interface est aussi un test d'accessibilité."
+        "title": "Testé via son arbre d'accessibilité"
       },
       "themes": {
-        "title": "Les thèmes sont des paquets",
-        "body": "Hydrolysis n'embarque aucun style de widgets propre. Material 3 est livré en paquet séparé."
+        "title": "Les thèmes sont des paquets"
       }
     },
     "cherenkov": {
