@@ -4,7 +4,6 @@ import { Outline } from './outline'
 import Terminal from './Terminal'
 import { Caption, Frame, PrimaryLink, SecondaryLink } from './ui'
 import { lineOf } from './snippet'
-import { hasLiveDemos } from '../data/demos'
 import installCommand from '../snippets/install.sh?raw'
 import formSource from '../snippets/form.rs?raw'
 
@@ -25,8 +24,7 @@ type Capture = {
  */
 const captures: readonly Capture[] = [
   { id: 'ios', platform: 'iOS', realization: 'UIKit', image: '/examples/ios/form.webp', orientation: 'portrait' },
-  { id: 'android', platform: 'Android', realization: 'Android Views', image: '/examples/android/form.webp', orientation: 'portrait' },
-  { id: 'hydrolysis', platform: 'Hydrolysis', realization: 'GPU · Material 3', image: '/examples/hydrolysis/form.webp', orientation: 'portrait' },
+  { id: 'hydrolysis', platform: 'Hydrolysis', realization: 'WebGPU · Material 3', image: '/examples/hydrolysis/form.webp', orientation: 'landscape' },
   { id: 'macos', platform: 'macOS', realization: 'AppKit', image: '/examples/macos/form.webp', orientation: 'landscape' },
 ]
 
@@ -38,7 +36,7 @@ function CaptureFrame({ capture, alt }: { capture: Capture; alt: string }) {
   return (
     <figure className={capture.orientation === 'landscape' ? 'col-span-3 md:col-auto' : ''} style={{ flexGrow: aspect, flexBasis: 0 }}>
       <Outline label={capture.platform} className="bg-raised">
-        <img src={capture.image} alt={alt} className="block h-auto w-full" style={{ aspectRatio: aspect }} />
+        <img src={capture.image} alt={alt} className="block h-auto w-full object-cover object-top" style={{ aspectRatio: aspect }} />
       </Outline>
       <figcaption className="mt-1.5 font-mono text-[11px] text-ink-3">{capture.realization}</figcaption>
     </figure>
@@ -83,7 +81,7 @@ export default function Hero() {
                   <PrimaryLink href="https://book.waterui.dev" external>
                     {t('hero.ctaStart')}
                   </PrimaryLink>
-                  {hasLiveDemos ? <SecondaryLink href="#examples">{t('hero.live')}</SecondaryLink> : null}
+                  <SecondaryLink href="#examples">{t('hero.live')}</SecondaryLink>
                 </div>
               </div>
             </div>

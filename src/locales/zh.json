@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "WaterUI — Rust 跨平台 UI 框架",
-    "description": "写一次，处处适用。WaterUI 是 Rust 的 UI 框架：一棵视图树，在 Apple 平台和 Android 上变成原生控件，在其他所有地方由它自己的渲染器 Hydrolysis 在 GPU 上绘制。"
+    "description": "一次编写，处处适用。WaterUI 是 Rust 的 UI 框架：同一棵视图树在 Apple 平台上变成原生控件，在包括 Android 在内的其他所有地方由它自己的渲染器 Hydrolysis 绘制。"
   },
   "nav": {
     "book": "文档",
@@ -24,8 +24,8 @@
   "hero": {
     "titleLine1": "写一次，",
     "titleLine2": "处处适用。",
-    "lead": "WaterUI 是 Rust 的 UI 框架。视图只写一次：在 Apple 平台上变成 UIKit 和 AppKit 控件，在 Android 上变成 Android Views，在其他所有地方由 Hydrolysis 在 GPU 上绘制。",
-    "status": "1.0 之前 · 官方支持：Apple、Android、Hydrolysis",
+    "lead": "WaterUI 是 Rust 的 UI 框架。视图只写一次：在 Apple 平台上变成 UIKit 和 AppKit 控件，在包括 Android 在内的其他所有地方由 Hydrolysis 在 GPU 上绘制。",
+    "status": "1.0 之前 · 官方支持：Apple、Hydrolysis",
     "ctaStart": "开始使用",
     "live": "在这里运行一个示例",
     "notes": {
@@ -204,7 +204,7 @@
   "gallery": {
     "label": "示例",
     "title": "同一份源码，每个工具包。",
-    "lead": "仓库里的每个示例，由各后端自己的端到端测试截取。选一个后端对比；带“运行”按钮的示例可以直接在本页用 Hydrolysis 运行。",
+    "lead": "仓库里的每个示例，在每个后端上截取。在 Hydrolysis 下，它们能直接在本页运行；暂时还不能运行的，列在下方并附上跟踪它的 issue。",
     "backend": "后端",
     "shotCount": "{{count}} 张截图",
     "withheld": "{{count}} 个示例在此后端上暂缓展示，直到截图正确为止。",
@@ -217,9 +217,9 @@
         "label": "macOS",
         "caption": "AppKit · Mac"
       },
-      "android": {
-        "label": "Android",
-        "caption": "Android Views · 模拟器"
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "WebGPU · 在本浏览器中运行"
       },
       "gtk": {
         "label": "GTK4",
@@ -261,7 +261,10 @@
       "waterkit_camera_filters": "GPU 表面上的相机滤镜",
       "chromium": "作为视图的 Chromium 引擎",
       "webview-cef": "CEF 驱动的网页视图",
-      "liquid_glass": "iOS 26 Liquid Glass 材质"
+      "liquid_glass": "iOS 26 Liquid Glass 材质",
+      "anchored_overlay": "锚定在视图上、始终留在窗口内的浮层",
+      "keyboard_panel": "跟随键盘安全区的输入栏",
+      "multi_scene": "同一应用里每个场景各自的状态"
     },
     "viewAll": "GitHub 上的全部示例",
     "runOne": "从源码运行一个示例",
@@ -276,7 +279,9 @@
       "source": "源码",
       "openFull": "打开完整页面",
       "close": "关闭"
-    }
+    },
+    "desktopOnly": "{{list}} 内嵌桌面浏览器引擎（CEF），所以能在桌面版 Hydrolysis 上运行，但不能在浏览器里运行。",
+    "blocked": "暂时还不能在浏览器中运行："
   },
   "footer": {
     "book": "文档",
@@ -291,7 +296,7 @@
     "label": "后端",
     "titleLine1": "该原生的地方用原生。",
     "titleLine2": "其余交给 Hydrolysis。",
-    "lead": "Apple 和 Android 后端把每个视图映射到平台自己的控件。Hydrolysis 则自己在 GPU 上绘制同一棵视图树，随你发布到哪里。",
+    "lead": "Apple 后端把每个视图映射到 UIKit 和 AppKit。在其他所有地方——Android、桌面和 Web——Hydrolysis 自己在 GPU 上绘制同一棵视图树。",
     "official": "官方支持",
     "experimental": "实验性",
     "experimentalNote": "可用且每晚测试，但暂未要求达到同一标准。",
@@ -301,15 +306,10 @@
         "renders": "UIKit / AppKit",
         "platforms": "iOS、iPadOS、macOS"
       },
-      "android": {
-        "name": "Android",
-        "renders": "Android Views 与 Material Components",
-        "platforms": "Android"
-      },
       "hydrolysis": {
         "name": "Hydrolysis",
         "renders": "WaterUI 自有的 GPU 渲染器，基于 wgpu",
-        "platforms": "macOS、Windows、Linux、Web、Android"
+        "platforms": "Android、macOS、Windows、Linux、Web"
       },
       "gtk": {
         "name": "GTK4",

@@ -3,22 +3,21 @@ import { useTranslation } from 'react-i18next'
 import Code from './Code'
 import ExampleRunner from './ExampleRunner'
 import { Frame, Heading, PrimaryLink } from './ui'
-import { backends, examples, shotUrl, sourceUrl, type BackendId } from '../data/examples'
-import { runsLive } from '../data/demos'
+import { backends, blocked, desktopOnly, examples, shotUrl, sourceUrl, type BackendId } from '../data/examples'
 import runExample from '../snippets/run-example.sh?raw'
 
 /** Two rows of the grid at its widest: what the section shows before "Show all". */
 const COLLAPSED = { portrait: 10, landscape: 6 } as const
 
 /**
- * The examples, one backend at a time: a contact sheet of each native
- * backend's own end-to-end captures of the same source example. Captures that
- * do not show the example are withheld, and the count of them is stated. An
- * example that builds for the Hydrolysis web backend also runs in the page.
+ * The examples, one backend at a time: a contact sheet of each backend's
+ * captures of the same source example. Captures that do not show the example
+ * are withheld, and the count of them is stated. Under Hydrolysis every
+ * example also runs in the page.
  */
 export default function Gallery() {
   const { t } = useTranslation()
-  const [backend, setBackend] = useState<BackendId>('ios')
+  const [backend, setBackend] = useState<BackendId>('hydrolysis')
   const [expanded, setExpanded] = useState(false)
   const [running, setRunning] = useState<string | null>(null)
   const section = useRef<HTMLElement>(null)
@@ -87,7 +86,7 @@ export default function Gallery() {
                 </p>
                 <p className="mt-0.5 text-[13.5px] leading-snug text-ink-2">{t(`gallery.items.${example.id}`)}</p>
               </a>
-              {runsLive(example.id) ? (
+              {active.runs ? (
                 <button
                   type="button"
                   onClick={() => setRunning(example.id)}
@@ -118,6 +117,22 @@ export default function Gallery() {
         ) : null}
         {running === null ? null : <ExampleRunner example={running} onClose={() => setRunning(null)} />}
         {withheld === 0 ? null : <p className="mt-3 font-mono text-[12px] text-ink-2">{t('gallery.withheld', { count: withheld })}</p>}
+        {active.runs ? (
+          <div className="mt-3 space-y-2 font-mono text-[12px] text-ink-2">
+            <p>
+              {t('gallery.blocked')}{' '}
+              {blocked.map((entry, index) => (
+                <span key={entry.id}>
+                  {index === 0 ? null : ', '}
+                  <a href={entry.issue} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-guide">
+                    {entry.id}
+                  </a>
+                </span>
+              ))}
+            </p>
+            <p>{t('gallery.desktopOnly', { list: desktopOnly.join(', ') })}</p>
+          </div>
+        ) : null}
 
         <div className="mt-16 grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-4">

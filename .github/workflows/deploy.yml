@@ -15,36 +15,17 @@ concurrency:
   group: cf-pages-waterui-website
   cancel-in-progress: true
 
-env:
-  WASM_PACK_VERSION: "0.15.0"
-  # The generated hydrolysis backend keeps its Cargo workspace outside the
-  # repo, so a shared target dir is how the rust-cache key sees the deps the
-  # examples all rebuild identically.
-  CARGO_TARGET_DIR: ${{ github.workspace }}/.cargo-target
-
 jobs:
+  demos:
+    uses: ./.github/workflows/demos.yml
+
   build-and-deploy:
+    needs: demos
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      # With no example listed in src/data/demos.json, every Rust step below is
-      # skipped and the site deploys without a live-demo section.
-      - name: Read pinned waterui revision
-        id: demos
-        run: |
-          echo "waterui=$(jq -r '.waterui' src/data/demos.json)" >> "$GITHUB_OUTPUT"
-          echo "count=$(jq '.examples | length' src/data/demos.json)" >> "$GITHUB_OUTPUT"
-
-      - name: Checkout water-rs/waterui at the pinned revision
-        if: steps.demos.outputs.count != '0'
-        uses: actions/checkout@v4
-        with:
-          repository: water-rs/waterui
-          ref: ${{ steps.demos.outputs.waterui }}
-          path: waterui
 
       # ✅ Use a pinned Bun version to avoid 400 download errors
       - name: Setup Bun
@@ -65,49 +46,12 @@ jobs:
       - name: Install deps
         run: bun install --frozen-lockfile
 
-      - name: Setup Rust
-        if: steps.demos.outputs.count != '0'
-        uses: dtolnay/rust-toolchain@stable
+      - name: Stage the demo bundles
+        uses: actions/download-artifact@v4
         with:
-          targets: wasm32-unknown-unknown
-
-      - name: Cache Rust
-        if: steps.demos.outputs.count != '0'
-        uses: Swatinem/rust-cache@v2
-        with:
-          key: ${{ steps.demos.outputs.waterui }}
-          workspaces: waterui
-          cache-directories: .cargo-target
-
-      # The native libraries a Linux build of the CLI links (udev among them),
-      # from the pinned checkout's own action, so the list moves with the CLI.
-      - name: Install the CLI's native dependencies
-        if: steps.demos.outputs.count != '0'
-        uses: ./waterui/.github/actions/setup-linux-deps
-
-      # The CLI is a member of the waterui workspace, so the pinned revision
-      # supplies the CLI and the framework the demos are built against.
-      - name: Build the water CLI
-        if: steps.demos.outputs.count != '0'
-        run: |
-          cargo build --release --manifest-path waterui/Cargo.toml -p waterui-cli --bin water
-          echo "${{ github.workspace }}/.cargo-target/release" >> "$GITHUB_PATH"
-
-      - name: Install wasm-pack
-        if: steps.demos.outputs.count != '0'
-        uses: taiki-e/install-action@v2
-        with:
-          tool: wasm-pack@${{ env.WASM_PACK_VERSION }}
-
-      - name: Build demo bundles
-        if: steps.demos.outputs.count != '0'
-        env:
-          WATERUI_DIR: ${{ github.workspace }}/waterui
-        run: |
-          set -euo pipefail
-          jq -r '.examples[]' src/data/demos.json | while read -r example; do
-            ./scripts/build-demo.sh "$example" public/demo
-          done
+          pattern: demo-*
+          path: public/demo
+          merge-multiple: true
 
       - name: Build
         run: bun run build

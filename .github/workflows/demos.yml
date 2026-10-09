@@ -1,0 +1,175 @@
+name: Build the live demos
+
+# Builds every example of the waterui revision pinned in src/data/demos.json
+# for the web (Hydrolysis on WebGPU). The deploy calls this workflow and ships
+# its bundles; a pull request that changes the pin or the build runs it on its
+# own, so a revision whose examples do not all build never reaches main.
+
+on:
+  workflow_call:
+  pull_request:
+    paths:
+      - src/data/demos.json
+      - scripts/build-demo.sh
+      - .github/workflows/demos.yml
+      - .github/workflows/deploy.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: demos-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  WASM_PACK_VERSION: "0.15.0"
+  # The examples build in generated workspaces outside the checkout; one
+  # target dir per job lets later examples reuse the dependencies earlier ones
+  # compiled, and lets the Rust cache see them.
+  CARGO_TARGET_DIR: ${{ github.workspace }}/.cargo-target
+  # Examples per build job. Within a job the examples share compiled
+  # dependencies, so a job is warm after its first example.
+  SHARD_SIZE: 5
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      waterui: ${{ steps.pin.outputs.waterui }}
+      shards: ${{ steps.shards.outputs.shards }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read the pinned revision
+        id: pin
+        run: echo "waterui=$(jq -r '.waterui' src/data/demos.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout water-rs/waterui at the pinned revision
+        uses: actions/checkout@v4
+        with:
+          repository: water-rs/waterui
+          ref: ${{ steps.pin.outputs.waterui }}
+          path: waterui
+          sparse-checkout: examples
+
+      # The site lists the examples it runs, those a waterui issue still
+      # keeps out of the browser, and those that embed a desktop browser
+      # engine; the pinned revision is the truth about which exist. A
+      # difference either way is an error.
+      - name: Check the example list against the pinned revision
+        run: |
+          set -euo pipefail
+          diff -u \
+            <(jq -r '.examples[], (.blocked | keys[]), .desktopOnly[]' src/data/demos.json | sort) \
+            <(for manifest in waterui/examples/*/Water.toml; do basename "$(dirname "$manifest")"; done | sort)
+
+      - name: Split the examples into build jobs
+        id: shards
+        run: |
+          echo "shards=$(jq -c --argjson size "$SHARD_SIZE" \
+            '[.examples | range(0; length; $size) as $i | .[$i:$i + $size] | join(" ")]' \
+            src/data/demos.json)" >> "$GITHUB_OUTPUT"
+
+  cli:
+    needs: plan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout water-rs/waterui at the pinned revision
+        uses: actions/checkout@v4
+        with:
+          repository: water-rs/waterui
+          ref: ${{ needs.plan.outputs.waterui }}
+          path: waterui
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: cli
+          workspaces: waterui
+          cache-directories: .cargo-target
+
+      # The native libraries a Linux build of the CLI links, from the pinned
+      # checkout's own action, so the list moves with the CLI.
+      - uses: ./waterui/.github/actions/setup-linux-deps
+
+      - name: Build the water CLI
+        run: cargo build --release --manifest-path waterui/Cargo.toml -p waterui-cli --bin water
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: water-cli
+          path: .cargo-target/release/water
+          retention-days: 1
+
+  build:
+    needs: [plan, cli]
+    runs-on: ubuntu-latest
+    strategy:
+      # Every failing example is reported, not only the first.
+      fail-fast: false
+      matrix:
+        examples: ${{ fromJSON(needs.plan.outputs.shards) }}
+    name: build (${{ matrix.examples }})
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout water-rs/waterui at the pinned revision
+        uses: actions/checkout@v4
+        with:
+          repository: water-rs/waterui
+          ref: ${{ needs.plan.outputs.waterui }}
+          path: waterui
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: demos-${{ strategy.job-index }}
+          workspaces: waterui
+          cache-directories: .cargo-target
+
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: wasm-pack@${{ env.WASM_PACK_VERSION }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: water-cli
+          path: ${{ runner.temp }}/water-cli
+
+      - name: Put the CLI on PATH
+        run: |
+          chmod +x "$RUNNER_TEMP/water-cli/water"
+          echo "$RUNNER_TEMP/water-cli" >> "$GITHUB_PATH"
+
+      # Each example builds even when an earlier one failed, so one run
+      # reports every failure; the job fails if any did.
+      - name: Build the examples
+        env:
+          WATERUI_DIR: ${{ github.workspace }}/waterui
+          EXAMPLES: ${{ matrix.examples }}
+        run: |
+          set -uo pipefail
+          failed=()
+          for example in $EXAMPLES; do
+            echo "::group::$example"
+            ./scripts/build-demo.sh "$example" demo || failed+=("$example")
+            echo "::endgroup::"
+          done
+          if [ ${#failed[@]} -ne 0 ]; then
+            echo "::error::failed to build for the web: ${failed[*]}"
+            exit 1
+          fi
+
+      # The bundles that did build are uploaded even when another example of
+      # the job failed, so they can be inspected; the failed job still blocks
+      # the deploy.
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: demo-${{ strategy.job-index }}
+          path: demo
+          retention-days: 1

@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "WaterUI — кроссплатформенный UI для Rust",
-    "description": "Напиши один раз — применяй везде. WaterUI — UI-фреймворк для Rust: одно дерево представлений становится нативными элементами управления на платформах Apple и Android, а везде остальное его рисует на GPU собственный рендерер, Hydrolysis."
+    "description": "Напишите один раз — применяйте везде. WaterUI — UI-фреймворк для Rust: одно дерево представлений становится нативными элементами управления на платформах Apple, а везде остальном, включая Android, его рисует собственный рендерер Hydrolysis."
   },
   "nav": {
     "book": "Руководство",
@@ -24,8 +24,8 @@
   "hero": {
     "titleLine1": "Напишите один раз,",
     "titleLine2": "применяйте везде.",
-    "lead": "WaterUI — UI-фреймворк для Rust. Напишите представление один раз: на платформах Apple оно станет элементами UIKit и AppKit, на Android — Android Views, а везде остальное его нарисует на GPU Hydrolysis.",
-    "status": "До 1.0 · Официально поддерживаются: Apple, Android, Hydrolysis",
+    "lead": "WaterUI — UI-фреймворк для Rust. Напишите представление один раз: на платформах Apple оно станет элементами UIKit и AppKit, а везде остальном, включая Android, его нарисует на GPU Hydrolysis.",
+    "status": "До 1.0 · Официально поддерживаются: Apple, Hydrolysis",
     "ctaStart": "Начать",
     "live": "Запустить пример здесь",
     "notes": {
@@ -204,7 +204,7 @@
   "gallery": {
     "label": "Примеры",
     "title": "Один исходник, все тулкиты.",
-    "lead": "Каждый пример из репозитория, снятый сквозными тестами каждого бэкенда. Выберите бэкенд и сравните; примеры с кнопкой «Запустить» работают прямо на этой странице через Hydrolysis.",
+    "lead": "Каждый пример из репозитория, снятый на каждом бэкенде. Через Hydrolysis они запускаются прямо на этой странице; те, что пока не могут, перечислены вместе с задачей, которая их отслеживает.",
     "backend": "Бэкенд",
     "shotCount": "{{count}} снимков",
     "withheld": "Примеров, скрытых на этом бэкенде, пока их снимок не станет корректным: {{count}}.",
@@ -217,9 +217,9 @@
         "label": "macOS",
         "caption": "AppKit · Mac"
       },
-      "android": {
-        "label": "Android",
-        "caption": "Android Views · эмулятор"
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "WebGPU · в этом браузере"
       },
       "gtk": {
         "label": "GTK4",
@@ -261,7 +261,10 @@
       "waterkit_camera_filters": "Фильтры камеры на GPU-поверхности",
       "chromium": "Движок Chromium как представление",
       "webview-cef": "Веб-представление на CEF",
-      "liquid_glass": "Материалы Liquid Glass в iOS 26"
+      "liquid_glass": "Материалы Liquid Glass в iOS 26",
+      "anchored_overlay": "Оверлеи, привязанные к представлению и не выходящие за окно",
+      "keyboard_panel": "Поле ввода, следующее за безопасной зоной клавиатуры",
+      "multi_scene": "Отдельное состояние для каждой сцены приложения"
     },
     "viewAll": "Все примеры на GitHub",
     "runOne": "Запустить один из чекаута",
@@ -276,7 +279,9 @@
       "source": "Исходный код",
       "openFull": "Открыть всю страницу",
       "close": "Закрыть"
-    }
+    },
+    "desktopOnly": "{{list}} встраивают десктопный браузерный движок (CEF), поэтому работают в Hydrolysis на десктопе, но не в браузере.",
+    "blocked": "Пока не запускаются в браузере:"
   },
   "footer": {
     "book": "Руководство",
@@ -291,7 +296,7 @@
     "label": "Бэкенды",
     "titleLine1": "Нативно там, где это важно.",
     "titleLine2": "Hydrolysis — везде остальное.",
-    "lead": "Apple и Android отображают каждое представление на собственные элементы управления платформы. Hydrolysis сам рисует то же дерево представлений на GPU, куда бы вы ни выпускали приложение.",
+    "lead": "Apple отображает каждое представление на UIKit и AppKit. Везде остальном — на Android, на десктопе и в вебе — Hydrolysis сам рисует то же дерево представлений на GPU.",
     "official": "Официальная поддержка",
     "experimental": "Экспериментальные",
     "experimentalNote": "Пригодны к работе и тестируются каждую ночь, но к ним пока не применяется та же планка.",
@@ -301,15 +306,10 @@
         "renders": "UIKit и AppKit",
         "platforms": "iOS, iPadOS, macOS"
       },
-      "android": {
-        "name": "Android",
-        "renders": "Android Views и Material Components",
-        "platforms": "Android"
-      },
       "hydrolysis": {
         "name": "Hydrolysis",
         "renders": "Собственный GPU-рендерер WaterUI на wgpu",
-        "platforms": "macOS, Windows, Linux, веб, Android"
+        "platforms": "Android, macOS, Windows, Linux, веб"
       },
       "gtk": {
         "name": "GTK4",
