@@ -162,7 +162,11 @@ jobs:
             exit 1
           fi
 
+      # The bundles that did build are uploaded even when another example of
+      # the job failed, so they can be inspected; the failed job still blocks
+      # the deploy.
       - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
         with:
           name: demo-${{ strategy.job-index }}
           path: demo
