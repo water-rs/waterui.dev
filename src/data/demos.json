@@ -35,7 +35,9 @@
     "edge_layout",
     "edge_list",
     "edge_text",
-    "waterkit_camera_filters",
+    "waterkit_camera_filters"
+  ],
+  "desktopOnly": [
     "chromium",
     "webview-cef"
   ]

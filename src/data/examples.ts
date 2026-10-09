@@ -84,17 +84,28 @@ function example(id: string, captured: readonly BackendId[], withheld: Example['
   return { id, shots: captured.filter((backend) => withheld[backend] === undefined), withheld, source }
 }
 
+const nativeCaptures = (id: string) => native[id] ?? { captured: NATIVE }
+
 /**
- * Every example of the pinned waterui revision, each of which also runs on
- * Hydrolysis in the page, followed by the examples kept in other repositories.
+ * Every example of the pinned waterui revision: first the ones that also run
+ * on Hydrolysis in the page, then the ones that embed a desktop browser engine
+ * and so run only on desktop Hydrolysis, then the examples kept in other
+ * repositories.
  */
 export const examples: Example[] = [
   ...demos.examples.map((id) => {
-    const capture = native[id] ?? { captured: NATIVE }
+    const capture = nativeCaptures(id)
     return example(id, [...capture.captured, 'hydrolysis'], capture.withheld)
+  }),
+  ...demos.desktopOnly.map((id) => {
+    const capture = nativeCaptures(id)
+    return example(id, capture.captured, capture.withheld)
   }),
   example('liquid_glass', APPLE, {}, 'https://github.com/water-rs/apple-backend/tree/dev/Examples/liquid_glass'),
 ]
+
+/** The examples that cannot run in a browser: they embed a desktop browser engine. */
+export const desktopOnly: readonly string[] = demos.desktopOnly
 
 /** The `water preview` output shown in the previews section. */
 export const previewShot = {

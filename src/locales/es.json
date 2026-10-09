@@ -204,7 +204,7 @@
   "gallery": {
     "label": "Ejemplos",
     "title": "La misma fuente, cada toolkit.",
-    "lead": "Cada ejemplo del repositorio, capturado en cada backend. Con Hydrolysis, todos ellos se ejecutan también aquí mismo, en la página.",
+    "lead": "Cada ejemplo del repositorio, capturado en cada backend. Con Hydrolysis, también se ejecutan aquí mismo, en la página.",
     "backend": "Backend",
     "shotCount": "{{count}} capturas",
     "withheld": "{{count}} ejemplos se retienen en este backend hasta que su captura sea correcta.",
@@ -279,7 +279,8 @@
       "source": "Fuente",
       "openFull": "Abrir página completa",
       "close": "Cerrar"
-    }
+    },
+    "desktopOnly": "{{list}} integran un motor de navegador de escritorio (CEF), así que funcionan con Hydrolysis en el escritorio, pero no en un navegador."
   },
   "footer": {
     "book": "Guía",

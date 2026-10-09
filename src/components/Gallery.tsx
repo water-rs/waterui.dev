@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import Code from './Code'
 import ExampleRunner from './ExampleRunner'
 import { Frame, Heading, PrimaryLink } from './ui'
-import { backends, examples, shotUrl, sourceUrl, type BackendId } from '../data/examples'
+import { backends, desktopOnly, examples, shotUrl, sourceUrl, type BackendId } from '../data/examples'
 import runExample from '../snippets/run-example.sh?raw'
 
 /** Two rows of the grid at its widest: what the section shows before "Show all". */
@@ -117,6 +117,7 @@ export default function Gallery() {
         ) : null}
         {running === null ? null : <ExampleRunner example={running} onClose={() => setRunning(null)} />}
         {withheld === 0 ? null : <p className="mt-3 font-mono text-[12px] text-ink-2">{t('gallery.withheld', { count: withheld })}</p>}
+        {active.runs ? <p className="mt-3 font-mono text-[12px] text-ink-2">{t('gallery.desktopOnly', { list: desktopOnly.join(', ') })}</p> : null}
 
         <div className="mt-16 grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-4">
