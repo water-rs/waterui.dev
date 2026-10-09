@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { Frame, Heading } from './ui'
 
-type BackendId = 'apple' | 'android' | 'hydrolysis' | 'gtk' | 'winui'
+type BackendId = 'apple' | 'hydrolysis' | 'gtk' | 'winui'
 
-const official: readonly BackendId[] = ['apple', 'android', 'hydrolysis']
+const official: readonly BackendId[] = ['apple', 'hydrolysis']
 const experimental: readonly BackendId[] = ['gtk', 'winui']
 
 function Row({ id, muted }: { id: BackendId; muted: boolean }) {
@@ -17,7 +17,7 @@ function Row({ id, muted }: { id: BackendId; muted: boolean }) {
   )
 }
 
-/** The backends: the three officially supported ones, then the experimental ones, set apart. */
+/** The backends: the two officially supported ones, then the experimental ones, set apart. */
 export default function Backends() {
   const { t } = useTranslation()
   return (

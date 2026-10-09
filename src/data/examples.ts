@@ -1,31 +1,35 @@
+import demos from './demos.json'
+
 /**
  * Backend × example screenshots staged under public/examples/<backend>/<id>.webp.
  *
- * Every frame comes from the backend repository's nightly end-to-end workflow:
- * the packaged example's settled first frame on a real simulator, emulator or
- * Xvfb session. The self-drawn Hydrolysis backend is not captured here; its
- * examples run live in the page instead (see demos.json).
+ * The Apple and GTK4 frames come from those backends' nightly end-to-end
+ * workflows: the packaged example's settled first frame on a real simulator,
+ * Mac or Xvfb session. The Hydrolysis frames are the deployed web build of the
+ * example, captured in a browser; every one of those also runs in the page.
  *
  * A capture that does not show the example's own UI is never shown. It is
  * listed under `withheld` with the issue tracking the defect, and returns to
- * `shots` once the backend's nightly produces a correct frame.
+ * `shots` once the backend produces a correct frame.
  */
 
-export type BackendId = 'ios' | 'macos' | 'android' | 'gtk'
+export type BackendId = 'ios' | 'macos' | 'hydrolysis' | 'gtk'
 
 export type Backend = {
   id: BackendId
-  /** Phones capture portrait frames; desktops capture landscape. */
+  /** Phones capture portrait frames; desktops and browsers capture landscape. */
   orientation: 'portrait' | 'landscape'
   /** Experimental backends are shown apart from the officially supported ones. */
   experimental: boolean
+  /** The examples of this backend run in the page as well as being captured. */
+  runs: boolean
 }
 
 export const backends: Backend[] = [
-  { id: 'ios', orientation: 'portrait', experimental: false },
-  { id: 'macos', orientation: 'landscape', experimental: false },
-  { id: 'android', orientation: 'portrait', experimental: false },
-  { id: 'gtk', orientation: 'landscape', experimental: true },
+  { id: 'ios', orientation: 'portrait', experimental: false, runs: false },
+  { id: 'macos', orientation: 'landscape', experimental: false, runs: false },
+  { id: 'hydrolysis', orientation: 'landscape', experimental: false, runs: true },
+  { id: 'gtk', orientation: 'landscape', experimental: true, runs: false },
 ]
 
 export type Example = {
@@ -46,57 +50,49 @@ export function sourceUrl(example: Example): string {
   return example.source ?? `https://github.com/water-rs/waterui/tree/dev/examples/${example.id}`
 }
 
-const NATIVE: readonly BackendId[] = ['ios', 'macos', 'android', 'gtk']
-// The native WebView needs a platform web engine; GTK4's is not wired up.
-const WEBVIEW_BACKENDS: readonly BackendId[] = ['ios', 'macos', 'android']
-const APPLE: readonly BackendId[] = ['ios', 'macos']
-const MACOS_ONLY: readonly BackendId[] = ['macos']
+type Native = Exclude<BackendId, 'hydrolysis'>
 
-const ANDROID_CAPTURE = 'https://github.com/water-rs/android-backend/issues/234'
+const NATIVE: readonly Native[] = ['ios', 'macos', 'gtk']
+// The native WebView needs a platform web engine; GTK4's is not wired up.
+const WEBVIEW_BACKENDS: readonly Native[] = ['ios', 'macos']
+const APPLE: readonly Native[] = ['ios', 'macos']
+const MACOS_ONLY: readonly Native[] = ['macos']
+const NONE: readonly Native[] = []
+
 const REPLY_COMPACT = 'https://github.com/water-rs/waterui/issues/1345'
 const GTK_BLACK = 'https://github.com/water-rs/gtk-backend/issues/67'
 const GTK_SURFACE_HOLE = 'https://github.com/water-rs/gtk-backend/issues/93'
 const NO_CAMERA = 'https://github.com/water-rs/waterui.dev/issues/10'
 
-function example(id: string, captured: readonly BackendId[] = NATIVE, withheld: Example['withheld'] = {}, source?: string): Example {
+/** The native backends' nightly captures, for the examples whose set differs from every native backend. */
+const native: Record<string, { captured: readonly Native[]; withheld?: Example['withheld'] }> = {
+  video_player: { captured: NATIVE, withheld: { gtk: GTK_SURFACE_HOLE } },
+  reply: { captured: NATIVE, withheld: { ios: REPLY_COMPACT } },
+  'typography-rtl': { captured: NATIVE, withheld: { gtk: GTK_BLACK } },
+  webview: { captured: WEBVIEW_BACKENDS },
+  stress: { captured: NATIVE, withheld: { gtk: GTK_BLACK } },
+  waterkit_camera_filters: { captured: NATIVE, withheld: { ios: NO_CAMERA, macos: NO_CAMERA, gtk: NO_CAMERA } },
+  chromium: { captured: MACOS_ONLY },
+  'webview-cef': { captured: MACOS_ONLY },
+  // Newer than the native nightlies' capture set.
+  anchored_overlay: { captured: NONE },
+  keyboard_panel: { captured: NONE },
+  multi_scene: { captured: NONE },
+}
+
+function example(id: string, captured: readonly BackendId[], withheld: Example['withheld'] = {}, source?: string): Example {
   return { id, shots: captured.filter((backend) => withheld[backend] === undefined), withheld, source }
 }
 
+/**
+ * Every example of the pinned waterui revision, each of which also runs on
+ * Hydrolysis in the page, followed by the examples kept in other repositories.
+ */
 export const examples: Example[] = [
-  example('gallery', NATIVE, { android: ANDROID_CAPTURE }),
-  example('form'),
-  example('navigation'),
-  example('map', NATIVE, { android: ANDROID_CAPTURE }),
-  example('flow_markdown'),
-  example('video_player', NATIVE, { android: ANDROID_CAPTURE, gtk: GTK_SURFACE_HOLE }),
-  example('filter', NATIVE, { android: ANDROID_CAPTURE }),
-  example('reply', NATIVE, { ios: REPLY_COMPACT, android: REPLY_COMPACT }),
-  example('markdown'),
-  example('list'),
-  example('animation'),
-  example('gesture'),
-  example('gradient', NATIVE, { android: ANDROID_CAPTURE }),
-  example('shape'),
-  example('icons'),
-  example('menu'),
-  example('picker', NATIVE, { android: ANDROID_CAPTURE }),
-  example('media_picker'),
-  example('snackbar'),
-  example('multi_window', NATIVE, { android: ANDROID_CAPTURE }),
-  example('locale'),
-  example('typography-rtl', NATIVE, { gtk: GTK_BLACK }),
-  example('hover'),
-  example('drag_drop'),
-  example('webview', WEBVIEW_BACKENDS, { android: ANDROID_CAPTURE }),
-  example('reminders'),
-  example('starfield', NATIVE, { android: ANDROID_CAPTURE }),
-  example('stress', NATIVE, { gtk: GTK_BLACK }),
-  example('edge_layout'),
-  example('edge_list'),
-  example('edge_text'),
-  example('waterkit_camera_filters', NATIVE, { ios: NO_CAMERA, macos: NO_CAMERA, android: NO_CAMERA, gtk: NO_CAMERA }),
-  example('chromium', MACOS_ONLY),
-  example('webview-cef', MACOS_ONLY),
+  ...demos.examples.map((id) => {
+    const capture = native[id] ?? { captured: NATIVE }
+    return example(id, [...capture.captured, 'hydrolysis'], capture.withheld)
+  }),
   example('liquid_glass', APPLE, {}, 'https://github.com/water-rs/apple-backend/tree/dev/Examples/liquid_glass'),
 ]
 

@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "WaterUI — Cross-platform UI for Rust",
-    "description": "Write once, apply everywhere. WaterUI is a UI framework for Rust: one view tree that becomes native controls on Apple platforms and Android, and is drawn on the GPU by its own renderer, Hydrolysis, everywhere else."
+    "description": "Write once, apply everywhere. WaterUI is a UI framework for Rust: one view tree that becomes native controls on Apple platforms and is drawn by its own renderer, Hydrolysis, everywhere else, Android included."
   },
   "nav": {
     "book": "Book",
@@ -24,8 +24,8 @@
   "hero": {
     "titleLine1": "Write once,",
     "titleLine2": "apply everywhere.",
-    "lead": "WaterUI is a UI framework for Rust. Write a view once: it becomes UIKit and AppKit controls on Apple platforms, Android Views on Android, and is drawn on the GPU by Hydrolysis everywhere else.",
-    "status": "Pre-1.0 · Officially supported: Apple, Android, Hydrolysis",
+    "lead": "WaterUI is a UI framework for Rust. Write a view once: it becomes UIKit and AppKit controls on Apple platforms, and Hydrolysis draws it on the GPU everywhere else, Android included.",
+    "status": "Pre-1.0 · Officially supported: Apple, Hydrolysis",
     "ctaStart": "Get started",
     "live": "Run an example here",
     "notes": {
@@ -204,7 +204,7 @@
   "gallery": {
     "label": "Examples",
     "title": "Same source, every toolkit.",
-    "lead": "Each example in the repository, captured by each backend's own end-to-end suite. Pick a backend and compare; examples marked Run start in this page on Hydrolysis.",
+    "lead": "Every example in the repository, captured on each backend. Under Hydrolysis, every one of them also runs right here in the page.",
     "backend": "Backend",
     "shotCount": "{{count}} captures",
     "withheld": "{{count}} examples are held back on this backend until their capture is correct.",
@@ -217,9 +217,9 @@
         "label": "macOS",
         "caption": "AppKit · Mac"
       },
-      "android": {
-        "label": "Android",
-        "caption": "Android Views · emulator"
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "WebGPU · in this browser"
       },
       "gtk": {
         "label": "GTK4",
@@ -261,7 +261,10 @@
       "waterkit_camera_filters": "Camera filters on a GPU surface",
       "chromium": "Chromium engine as a view",
       "webview-cef": "CEF-backed web view",
-      "liquid_glass": "iOS 26 Liquid Glass materials"
+      "liquid_glass": "iOS 26 Liquid Glass materials",
+      "anchored_overlay": "Overlays anchored to a view, flipped to stay on screen",
+      "keyboard_panel": "A composer that rides the keyboard's safe area",
+      "multi_scene": "Separate state for each scene of one app"
     },
     "viewAll": "All examples on GitHub",
     "runOne": "Run one from a checkout",
@@ -291,7 +294,7 @@
     "label": "Backends",
     "titleLine1": "Native where it counts.",
     "titleLine2": "Hydrolysis everywhere else.",
-    "lead": "Apple and Android map each view onto the platform's own controls. Hydrolysis draws the same view tree itself, on the GPU, wherever you ship.",
+    "lead": "Apple maps each view onto UIKit and AppKit. Hydrolysis draws the same view tree itself, on the GPU, everywhere else: Android, the desktop and the web.",
     "official": "Officially supported",
     "experimental": "Experimental",
     "experimentalNote": "Usable and tested nightly, but not yet held to the same bar.",
@@ -301,15 +304,10 @@
         "renders": "UIKit and AppKit",
         "platforms": "iOS, iPadOS, macOS"
       },
-      "android": {
-        "name": "Android",
-        "renders": "Android Views and Material Components",
-        "platforms": "Android"
-      },
       "hydrolysis": {
         "name": "Hydrolysis",
         "renders": "WaterUI's own GPU renderer, through wgpu",
-        "platforms": "macOS, Windows, Linux, web, Android"
+        "platforms": "Android, macOS, Windows, Linux, web"
       },
       "gtk": {
         "name": "GTK4",

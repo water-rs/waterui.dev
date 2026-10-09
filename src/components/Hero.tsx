@@ -4,7 +4,6 @@ import { Outline } from './outline'
 import Terminal from './Terminal'
 import { Caption, Frame, PrimaryLink, SecondaryLink } from './ui'
 import { lineOf } from './snippet'
-import { hasLiveDemos } from '../data/demos'
 import installCommand from '../snippets/install.sh?raw'
 import formSource from '../snippets/form.rs?raw'
 
@@ -25,7 +24,6 @@ type Capture = {
  */
 const captures: readonly Capture[] = [
   { id: 'ios', platform: 'iOS', realization: 'UIKit', image: '/examples/ios/form.webp', orientation: 'portrait' },
-  { id: 'android', platform: 'Android', realization: 'Android Views', image: '/examples/android/form.webp', orientation: 'portrait' },
   { id: 'hydrolysis', platform: 'Hydrolysis', realization: 'GPU · Material 3', image: '/examples/hydrolysis/form.webp', orientation: 'portrait' },
   { id: 'macos', platform: 'macOS', realization: 'AppKit', image: '/examples/macos/form.webp', orientation: 'landscape' },
 ]
@@ -83,7 +81,7 @@ export default function Hero() {
                   <PrimaryLink href="https://book.waterui.dev" external>
                     {t('hero.ctaStart')}
                   </PrimaryLink>
-                  {hasLiveDemos ? <SecondaryLink href="#examples">{t('hero.live')}</SecondaryLink> : null}
+                  <SecondaryLink href="#examples">{t('hero.live')}</SecondaryLink>
                 </div>
               </div>
             </div>

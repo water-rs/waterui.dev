@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "WaterUI — Rust のクロスプラットフォーム UI",
-    "description": "一度書けば、どこでも使える。WaterUI は Rust の UI フレームワークです。ひとつの view ツリーが Apple プラットフォームと Android ではネイティブコントロールになり、その他の環境では独自レンダラー Hydrolysis が GPU で描画します。"
+    "description": "一度書けば、どこでも動く。WaterUI は Rust の UI フレームワークです。ひとつの view ツリーが Apple プラットフォームではネイティブコントロールになり、Android を含むその他の環境では独自のレンダラー Hydrolysis が描画します。"
   },
   "nav": {
     "book": "ドキュメント",
@@ -24,8 +24,8 @@
   "hero": {
     "titleLine1": "一度書けば、",
     "titleLine2": "どこでも使える。",
-    "lead": "WaterUI は Rust の UI フレームワークです。view は一度書くだけで、Apple プラットフォームでは UIKit と AppKit のコントロールに、Android では Android Views になり、その他の環境では Hydrolysis が GPU で描画します。",
-    "status": "1.0 未満 · 公式サポート: Apple、Android、Hydrolysis",
+    "lead": "WaterUI は Rust の UI フレームワークです。view は一度書くだけで、Apple プラットフォームでは UIKit と AppKit のコントロールになり、Android を含むその他の環境では Hydrolysis が GPU で描画します。",
+    "status": "1.0 未満 · 公式サポート: Apple、Hydrolysis",
     "ctaStart": "はじめる",
     "live": "ここでサンプルを実行",
     "notes": {
@@ -204,7 +204,7 @@
   "gallery": {
     "label": "サンプル",
     "title": "同じソース、どのツールキットでも。",
-    "lead": "リポジトリのすべての例を、各バックエンド自身のエンドツーエンドテストで撮影しました。バックエンドを選んで比べてください。「実行」のある例は、このページで Hydrolysis を使って動きます。",
+    "lead": "リポジトリのすべての例を、各バックエンドで撮影しました。Hydrolysis では、どの例もこのページでそのまま動きます。",
     "backend": "バックエンド",
     "shotCount": "{{count}} 件",
     "withheld": "{{count}} 件のサンプルは、キャプチャが正しくなるまでこのバックエンドでは掲載を保留しています。",
@@ -217,9 +217,9 @@
         "label": "macOS",
         "caption": "AppKit · Mac"
       },
-      "android": {
-        "label": "Android",
-        "caption": "Android Views · エミュレータ"
+      "hydrolysis": {
+        "label": "Hydrolysis",
+        "caption": "WebGPU · このブラウザで実行"
       },
       "gtk": {
         "label": "GTK4",
@@ -261,7 +261,10 @@
       "waterkit_camera_filters": "GPU サーフェス上のカメラフィルター",
       "chromium": "ビューとしての Chromium エンジン",
       "webview-cef": "CEF ベースの Web ビュー",
-      "liquid_glass": "iOS 26 Liquid Glass マテリアル"
+      "liquid_glass": "iOS 26 Liquid Glass マテリアル",
+      "anchored_overlay": "view に固定され、画面内に収まるオーバーレイ",
+      "keyboard_panel": "キーボードのセーフエリアに沿う入力欄",
+      "multi_scene": "アプリのシーンごとに独立した状態"
     },
     "viewAll": "GitHub ですべてのサンプルを見る",
     "runOne": "チェックアウトから実行する",
@@ -291,7 +294,7 @@
     "label": "バックエンド",
     "titleLine1": "肝心なところはネイティブに。",
     "titleLine2": "あとは Hydrolysis が。",
-    "lead": "Apple と Android は各 view をプラットフォーム自身のコントロールに対応づけます。Hydrolysis は同じ view ツリーを GPU で自ら描画し、どこへでも届けます。",
+    "lead": "Apple は各 view を UIKit と AppKit に対応づけます。それ以外の Android、デスクトップ、Web では、Hydrolysis が同じ view ツリーを GPU で自ら描画します。",
     "official": "公式サポート",
     "experimental": "実験的",
     "experimentalNote": "利用可能で毎晩テストされていますが、まだ同じ水準には達していません。",
@@ -301,15 +304,10 @@
         "renders": "UIKit / AppKit",
         "platforms": "iOS、iPadOS、macOS"
       },
-      "android": {
-        "name": "Android",
-        "renders": "Android Views と Material Components",
-        "platforms": "Android"
-      },
       "hydrolysis": {
         "name": "Hydrolysis",
         "renders": "wgpu を通じた WaterUI 独自の GPU レンダラー",
-        "platforms": "macOS、Windows、Linux、Web、Android"
+        "platforms": "Android、macOS、Windows、Linux、Web"
       },
       "gtk": {
         "name": "GTK4",
