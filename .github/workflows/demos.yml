@@ -52,15 +52,15 @@ jobs:
           path: waterui
           sparse-checkout: examples
 
-      # The site lists the examples it runs, and apart from them the ones
-      # that embed a desktop browser engine and so cannot run in a browser;
-      # the pinned revision is the truth about which exist. A difference
-      # either way is an error.
+      # The site lists the examples it runs, those a waterui issue still
+      # keeps out of the browser, and those that embed a desktop browser
+      # engine; the pinned revision is the truth about which exist. A
+      # difference either way is an error.
       - name: Check the example list against the pinned revision
         run: |
           set -euo pipefail
           diff -u \
-            <(jq -r '.examples[], .desktopOnly[]' src/data/demos.json | sort) \
+            <(jq -r '.examples[], (.blocked | keys[]), .desktopOnly[]' src/data/demos.json | sort) \
             <(for manifest in waterui/examples/*/Water.toml; do basename "$(dirname "$manifest")"; done | sort)
 
       - name: Split the examples into build jobs

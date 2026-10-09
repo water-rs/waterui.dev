@@ -204,7 +204,7 @@
   "gallery": {
     "label": "Beispiele",
     "title": "Derselbe Quelltext, jedes Toolkit.",
-    "lead": "Jedes Beispiel im Repository, aufgenommen auf jedem Backend. Unter Hydrolysis laufen sie auch direkt auf dieser Seite.",
+    "lead": "Jedes Beispiel im Repository, aufgenommen auf jedem Backend. Unter Hydrolysis laufen sie direkt auf dieser Seite; die, bei denen es noch nicht geht, stehen mit dem Issue, das sie verfolgt, darunter.",
     "backend": "Backend",
     "shotCount": "{{count}} Aufnahmen",
     "withheld": "{{count}} Beispiele werden auf diesem Backend zurückgehalten, bis ihre Aufnahme korrekt ist.",
@@ -280,7 +280,8 @@
       "openFull": "Ganze Seite öffnen",
       "close": "Schließen"
     },
-    "desktopOnly": "{{list}} betten eine Desktop-Browser-Engine (CEF) ein und laufen daher mit Hydrolysis auf dem Desktop, aber nicht im Browser."
+    "desktopOnly": "{{list}} betten eine Desktop-Browser-Engine (CEF) ein und laufen daher mit Hydrolysis auf dem Desktop, aber nicht im Browser.",
+    "blocked": "Laufen noch nicht im Browser:"
   },
   "footer": {
     "book": "Handbuch",

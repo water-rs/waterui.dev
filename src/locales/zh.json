@@ -204,7 +204,7 @@
   "gallery": {
     "label": "示例",
     "title": "同一份源码，每个工具包。",
-    "lead": "仓库里的每个示例，在每个后端上截取。在 Hydrolysis 下，它们都能直接在本页运行。",
+    "lead": "仓库里的每个示例，在每个后端上截取。在 Hydrolysis 下，它们能直接在本页运行；暂时还不能运行的，列在下方并附上跟踪它的 issue。",
     "backend": "后端",
     "shotCount": "{{count}} 张截图",
     "withheld": "{{count}} 个示例在此后端上暂缓展示，直到截图正确为止。",
@@ -280,7 +280,8 @@
       "openFull": "打开完整页面",
       "close": "关闭"
     },
-    "desktopOnly": "{{list}} 内嵌桌面浏览器引擎（CEF），所以能在桌面版 Hydrolysis 上运行，但不能在浏览器里运行。"
+    "desktopOnly": "{{list}} 内嵌桌面浏览器引擎（CEF），所以能在桌面版 Hydrolysis 上运行，但不能在浏览器里运行。",
+    "blocked": "暂时还不能在浏览器中运行："
   },
   "footer": {
     "book": "文档",

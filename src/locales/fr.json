@@ -204,7 +204,7 @@
   "gallery": {
     "label": "Exemples",
     "title": "Même source, chaque boîte à outils.",
-    "lead": "Chaque exemple du dépôt, capturé sur chaque backend. Avec Hydrolysis, ils tournent aussi directement dans cette page.",
+    "lead": "Chaque exemple du dépôt, capturé sur chaque backend. Avec Hydrolysis, ils tournent directement dans cette page ; ceux qui ne le peuvent pas encore sont listés avec l'issue qui les suit.",
     "backend": "Backend",
     "shotCount": "{{count}} captures",
     "withheld": "{{count}} exemples sont retenus sur ce backend jusqu'à ce que leur capture soit correcte.",
@@ -280,7 +280,8 @@
       "openFull": "Ouvrir en pleine page",
       "close": "Fermer"
     },
-    "desktopOnly": "{{list}} embarquent un moteur de navigateur de bureau (CEF) : ils tournent avec Hydrolysis sur le bureau, mais pas dans un navigateur."
+    "desktopOnly": "{{list}} embarquent un moteur de navigateur de bureau (CEF) : ils tournent avec Hydrolysis sur le bureau, mais pas dans un navigateur.",
+    "blocked": "Ne tournent pas encore dans le navigateur :"
   },
   "footer": {
     "book": "Guide",

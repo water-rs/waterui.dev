@@ -88,16 +88,16 @@ const nativeCaptures = (id: string) => native[id] ?? { captured: NATIVE }
 
 /**
  * Every example of the pinned waterui revision: first the ones that also run
- * on Hydrolysis in the page, then the ones that embed a desktop browser engine
- * and so run only on desktop Hydrolysis, then the examples kept in other
- * repositories.
+ * on Hydrolysis in the page, then the ones a waterui issue still keeps out of
+ * the browser, then the ones that embed a desktop browser engine and so run
+ * only on desktop Hydrolysis, then the examples kept in other repositories.
  */
 export const examples: Example[] = [
   ...demos.examples.map((id) => {
     const capture = nativeCaptures(id)
     return example(id, [...capture.captured, 'hydrolysis'], capture.withheld)
   }),
-  ...demos.desktopOnly.map((id) => {
+  ...[...Object.keys(demos.blocked), ...demos.desktopOnly].map((id) => {
     const capture = nativeCaptures(id)
     return example(id, capture.captured, capture.withheld)
   }),
@@ -106,6 +106,12 @@ export const examples: Example[] = [
 
 /** The examples that cannot run in a browser: they embed a desktop browser engine. */
 export const desktopOnly: readonly string[] = demos.desktopOnly
+
+/** The examples a waterui issue still keeps out of the browser, with that issue. */
+export const blocked: readonly { id: string; issue: string }[] = Object.entries(demos.blocked).map(([id, issue]) => ({
+  id,
+  issue: `https://github.com/water-rs/waterui/issues/${issue}`,
+}))
 
 /** The `water preview` output shown in the previews section. */
 export const previewShot = {

@@ -204,7 +204,7 @@
   "gallery": {
     "label": "Examples",
     "title": "Same source, every toolkit.",
-    "lead": "Every example in the repository, captured on each backend. Under Hydrolysis, they also run right here in the page.",
+    "lead": "Every example in the repository, captured on each backend. Under Hydrolysis they run right here in the page; the ones that cannot yet are listed with the issue that tracks each.",
     "backend": "Backend",
     "shotCount": "{{count}} captures",
     "withheld": "{{count}} examples are held back on this backend until their capture is correct.",
@@ -280,7 +280,8 @@
       "openFull": "Open full page",
       "close": "Close"
     },
-    "desktopOnly": "{{list}} embed a desktop browser engine (CEF), so they run on desktop Hydrolysis but not in a browser."
+    "desktopOnly": "{{list}} embed a desktop browser engine (CEF), so they run on desktop Hydrolysis but not in a browser.",
+    "blocked": "Not running in the browser yet:"
   },
   "footer": {
     "book": "Book",

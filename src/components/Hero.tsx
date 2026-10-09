@@ -24,7 +24,7 @@ type Capture = {
  */
 const captures: readonly Capture[] = [
   { id: 'ios', platform: 'iOS', realization: 'UIKit', image: '/examples/ios/form.webp', orientation: 'portrait' },
-  { id: 'hydrolysis', platform: 'Hydrolysis', realization: 'GPU · Material 3', image: '/examples/hydrolysis/form.webp', orientation: 'portrait' },
+  { id: 'hydrolysis', platform: 'Hydrolysis', realization: 'WebGPU · Material 3', image: '/examples/hydrolysis/form.webp', orientation: 'landscape' },
   { id: 'macos', platform: 'macOS', realization: 'AppKit', image: '/examples/macos/form.webp', orientation: 'landscape' },
 ]
 
@@ -36,7 +36,7 @@ function CaptureFrame({ capture, alt }: { capture: Capture; alt: string }) {
   return (
     <figure className={capture.orientation === 'landscape' ? 'col-span-3 md:col-auto' : ''} style={{ flexGrow: aspect, flexBasis: 0 }}>
       <Outline label={capture.platform} className="bg-raised">
-        <img src={capture.image} alt={alt} className="block h-auto w-full" style={{ aspectRatio: aspect }} />
+        <img src={capture.image} alt={alt} className="block h-auto w-full object-cover object-top" style={{ aspectRatio: aspect }} />
       </Outline>
       <figcaption className="mt-1.5 font-mono text-[11px] text-ink-3">{capture.realization}</figcaption>
     </figure>
