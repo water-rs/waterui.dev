@@ -1,12 +1,15 @@
 {
-  "waterui": "6c9177484eaaa4c7030e65cb057cf81aeef59343",
+  "waterui": "3dc7dc5361d8cf7f9221e0abe89b3e056c2e490e",
   "examples": [
     "gallery",
     "form",
     "navigation",
+    "filter",
+    "reply",
     "list",
     "animation",
     "gesture",
+    "gradient",
     "shape",
     "icons",
     "menu",
@@ -14,14 +17,18 @@
     "snackbar",
     "multi_window",
     "locale",
+    "typography-rtl",
     "hover",
+    "drag_drop",
     "reminders",
     "starfield",
+    "stress",
     "anchored_overlay",
     "keyboard_panel",
     "multi_scene",
     "edge_layout",
-    "edge_list"
+    "edge_list",
+    "edge_text"
   ],
   "blocked": {
     "markdown": 1349,
@@ -29,14 +36,7 @@
     "video_player": 2314,
     "media_picker": 2314,
     "waterkit_camera_filters": 2314,
-    "reply": 2315,
     "webview": 2334,
-    "typography-rtl": 2331,
-    "edge_text": 2331,
-    "drag_drop": 2331,
-    "filter": 2340,
-    "gradient": 2340,
-    "stress": 2340,
     "map": 2341
   },
   "desktopOnly": [
