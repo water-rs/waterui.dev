@@ -1,9 +1,10 @@
 {
-  "waterui": "3dc7dc5361d8cf7f9221e0abe89b3e056c2e490e",
+  "waterui": "10ec47e48bc06f55ef58c1defab627b378721a21",
   "examples": [
     "gallery",
     "form",
     "navigation",
+    "video_player",
     "filter",
     "reply",
     "list",
@@ -14,6 +15,7 @@
     "icons",
     "menu",
     "picker",
+    "media_picker",
     "snackbar",
     "multi_window",
     "locale",
@@ -28,14 +30,12 @@
     "multi_scene",
     "edge_layout",
     "edge_list",
-    "edge_text"
+    "edge_text",
+    "waterkit_camera_filters"
   ],
   "blocked": {
     "markdown": 1349,
     "flow_markdown": 1349,
-    "video_player": 2314,
-    "media_picker": 2314,
-    "waterkit_camera_filters": 2314,
     "webview": 2334,
     "map": 2341
   },
