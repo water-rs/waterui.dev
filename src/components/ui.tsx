@@ -5,32 +5,24 @@ export function Frame({ children, className = '' }: { children: ReactNode; class
   return <div className={`mx-auto w-full max-w-[1280px] px-4 sm:px-8 ${className}`}>{children}</div>
 }
 
-/** A section's heading block: its number and name in the readout face, then the statement and the lead. */
-export function Heading({ number, label, title, lead, className = '' }: { number: string; label: string; title: ReactNode; lead?: ReactNode; className?: string }) {
+/** A section's heading block: its name as an eyebrow, then the statement and the lead. */
+export function Heading({ label, title, lead, className = '' }: { label: string; title: ReactNode; lead?: ReactNode; className?: string }) {
   return (
-    <header className={`grid gap-6 md:grid-cols-12 md:gap-8 ${className}`}>
-      <p className="font-mono text-[12px] text-ink-2 md:col-span-3 md:pt-3">
-        <span className="mr-2 text-guide">{number}</span>
-        {label}
-      </p>
-      <div className="md:col-span-9">
-        <h2 className="display text-[clamp(38px,6vw,84px)]">{title}</h2>
-        {lead === undefined ? null : <p className="mt-6 max-w-[48ch] text-[clamp(18px,1.6vw,21px)] leading-[1.45] text-ink-2">{lead}</p>}
-      </div>
+    <header className={className}>
+      <p className="text-[17px] font-semibold text-guide">{label}</p>
+      <h2 className="display mt-4 text-[clamp(40px,6vw,84px)]">{title}</h2>
+      {lead === undefined ? null : <p className="mt-6 max-w-[46ch] text-[clamp(19px,1.7vw,22px)] leading-[1.45] text-ink-2">{lead}</p>}
     </header>
   )
 }
 
-/** A figure caption: a short mono tag, the caption, and an optional note on the right. */
-export function Caption({ tag, children, note, className = '' }: { tag?: string; children: ReactNode; note?: ReactNode; className?: string }) {
+/** A figure caption, with an optional status in front of it (an interactive figure's live readout). */
+export function Caption({ status, children, className = '' }: { status?: string; children: ReactNode; className?: string }) {
   return (
-    <div className={`flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-2.5 ${className}`}>
-      <p className="text-[13.5px] leading-5 text-ink-2">
-        {tag === undefined ? null : <span className="mr-2 font-mono text-[11.5px] text-ink-3">{tag}</span>}
-        {children}
-      </p>
-      {note === undefined ? null : <p className="font-mono text-[11.5px] leading-5 text-ink-3">{note}</p>}
-    </div>
+    <p className={`pt-3 text-[15px] leading-relaxed text-ink-2 ${className}`}>
+      {status === undefined ? null : <span className="mr-2 font-semibold text-guide">{status}</span>}
+      {children}
+    </p>
   )
 }
 
@@ -51,5 +43,18 @@ export function SecondaryLink({ href, children, external = false }: { href: stri
     <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined} className={`${button} border border-ink/80 hover:border-guide hover:text-guide`}>
       {children}
     </a>
+  )
+}
+
+/** A point in a list of claims: its icon in a tinted tile, the title, and optionally a line or two of body. */
+export function Point({ icon, title, children, className = '' }: { icon: ReactNode; title: ReactNode; children?: ReactNode; className?: string }) {
+  return (
+    <li className={`flex gap-4 ${children === undefined ? 'items-center' : ''} ${className}`}>
+      <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-guide-soft text-guide">{icon}</span>
+      <div>
+        <h3 className="text-[18px] leading-snug font-semibold tracking-[-0.01em]">{title}</h3>
+        {children === undefined ? null : <p className="mt-1 text-[16px] leading-relaxed text-ink-2">{children}</p>}
+      </div>
+    </li>
   )
 }

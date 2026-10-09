@@ -1,10 +1,21 @@
 import { useState } from 'react'
+import { Accessibility, Braces, Gauge, Layers, MonitorSmartphone, Palette, SunMedium, Waves } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Outline } from './outline'
-import { Caption, Frame, Heading } from './ui'
+import { Caption, Frame, Heading, Point } from './ui'
 
-const hydrolysisPoints = ['gpu', 'platforms', 'frames', 'accessibility', 'themes'] as const
-const cherenkovPoints = ['slots', 'animation', 'colour'] as const
+const hydrolysisPoints = [
+  { id: 'gpu', icon: <Layers size={21} aria-hidden /> },
+  { id: 'platforms', icon: <MonitorSmartphone size={21} aria-hidden /> },
+  { id: 'frames', icon: <Gauge size={21} aria-hidden /> },
+  { id: 'accessibility', icon: <Accessibility size={21} aria-hidden /> },
+  { id: 'themes', icon: <Palette size={21} aria-hidden /> },
+] as const
+const cherenkovPoints = [
+  { id: 'slots', icon: <Braces size={21} aria-hidden /> },
+  { id: 'animation', icon: <Waves size={21} aria-hidden /> },
+  { id: 'colour', icon: <SunMedium size={21} aria-hidden /> },
+] as const
 
 /** A display list as Cherenkov records it; `$radius` marks the commands that read the bound value. */
 const COMMANDS = [
@@ -75,7 +86,7 @@ function SlotFigure() {
           </ol>
         </Outline>
       </div>
-      <Caption tag={t('engine.figure.tag', { count: regenerated, total: COMMANDS.length })}>{t('engine.figure.caption')}</Caption>
+      <Caption status={t('engine.figure.tag', { count: regenerated, total: COMMANDS.length })}>{t('engine.figure.caption')}</Caption>
     </figure>
   )
 }
@@ -86,43 +97,37 @@ export default function Engine() {
   return (
     <section id="engine" className="band-dark py-20 md:py-28">
       <Frame>
-        <Heading number="03" label={t('engine.label')} title={t('engine.title')} lead={t('engine.lead')} />
+        <Heading label={t('engine.label')} title={t('engine.title')} lead={t('engine.lead')} />
 
         <div className="mt-14 grid gap-14 md:mt-20 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
-            <p className="font-mono text-[12px] text-ink-2">Hydrolysis</p>
-            <ul className="mt-4 border-t border-ink">
+            <h3 className="display text-[clamp(30px,3.6vw,48px)]">Hydrolysis</h3>
+            <ul className="mt-8 flex flex-col gap-5">
               {hydrolysisPoints.map((point) => (
-                <li key={point} className="border-b border-rule py-4">
-                  <h3 className="text-[17px] font-semibold tracking-[-0.01em]">{t(`engine.hydrolysis.${point}.title`)}</h3>
-                  <p className="mt-1 text-[15px] leading-relaxed text-ink-2">{t(`engine.hydrolysis.${point}.body`)}</p>
-                </li>
+                <Point key={point.id} icon={point.icon} title={t(`engine.hydrolysis.${point.id}.title`)} />
               ))}
             </ul>
-            <a href="https://github.com/water-rs/waterui/tree/dev/backends/hydrolysis" target="_blank" rel="noopener noreferrer" className="mt-5 inline-block font-mono text-[12.5px] underline underline-offset-4 hover:text-guide">
+            <a href="https://github.com/water-rs/waterui/tree/dev/backends/hydrolysis" target="_blank" rel="noopener noreferrer" className="mt-8 inline-block text-[16px] font-semibold underline underline-offset-4 hover:text-guide">
               backends/hydrolysis ↗
             </a>
           </div>
 
           <div className="lg:col-span-8">
-            <p className="font-mono text-[12px] text-ink-2">Cherenkov</p>
-            <h3 className="display mt-4 text-[clamp(30px,3.6vw,48px)]">{t('engine.cherenkov.title')}</h3>
-            <p className="mt-4 max-w-[56ch] text-[17px] leading-relaxed text-ink-2">{t('engine.cherenkov.lead')}</p>
+            <h3 className="display text-[clamp(30px,3.6vw,48px)]">{t('engine.cherenkov.title')}</h3>
+            <p className="mt-4 max-w-[52ch] text-[18px] leading-relaxed text-ink-2">{t('engine.cherenkov.lead')}</p>
             <div className="mt-10">
               <SlotFigure />
             </div>
-            <ol className="mt-10 grid gap-8 sm:grid-cols-3 sm:gap-6">
-              {cherenkovPoints.map((point, index) => (
-                <li key={point} className="border-t border-ink pt-4">
-                  <p className="font-mono text-[12px] text-guide">0{index + 1}</p>
-                  <h4 className="mt-2 text-[17px] font-semibold tracking-[-0.01em]">{t(`engine.cherenkov.points.${point}.title`)}</h4>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-ink-2">{t(`engine.cherenkov.points.${point}.body`)}</p>
-                </li>
+            <ul className="mt-12 grid gap-8 md:grid-cols-3 md:gap-6">
+              {cherenkovPoints.map((point) => (
+                <Point key={point.id} icon={point.icon} title={t(`engine.cherenkov.points.${point.id}.title`)} className="flex-col">
+                  {t(`engine.cherenkov.points.${point.id}.body`)}
+                </Point>
               ))}
-            </ol>
-            <p className="mt-10 border-t border-rule pt-4 text-[14.5px] leading-relaxed text-ink-2">
+            </ul>
+            <p className="mt-12 border-t border-rule pt-5 text-[16px] leading-relaxed text-ink-2">
               {t('engine.cherenkov.status')}{' '}
-              <a href="https://github.com/water-rs/waterui/tree/dev/graphics/cherenkov" target="_blank" rel="noopener noreferrer" className="font-mono text-[12.5px] whitespace-nowrap text-ink underline underline-offset-4 hover:text-guide">
+              <a href="https://github.com/water-rs/waterui/tree/dev/graphics/cherenkov" target="_blank" rel="noopener noreferrer" className="font-semibold whitespace-nowrap text-ink underline underline-offset-4 hover:text-guide">
                 graphics/cherenkov ↗
               </a>
             </p>

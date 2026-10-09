@@ -28,19 +28,9 @@
     "status": "1.0 이전 · 공식 지원: Apple, Hydrolysis",
     "ctaStart": "시작하기",
     "live": "여기서 예제 실행",
-    "notes": {
-      "derive": "필드당 하나의 컨트롤",
-      "binding": "폼의 상태",
-      "render": "각 백엔드에서 네이티브"
-    },
     "captureAlt": "{{platform}}에서 렌더링된 폼 예제",
     "figure": "하나의 struct를 공식 지원되는 각 백엔드가 렌더링한 것입니다. 목업이 아니라 실제 캡처입니다.",
-    "quickStart": "빠른 시작",
-    "steps": {
-      "install": "CLI 설치",
-      "create": "프로젝트 만들기",
-      "run": "이 머신에서 실행"
-    }
+    "quickStart": "빠른 시작"
   },
   "state": {
     "label": "상태",
@@ -52,7 +42,6 @@
       "writer": "count를 씀",
       "collection": "id로 diff"
     },
-    "figureContacts": "아이덴티티를 키로 쓰는 컬렉션",
     "points": {
       "binding": {
         "title": "Binding<T>는 가변 상태",
@@ -67,7 +56,6 @@
         "body": "List나 ForEach에 Identifiable 항목의 반응형 컬렉션을 주면 멤버 변화가 id 기준으로 diff됩니다."
       }
     },
-    "figureCounter": "그림의 카운터: Binding 하나, 읽는 쪽 하나, 쓰는 쪽 하나.",
     "figure": {
       "model": "업데이트 모델",
       "models": {
@@ -150,39 +138,37 @@
     "kit": {
       "title": "WaterKit",
       "lead": "UI 주변의 플랫폼 서비스. 기능마다 하나의 Rust API, 플랫폼마다 네이티브 구현.",
-      "items": [
-        "카메라",
-        "위치",
-        "알림",
-        "권한",
-        "생체 인증",
-        "패스키",
-        "Bluetooth",
-        "NFC",
-        "햅틱",
-        "클립보드",
-        "연락처",
-        "캘린더",
-        "건강",
-        "센서",
-        "보안 저장소",
-        "공유 시트",
-        "음성",
-        "딥링크",
-        "대화상자",
-        "파일 시스템",
-        "오디오",
-        "비디오",
-        "화면",
-        "백그라운드 작업",
-        "시스템 정보"
-      ],
-      "figure": "WaterKit, 기능마다 하나의 Rust API"
+      "items": {
+        "camera": "카메라",
+        "location": "위치",
+        "notifications": "알림",
+        "permissions": "권한",
+        "biometrics": "생체 인증",
+        "passkeys": "패스키",
+        "bluetooth": "Bluetooth",
+        "nfc": "NFC",
+        "haptics": "햅틱",
+        "clipboard": "클립보드",
+        "contacts": "연락처",
+        "calendar": "캘린더",
+        "health": "건강",
+        "sensors": "센서",
+        "secureStorage": "보안 저장소",
+        "share": "공유 시트",
+        "speech": "음성",
+        "deepLinks": "딥링크",
+        "dialogs": "대화상자",
+        "fileSystem": "파일 시스템",
+        "audio": "오디오",
+        "video": "비디오",
+        "screen": "화면",
+        "backgroundTasks": "백그라운드 작업",
+        "systemInfo": "시스템 정보"
+      }
     },
     "testing": {
       "title": "테스트",
       "lead": "접근성 우선 테스트가 평범한 cargo test에서 Hydrolysis 렌더러를 상대로 실행됩니다. 시뮬레이터도 기기도 필요 없습니다. 상호작용 자체가 단언이며, 모든 대기는 sleep 대신 런타임이 완전히 멈출 때까지 펌프합니다.",
-      "figure": "cargo test로 실행되는 시맨틱 테스트",
       "notes": {
         "mount": "뷰를 헤드리스로 마운트",
         "query": "접근성 레이블로 찾음",
@@ -297,19 +283,16 @@
     "titleLine1": "중요한 곳은 네이티브로.",
     "titleLine2": "나머지는 Hydrolysis로.",
     "lead": "Apple은 각 뷰를 UIKit와 AppKit에 대응시킵니다. 그 외 Android, 데스크톱, 웹에서는 Hydrolysis가 같은 뷰 트리를 GPU로 직접 그립니다.",
-    "official": "공식 지원",
     "experimental": "실험적",
     "experimentalNote": "사용 가능하고 매일 밤 테스트되지만, 아직 같은 기준을 요구하지는 않습니다.",
     "items": {
       "apple": {
         "name": "Apple",
-        "renders": "UIKit / AppKit",
-        "platforms": "iOS, iPadOS, macOS"
+        "renders": "UIKit / AppKit"
       },
       "hydrolysis": {
         "name": "Hydrolysis",
-        "renders": "wgpu를 통한 WaterUI 자체 GPU 렌더러",
-        "platforms": "Android, macOS, Windows, Linux, 웹"
+        "renders": "wgpu를 통한 WaterUI 자체 GPU 렌더러"
       },
       "gtk": {
         "name": "GTK4",
@@ -329,24 +312,19 @@
     "lead": "WaterUI 자체 렌더러입니다. 유지되는 뷰 트리 전체를 GPU로 그립니다. 하나의 코드베이스로, 대응할 네이티브 툴킷이 없는 곳이나 굳이 쓰고 싶지 않은 곳 어디에서나.",
     "hydrolysis": {
       "gpu": {
-        "title": "트리 전체를 GPU로",
-        "body": "모든 뷰가 wgpu를 통해 그려집니다. 조용히 대신하는 CPU 폴백은 없습니다."
+        "title": "트리 전체를 GPU로"
       },
       "platforms": {
-        "title": "데스크톱, 웹, Android",
-        "body": "macOS, Windows, Linux 창, WebGPU를 통한 브라우저, 그리고 자체 호스트를 통한 Android."
+        "title": "데스크톱, 웹, Android"
       },
       "frames": {
-        "title": "120 Hz 예산",
-        "body": "프레임은 120 Hz 디스플레이를 기준으로 예산이 잡혀 있고, 바꿀 것이 없는 창은 아무것도 그리지 않습니다."
+        "title": "120 Hz 예산"
       },
       "accessibility": {
-        "title": "접근성 트리로 테스트",
-        "body": "waterui-testing은 Hydrolysis가 만드는 접근성 트리를 쿼리하므로, 모든 UI 테스트가 곧 접근성 테스트입니다."
+        "title": "접근성 트리로 테스트"
       },
       "themes": {
-        "title": "테마는 패키지",
-        "body": "Hydrolysis 자체는 위젯 스타일을 갖지 않습니다. Material 3는 별도 패키지로 제공됩니다."
+        "title": "테마는 패키지"
       }
     },
     "cherenkov": {

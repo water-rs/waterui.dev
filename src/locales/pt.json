@@ -28,19 +28,9 @@
     "status": "Pré-1.0 · Suporte oficial: Apple, Hydrolysis",
     "ctaStart": "Começar",
     "live": "Rodar um exemplo aqui",
-    "notes": {
-      "derive": "um controle por campo",
-      "binding": "o estado do formulário",
-      "render": "nativo em cada backend"
-    },
     "captureAlt": "O exemplo form renderizado em {{platform}}",
     "figure": "Uma struct, renderizada por cada backend com suporte oficial. São capturas do exemplo, não mockups.",
-    "quickStart": "Início rápido",
-    "steps": {
-      "install": "Instalar a CLI",
-      "create": "Criar um projeto",
-      "run": "Executar nesta máquina"
-    }
+    "quickStart": "Início rápido"
   },
   "state": {
     "label": "Estado",
@@ -52,7 +42,6 @@
       "writer": "escreve count",
       "collection": "comparado por id"
     },
-    "figureContacts": "Uma coleção indexada por identidade",
     "points": {
       "binding": {
         "title": "Binding<T> é estado mutável",
@@ -67,7 +56,6 @@
         "body": "Dê a List ou ForEach uma coleção reativa de itens Identifiable, e as mudanças de membros são comparadas por id."
       }
     },
-    "figureCounter": "O contador da figura: um Binding, um leitor, um escritor.",
     "figure": {
       "model": "Modelo de atualização",
       "models": {
@@ -150,39 +138,37 @@
     "kit": {
       "title": "WaterKit",
       "lead": "Os serviços de plataforma ao redor da interface: uma API Rust por capacidade, uma implementação nativa por plataforma.",
-      "items": [
-        "Câmera",
-        "Localização",
-        "Notificações",
-        "Permissões",
-        "Biometria",
-        "Passkeys",
-        "Bluetooth",
-        "NFC",
-        "Háptica",
-        "Área de transferência",
-        "Contatos",
-        "Calendário",
-        "Saúde",
-        "Sensores",
-        "Armazenamento seguro",
-        "Folha de compartilhamento",
-        "Voz",
-        "Deep links",
-        "Diálogos",
-        "Sistema de arquivos",
-        "Áudio",
-        "Vídeo",
-        "Tela",
-        "Tarefas em segundo plano",
-        "Informações do sistema"
-      ],
-      "figure": "WaterKit, uma API Rust por recurso"
+      "items": {
+        "camera": "Câmera",
+        "location": "Localização",
+        "notifications": "Notificações",
+        "permissions": "Permissões",
+        "biometrics": "Biometria",
+        "passkeys": "Passkeys",
+        "bluetooth": "Bluetooth",
+        "nfc": "NFC",
+        "haptics": "Háptica",
+        "clipboard": "Área de transferência",
+        "contacts": "Contatos",
+        "calendar": "Calendário",
+        "health": "Saúde",
+        "sensors": "Sensores",
+        "secureStorage": "Armazenamento seguro",
+        "share": "Folha de compartilhamento",
+        "speech": "Voz",
+        "deepLinks": "Deep links",
+        "dialogs": "Diálogos",
+        "fileSystem": "Sistema de arquivos",
+        "audio": "Áudio",
+        "video": "Vídeo",
+        "screen": "Tela",
+        "backgroundTasks": "Tarefas em segundo plano",
+        "systemInfo": "Informações do sistema"
+      }
     },
     "testing": {
       "title": "Testes",
       "lead": "Testes baseados em acessibilidade rodam em um cargo test comum contra o renderizador Hydrolysis. Sem simulador, sem dispositivo. Interações são asserções, e toda espera bombeia até o repouso em vez de dormir.",
-      "figure": "Um teste semântico, executado por cargo test",
       "notes": {
         "mount": "monta a view sem tela",
         "query": "encontra-a pelo rótulo acessível",
@@ -297,19 +283,16 @@
     "titleLine1": "Nativo onde importa.",
     "titleLine2": "Hydrolysis em todo o resto.",
     "lead": "A Apple mapeia cada view para UIKit e AppKit. O Hydrolysis desenha a mesma árvore de views por conta própria, na GPU, em todos os outros lugares: Android, desktop e web.",
-    "official": "Suporte oficial",
     "experimental": "Experimental",
     "experimentalNote": "Utilizáveis e testados todas as noites, mas ainda não mantidos no mesmo padrão.",
     "items": {
       "apple": {
         "name": "Apple",
-        "renders": "UIKit e AppKit",
-        "platforms": "iOS, iPadOS, macOS"
+        "renders": "UIKit e AppKit"
       },
       "hydrolysis": {
         "name": "Hydrolysis",
-        "renders": "O renderizador de GPU do próprio WaterUI, via wgpu",
-        "platforms": "Android, macOS, Windows, Linux, web"
+        "renders": "O renderizador de GPU do próprio WaterUI, via wgpu"
       },
       "gtk": {
         "name": "GTK4",
@@ -329,24 +312,19 @@
     "lead": "O renderizador do próprio WaterUI. Ele desenha a árvore de views retida inteira na GPU, a partir de um único código, onde não há toolkit nativo para mapear, ou onde você prefere não usar um.",
     "hydrolysis": {
       "gpu": {
-        "title": "A árvore inteira, na GPU",
-        "body": "Toda view é desenhada via wgpu. Não há fallback para CPU assumindo em silêncio."
+        "title": "A árvore inteira, na GPU"
       },
       "platforms": {
-        "title": "Desktop, web e Android",
-        "body": "Janelas no macOS, Windows e Linux, o navegador via WebGPU e o Android por meio do seu próprio host."
+        "title": "Desktop, web e Android"
       },
       "frames": {
-        "title": "Orçamento para 120 Hz",
-        "body": "Os frames são orçados para telas de 120 Hz, e uma janela sem nada para mudar não desenha nada."
+        "title": "Orçamento para 120 Hz"
       },
       "accessibility": {
-        "title": "Testado pela árvore de acessibilidade",
-        "body": "O waterui-testing consulta a árvore de acessibilidade que o Hydrolysis constrói, então todo teste de UI também é um teste de acessibilidade."
+        "title": "Testado pela árvore de acessibilidade"
       },
       "themes": {
-        "title": "Temas são pacotes",
-        "body": "O Hydrolysis não traz estilo de widget próprio. O Material 3 é distribuído como um pacote separado."
+        "title": "Temas são pacotes"
       }
     },
     "cherenkov": {

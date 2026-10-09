@@ -32,13 +32,13 @@ type CodeProps = {
 export default function Code({ code, language, title, notes = [], className = '' }: CodeProps) {
   return (
     <figure className={`border border-rule bg-raised ${className}`}>
-      <figcaption className="flex items-center justify-between border-b border-rule px-3 py-1.5 font-mono text-[11.5px] text-ink-2">
+      <figcaption className="flex items-center justify-between border-b border-rule px-3 py-2 font-mono text-[12.5px] text-ink-2">
         <span>{title}</span>
         <span aria-hidden>{language}</span>
       </figcaption>
       <Highlight theme={theme} code={code.trimEnd()} language={language}>
         {({ className: highlightClass, style, tokens, getLineProps, getTokenProps }) => (
-          <pre className={`${highlightClass} overflow-x-auto py-3 font-mono text-[12.5px] leading-[1.7] md:text-[13px]`} style={style}>
+          <pre className={`${highlightClass} overflow-x-auto py-3 font-mono text-[13px] leading-[1.7] md:text-[14px]`} style={style}>
             {tokens.map((line, index) => {
               const note = notes.find((candidate) => candidate.line === index + 1)
               return (
