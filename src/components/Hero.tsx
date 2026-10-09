@@ -1,106 +1,84 @@
 import { useTranslation } from 'react-i18next'
-import Code from './Code'
-import { Outline } from './outline'
 import Terminal from './Terminal'
-import { Caption, Frame, PrimaryLink, SecondaryLink } from './ui'
-import { lineOf } from './snippet'
+import { Browser, Laptop, Phone, Stage } from './Devices'
+import { PlatformIcon, type PlatformId } from './icons'
+import { Frame, PrimaryLink, SecondaryLink } from './ui'
 import installCommand from '../snippets/install.sh?raw'
-import formSource from '../snippets/form.rs?raw'
 
-type Capture = {
-  id: string
-  /** The platform and the toolkit or renderer that drew the frame. */
-  platform: string
-  realization: string
-  image: string
-  /** Portrait frames are cropped to the form; the desktop window is shown whole. */
-  orientation: 'portrait' | 'landscape'
-}
+/** The `form` example's settled first frame on each device, each drawn by the backend that ships there. */
+const captures = {
+  ios: { src: '/examples/ios/form.webp', aspect: 1206 / 2622 },
+  android: { src: '/hero/android-form.webp', aspect: 960 / 2142 },
+  macos: { src: '/examples/macos/form.webp', aspect: 800 / 632 },
+  web: { src: '/examples/hydrolysis/form.webp', aspect: 800 / 600 },
+} as const
 
-/**
- * The `form` example's settled first frame on each officially supported
- * backend: the native backends' end-to-end captures, and Hydrolysis's own
- * render of the same example.
- */
-const captures: readonly Capture[] = [
-  { id: 'ios', platform: 'iOS', realization: 'UIKit', image: '/examples/ios/form.webp', orientation: 'portrait' },
-  { id: 'hydrolysis', platform: 'Hydrolysis', realization: 'WebGPU · Material 3', image: '/examples/hydrolysis/form.webp', orientation: 'landscape' },
-  { id: 'macos', platform: 'macOS', realization: 'AppKit', image: '/examples/macos/form.webp', orientation: 'landscape' },
+/** Each device of the stage, left to right, with the platform it stands for and the backend that drew it. */
+const devices: { id: keyof typeof captures; icon: PlatformId; platform: string; backend: string }[] = [
+  { id: 'ios', icon: 'apple', platform: 'iOS', backend: 'UIKit' },
+  { id: 'android', icon: 'android', platform: 'Android', backend: 'Hydrolysis' },
+  { id: 'macos', icon: 'apple', platform: 'macOS', backend: 'AppKit' },
+  { id: 'web', icon: 'web', platform: 'Web', backend: 'Hydrolysis' },
 ]
-
-/** The capture's own aspect ratio; the strip sizes every frame to one height by giving each a matching flex share. */
-const ASPECT: Record<Capture['orientation'], number> = { portrait: 402 / 874, landscape: 800 / 632 }
-
-function CaptureFrame({ capture, alt }: { capture: Capture; alt: string }) {
-  const aspect = ASPECT[capture.orientation]
-  return (
-    <figure className={capture.orientation === 'landscape' ? 'col-span-3 md:col-auto' : ''} style={{ flexGrow: aspect, flexBasis: 0 }}>
-      <Outline label={capture.platform} className="bg-raised">
-        <img src={capture.image} alt={alt} className="block h-auto w-full object-cover object-top" style={{ aspectRatio: aspect }} />
-      </Outline>
-      <figcaption className="mt-1.5 font-mono text-[11px] text-ink-3">{capture.realization}</figcaption>
-    </figure>
-  )
-}
 
 export default function Hero() {
   const { t } = useTranslation()
   const steps = [
-    { id: 'install', label: t('hero.steps.install'), command: installCommand.trim() },
-    { id: 'create', label: t('hero.steps.create'), command: 'water create counter' },
-    { id: 'run', label: t('hero.steps.run'), command: 'cd counter && water run' },
+    { id: 'install', command: installCommand.trim() },
+    { id: 'create', command: 'water create counter' },
+    { id: 'run', command: 'cd counter && water run' },
   ]
-
-  const notes = [
-    { line: lineOf(formSource, '#[form]'), text: t('hero.notes.derive') },
-    { line: lineOf(formSource, '::binding()'), text: t('hero.notes.binding') },
-    { line: lineOf(formSource, 'form(&registration)'), text: t('hero.notes.render') },
-  ]
+  const capture = (id: keyof typeof captures) => ({
+    ...captures[id],
+    alt: t('hero.captureAlt', { platform: devices.find((device) => device.id === id)?.platform }),
+  })
 
   return (
-    <section id="top" className="pt-4 pb-20 md:pt-8 md:pb-28">
+    <section id="top" className="overflow-hidden pt-10 pb-20 md:pt-16 md:pb-28">
       <Frame>
-        <Outline className="flex flex-col gap-10 p-4 pt-10 sm:p-8 sm:pt-12 md:gap-16 md:p-12 md:pt-14">
-          <div>
-            <h1 className="display text-[clamp(48px,8.6vw,128px)]">
-              {t('hero.titleLine1')}
-              <br />
-              {t('hero.titleLine2')}
-            </h1>
-          </div>
+        <h1 className="display text-[clamp(52px,9vw,136px)]">
+          {t('hero.titleLine1')}
+          <br />
+          {t('hero.titleLine2')}
+        </h1>
 
-          <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
-            <div className="flex flex-col gap-8 lg:w-[42%] lg:shrink-0">
-              <div>
-                <p className="text-[clamp(19px,1.7vw,22px)] leading-[1.42]">{t('hero.lead')}</p>
-                <p className="mt-4 font-mono text-[12px] text-ink-2">{t('hero.status')}</p>
-              </div>
-              <div className="flex flex-col gap-5">
-                <Terminal commands={steps} title={t('hero.quickStart')} />
-                <div className="flex flex-wrap gap-3">
-                  <PrimaryLink href="https://book.waterui.dev" external>
-                    {t('hero.ctaStart')}
-                  </PrimaryLink>
-                  <SecondaryLink href="#examples">{t('hero.live')}</SecondaryLink>
-                </div>
-              </div>
-            </div>
-            <div className="flex-1">
-              <Code code={formSource} language="rust" title="examples/form/src/lib.rs" notes={notes} />
+        <div className="mt-10 grid gap-10 md:mt-14 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-6">
+            <p className="text-[clamp(20px,1.9vw,24px)] leading-[1.4]">{t('hero.lead')}</p>
+            <p className="mt-5 text-[15px] text-ink-2">{t('hero.status')}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <PrimaryLink href="https://book.waterui.dev" external>
+                {t('hero.ctaStart')}
+              </PrimaryLink>
+              <SecondaryLink href="#examples">{t('hero.live')}</SecondaryLink>
             </div>
           </div>
+          <div className="lg:col-span-6">
+            <Terminal commands={steps} title={t('hero.quickStart')} />
+          </div>
+        </div>
 
-          <figure>
-            <div className="grid grid-cols-3 gap-x-3 gap-y-5 sm:gap-x-4 md:flex md:items-start md:gap-4">
-              {captures.map((capture) => (
-                <CaptureFrame key={capture.id} capture={capture} alt={t('hero.captureAlt', { platform: capture.platform })} />
+        <figure className="mt-16 md:mt-24">
+          {/* Wide screens set the four devices side by side; phones stack the phones in front, larger. */}
+          <Stage className="aspect-[100/112] sm:aspect-[100/64]">
+            <Laptop capture={capture('macos')} className="top-0 left-[6cqw] w-[88cqw] sm:left-[17cqw] sm:w-[66cqw]" />
+            <Browser capture={capture('web')} url="waterui.dev/demo/form" className="top-[40cqw] left-[38cqw] w-[62cqw] sm:top-[29cqw] sm:left-[58cqw] sm:w-[42cqw]" />
+            <Phone capture={capture('ios')} className="top-[38cqw] left-[1cqw] w-[29cqw] sm:top-[18cqw] sm:left-[1cqw] sm:w-[17cqw]" />
+            <Phone capture={capture('android')} camera className="top-[42cqw] left-[32cqw] w-[29cqw] sm:top-[26cqw] sm:left-[20cqw] sm:w-[17cqw]" />
+          </Stage>
+          <figcaption className="mt-8 flex flex-col items-center gap-5 md:mt-10">
+            <ul className="flex flex-wrap justify-center gap-2.5">
+              {devices.map((device) => (
+                <li key={device.id} className="flex items-center gap-2 rounded-full border border-rule bg-raised py-1.5 pr-4 pl-3 text-[15px]">
+                  <PlatformIcon id={device.icon} size={17} />
+                  <span className="font-semibold">{device.platform}</span>
+                  <span className="text-ink-2">{device.backend}</span>
+                </li>
               ))}
-            </div>
-            <Caption tag="form" className="mt-4 border-t border-rule">
-              {t('hero.figure')}
-            </Caption>
-          </figure>
-        </Outline>
+            </ul>
+            <p className="max-w-[60ch] text-center text-[15px] text-ink-2">{t('hero.figure')}</p>
+          </figcaption>
+        </figure>
       </Frame>
     </section>
   )

@@ -28,19 +28,9 @@
     "status": "1.0 之前 · 官方支持：Apple、Hydrolysis",
     "ctaStart": "开始使用",
     "live": "在这里运行一个示例",
-    "notes": {
-      "derive": "每个字段一个控件",
-      "binding": "表单的状态",
-      "render": "在每个后端上原生呈现"
-    },
     "captureAlt": "表单示例在 {{platform}} 上的渲染效果",
     "figure": "一个 struct，由每个官方支持的后端渲染。这些是示例的真实截图，不是示意图。",
-    "quickStart": "快速开始",
-    "steps": {
-      "install": "安装 CLI",
-      "create": "创建项目",
-      "run": "在本机运行"
-    }
+    "quickStart": "快速开始"
   },
   "state": {
     "label": "状态",
@@ -52,7 +42,6 @@
       "writer": "写入 count",
       "collection": "按 id 比对"
     },
-    "figureContacts": "以标识为键的集合",
     "points": {
       "binding": {
         "title": "Binding<T> 是可变状态",
@@ -67,7 +56,6 @@
         "body": "把 Identifiable 元素组成的响应式集合交给 List 或 ForEach，成员变化会按 id 比对。"
       }
     },
-    "figureCounter": "图中的计数器：一个 Binding，一个读取者，一个写入者。",
     "figure": {
       "model": "更新模型",
       "models": {
@@ -150,39 +138,37 @@
     "kit": {
       "title": "WaterKit",
       "lead": "围绕 UI 的平台能力：每种能力一个 Rust API，每个平台一份原生实现。",
-      "items": [
-        "相机",
-        "定位",
-        "通知",
-        "权限",
-        "生物识别",
-        "Passkey",
-        "蓝牙",
-        "NFC",
-        "触感反馈",
-        "剪贴板",
-        "通讯录",
-        "日历",
-        "健康",
-        "传感器",
-        "安全存储",
-        "分享面板",
-        "语音",
-        "深层链接",
-        "对话框",
-        "文件系统",
-        "音频",
-        "视频",
-        "屏幕",
-        "后台任务",
-        "系统信息"
-      ],
-      "figure": "WaterKit，每种能力一个 Rust API"
+      "items": {
+        "camera": "相机",
+        "location": "定位",
+        "notifications": "通知",
+        "permissions": "权限",
+        "biometrics": "生物识别",
+        "passkeys": "Passkey",
+        "bluetooth": "蓝牙",
+        "nfc": "NFC",
+        "haptics": "触感反馈",
+        "clipboard": "剪贴板",
+        "contacts": "通讯录",
+        "calendar": "日历",
+        "health": "健康",
+        "sensors": "传感器",
+        "secureStorage": "安全存储",
+        "share": "分享面板",
+        "speech": "语音",
+        "deepLinks": "深层链接",
+        "dialogs": "对话框",
+        "fileSystem": "文件系统",
+        "audio": "音频",
+        "video": "视频",
+        "screen": "屏幕",
+        "backgroundTasks": "后台任务",
+        "systemInfo": "系统信息"
+      }
     },
     "testing": {
       "title": "测试",
       "lead": "以无障碍树为基础的测试，直接在 cargo test 里对着 Hydrolysis 渲染器跑。不需要模拟器，不需要设备。交互本身就是断言，所有等待都等到运行时真正空闲，而不是 sleep。",
-      "figure": "一个语义测试，由 cargo test 运行",
       "notes": {
         "mount": "无头挂载视图",
         "query": "按无障碍标签找到它",
@@ -297,19 +283,16 @@
     "titleLine1": "该原生的地方用原生。",
     "titleLine2": "其余交给 Hydrolysis。",
     "lead": "Apple 后端把每个视图映射到 UIKit 和 AppKit。在其他所有地方——Android、桌面和 Web——Hydrolysis 自己在 GPU 上绘制同一棵视图树。",
-    "official": "官方支持",
     "experimental": "实验性",
     "experimentalNote": "可用且每晚测试，但暂未要求达到同一标准。",
     "items": {
       "apple": {
         "name": "Apple",
-        "renders": "UIKit / AppKit",
-        "platforms": "iOS、iPadOS、macOS"
+        "renders": "UIKit / AppKit"
       },
       "hydrolysis": {
         "name": "Hydrolysis",
-        "renders": "WaterUI 自有的 GPU 渲染器，基于 wgpu",
-        "platforms": "Android、macOS、Windows、Linux、Web"
+        "renders": "WaterUI 自有的 GPU 渲染器，基于 wgpu"
       },
       "gtk": {
         "name": "GTK4",
@@ -329,24 +312,19 @@
     "lead": "WaterUI 自有的渲染器。它在 GPU 上绘制完整的保留视图树，同一份代码，用于没有原生工具包可映射的地方，或者你不想用原生工具包的地方。",
     "hydrolysis": {
       "gpu": {
-        "title": "整棵树，都在 GPU 上",
-        "body": "每个视图都通过 wgpu 绘制。没有悄悄接管的 CPU 回退。"
+        "title": "整棵树，都在 GPU 上"
       },
       "platforms": {
-        "title": "桌面、Web 和 Android",
-        "body": "macOS、Windows 和 Linux 窗口，浏览器经由 WebGPU，Android 经由自己的宿主。"
+        "title": "桌面、Web 和 Android"
       },
       "frames": {
-        "title": "按 120 Hz 做预算",
-        "body": "帧按 120 Hz 显示器做预算；没有变化的窗口什么也不绘制。"
+        "title": "按 120 Hz 做预算"
       },
       "accessibility": {
-        "title": "通过它的无障碍树测试",
-        "body": "waterui-testing 查询 Hydrolysis 构建的无障碍树，所以每个 UI 测试同时也是无障碍测试。"
+        "title": "通过它的无障碍树测试"
       },
       "themes": {
-        "title": "主题是包",
-        "body": "Hydrolysis 自己不携带任何控件样式。Material 3 以独立的包发布。"
+        "title": "主题是包"
       }
     },
     "cherenkov": {

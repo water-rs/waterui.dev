@@ -19,7 +19,7 @@ export default function ExampleRunner({ example, onClose }: { example: string; o
     dialog.current?.showModal()
   }, [])
 
-  const link = 'font-mono text-[12.5px] underline underline-offset-4 hover:text-guide'
+  const link = 'text-[14.5px] font-semibold underline underline-offset-4 hover:text-guide'
   return (
     <dialog
       ref={dialog}
@@ -35,7 +35,7 @@ export default function ExampleRunner({ example, onClose }: { example: string; o
       <div className="flex h-full flex-col">
         <header className="flex flex-wrap items-center gap-x-5 gap-y-1 border-b border-rule px-4 py-3">
           <p className="font-mono text-[14px] font-semibold">{example}</p>
-          <p className="font-mono text-[12px] text-ink-2">{t('gallery.runner.caption')}</p>
+          <p className="text-[14.5px] text-ink-2">{t('gallery.runner.caption')}</p>
           <span className="ml-auto flex items-center gap-4">
             <a href={demoSource(example)} target="_blank" rel="noopener noreferrer" className={link}>
               {t('gallery.runner.source')} ↗

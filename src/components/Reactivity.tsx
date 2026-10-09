@@ -1,13 +1,18 @@
 import { useState } from 'react'
+import { ListTree, PenLine, Sigma } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import Code from './Code'
 import { Outline } from './outline'
 import { lineOf } from './snippet'
-import { Caption, Frame, Heading } from './ui'
+import { Caption, Frame, Heading, Point } from './ui'
 import counterSnippet from '../snippets/counter.rs?raw'
 import contactsSnippet from '../snippets/contacts.rs?raw'
 
-const points = ['binding', 'computed', 'collections'] as const
+const points = [
+  { id: 'binding', icon: <PenLine size={21} aria-hidden /> },
+  { id: 'computed', icon: <Sigma size={21} aria-hidden /> },
+  { id: 'collections', icon: <ListTree size={21} aria-hidden /> },
+] as const
 
 type Model = 'fine' | 'rebuild'
 
@@ -44,7 +49,7 @@ function UpdateFigure() {
 
   return (
     <figure className="flex h-full flex-col">
-      <div role="radiogroup" aria-label={t('state.figure.model')} className="flex border border-rule font-mono text-[12px]">
+      <div role="radiogroup" aria-label={t('state.figure.model')} className="flex border border-rule text-[14.5px] font-semibold">
         {(['fine', 'rebuild'] as const).map((candidate) => (
           <button
             key={candidate}
@@ -88,7 +93,7 @@ function UpdateFigure() {
         </Outline>
       </div>
 
-      <Caption tag={generation === 0 ? t('state.figure.idle') : t('state.figure.updated', { count: updated, total: VIEWS.length })}>{t('state.figure.caption')}</Caption>
+      <Caption status={generation === 0 ? t('state.figure.idle') : t('state.figure.updated', { count: updated, total: VIEWS.length })}>{t('state.figure.caption')}</Caption>
     </figure>
   )
 }
@@ -108,30 +113,26 @@ export default function Reactivity() {
   return (
     <section id="state" className="border-t border-rule py-20 md:py-28">
       <Frame>
-        <Heading number="02" label={t('state.label')} title={t('state.title')} lead={t('state.lead')} />
+        <Heading label={t('state.label')} title={t('state.title')} lead={t('state.lead')} />
 
         <div className="mt-14 grid gap-10 md:mt-20 lg:grid-cols-2 lg:gap-8">
           <UpdateFigure />
           <figure>
             <Code code={counterSnippet} language="rust" title="src/lib.rs" notes={counterNotes} />
-            <Caption>{t('state.figureCounter')}</Caption>
           </figure>
         </div>
 
         <div className="mt-16 grid gap-10 lg:grid-cols-12 lg:gap-8">
           <figure className="lg:col-span-7">
             <Code code={contactsSnippet} language="rust" title="contacts.rs" notes={contactsNotes} />
-            <Caption>{t('state.figureContacts')}</Caption>
           </figure>
-          <ol className="flex flex-col lg:col-span-5">
-            {points.map((point, index) => (
-              <li key={point} className="border-t border-rule py-5 first:pt-0 first:border-t-0 lg:first:pt-1">
-                <p className="font-mono text-[12px] text-guide">0{index + 1}</p>
-                <h3 className="mt-2 text-[19px] leading-tight font-semibold tracking-[-0.01em]">{t(`state.points.${point}.title`)}</h3>
-                <p className="mt-1.5 text-[15.5px] leading-relaxed text-ink-2">{t(`state.points.${point}.body`)}</p>
-              </li>
+          <ul className="flex flex-col gap-8 lg:col-span-5 lg:pt-1">
+            {points.map((point) => (
+              <Point key={point.id} icon={point.icon} title={t(`state.points.${point.id}.title`)}>
+                {t(`state.points.${point.id}.body`)}
+              </Point>
             ))}
-          </ol>
+          </ul>
         </div>
       </Frame>
     </section>
