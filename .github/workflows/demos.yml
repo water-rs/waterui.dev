@@ -135,6 +135,13 @@ jobs:
         with:
           tool: wasm-pack@${{ env.WASM_PACK_VERSION }}
 
+      # Remote fonts the examples declare, keyed by the declarations so a
+      # changed face is fetched again; `water fetch` verifies each digest.
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/waterui/fonts
+          key: fonts-${{ hashFiles('waterui/examples/*/Water.toml') }}
+
       - uses: actions/download-artifact@v4
         with:
           name: water-cli
