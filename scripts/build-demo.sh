@@ -26,6 +26,11 @@ if [ ! -f "$project_dir/Water.toml" ]; then
   exit 1
 fi
 
+# Packaging never touches the network: remote assets the example declares,
+# such as its web fonts, are downloaded (and checked against their pinned
+# digests) by `water fetch` first.
+water fetch --backend hydrolysis --path "$project_dir"
+
 water package \
   --platform web \
   --backend hydrolysis \
