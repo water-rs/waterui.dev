@@ -1,5 +1,5 @@
 {
-  "waterui": "60aecf05480597399952a42146b8ecdfc2ec87a2",
+  "waterui": "cbe8809aff24b3adc9ecb977c5ff4ba3d85221c3",
   "examples": [
     "gallery",
     "form",
@@ -32,11 +32,11 @@
     "edge_text",
     "waterkit_camera_filters",
     "video_player",
-    "webview"
+    "webview",
+    "map"
   ],
   "blocked": {
     "flow_markdown": 1349,
-    "map": 2366,
     "markdown": 1349
   },
   "desktopOnly": [
