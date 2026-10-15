@@ -28,6 +28,21 @@ export function Phone({ capture, camera = false, className }: { capture: Capture
   )
 }
 
+/**
+ * A tablet: the even, narrow bezel and rounded screen of an iPad Pro, held in
+ * portrait, so its front camera sits midway down the long edge.
+ */
+export function Tablet({ capture, className }: { capture: Capture; className: string }) {
+  return (
+    <div className={`absolute rounded-[7%/4.9%] bg-[#101114] ring-1 ring-black/50 ${shadow} ${className}`}>
+      <div className="p-[3.6%]">
+        <img src={capture.src} alt={capture.alt} className="block w-full rounded-[4%/2.8%] bg-white" style={{ aspectRatio: capture.aspect }} />
+      </div>
+      <span className="absolute top-1/2 right-[1.4%] aspect-square w-[1.4%] -translate-y-1/2 rounded-full bg-[#1d1f24]" aria-hidden />
+    </div>
+  )
+}
+
 /** A laptop: the window capture on a desktop wallpaper, inside the lid, on a base. */
 export function Laptop({ capture, className }: { capture: Capture; className: string }) {
   return (
