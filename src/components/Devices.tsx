@@ -32,7 +32,8 @@ export function Phone({ capture, camera = false, className }: { capture: Capture
 export function Laptop({ capture, className }: { capture: Capture; className: string }) {
   return (
     <div className={`absolute ${className}`}>
-      <div className={`rounded-t-[2.1%/3.4%] bg-[#0c0d10] p-[1.5%] pb-[2.1%] ring-1 ring-black/60 ${shadow}`}>
+      {/* The aluminium rim around the black bezel keeps the lid's outline readable on a dark page. */}
+      <div className={`rounded-t-[2.1%/3.4%] bg-[#0c0d10] p-[1.5%] pb-[2.1%] ring-[0.3cqw] ring-[#a7a9b0] ${shadow}`}>
         <div className="relative aspect-[16/10] overflow-hidden bg-[linear-gradient(135deg,#b9c6f2_0%,#dcd6ef_45%,#f1d6c4_100%)]">
           <img
             src={capture.src}
