@@ -43,7 +43,11 @@ export function Tablet({ capture, className }: { capture: Capture; className: st
   )
 }
 
-/** A laptop: the window capture on a desktop wallpaper, inside the lid, on a base. */
+/**
+ * A laptop: the window capture on a desktop wallpaper, inside the lid, on a
+ * base. The window sits on the left of the desktop, so a device standing in
+ * front of the lid's right side leaves it uncovered.
+ */
 export function Laptop({ capture, className }: { capture: Capture; className: string }) {
   return (
     <div className={`absolute ${className}`}>
@@ -53,7 +57,7 @@ export function Laptop({ capture, className }: { capture: Capture; className: st
           <img
             src={capture.src}
             alt={capture.alt}
-            className="absolute top-[6%] left-1/2 w-[70%] -translate-x-1/2 rounded-[0.8%] shadow-[0_1cqw_2.4cqw_-0.6cqw_rgb(0_0_0/0.45)]"
+            className="absolute top-[6%] left-[4%] w-[60%] rounded-[0.8%] shadow-[0_1cqw_2.4cqw_-0.6cqw_rgb(0_0_0/0.45)]"
             style={{ aspectRatio: capture.aspect }}
           />
         </div>
@@ -61,21 +65,6 @@ export function Laptop({ capture, className }: { capture: Capture; className: st
       <div className="relative -mx-[4%] aspect-[100/2.2] rounded-b-[50%/100%] bg-[linear-gradient(#e2e3e7,#a7a9b0)] shadow-[0_1.2cqw_2cqw_-1cqw_rgb(0_0_0/0.5)]">
         <span className="absolute top-0 left-1/2 h-[35%] w-[13%] -translate-x-1/2 rounded-b-[40%] bg-[#9a9ca3]" aria-hidden />
       </div>
-    </div>
-  )
-}
-
-/** A browser window: tab strip and address bar above the page capture. */
-export function Browser({ capture, url, className }: { capture: Capture; url: string; className: string }) {
-  return (
-    <div className={`@container absolute overflow-hidden rounded-[2.2%/3.2%] bg-white ring-1 ring-black/20 ${shadow} ${className}`}>
-      <div className="flex h-[7cqw] items-center gap-[1.3cqw] bg-[#e9eaee] px-[2.6cqw]">
-        {['#ff5f57', '#febc2e', '#28c840'].map((color) => (
-          <span key={color} className="size-[1.8cqw] rounded-full" style={{ backgroundColor: color }} aria-hidden />
-        ))}
-        <span className="mx-auto flex h-[4.4cqw] w-[58%] items-center justify-center rounded-full bg-white font-mono text-[2.4cqw] text-[#5b5f68]">{url}</span>
-      </div>
-      <img src={capture.src} alt={capture.alt} className="block w-full" style={{ aspectRatio: capture.aspect }} />
     </div>
   )
 }
