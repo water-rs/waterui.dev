@@ -1,24 +1,22 @@
 import { useTranslation } from 'react-i18next'
 import Terminal from './Terminal'
-import { Browser, Laptop, Phone, Stage } from './Devices'
+import { Laptop, Phone, Stage, Tablet } from './Devices'
 import { PlatformIcon, type PlatformId } from './icons'
 import { Frame, PrimaryLink, SecondaryLink } from './ui'
 import installCommand from '../snippets/install.sh?raw'
 
 /** The `form` example's settled first frame on each device, each drawn by the backend that ships there. */
 const captures = {
-  ios: { src: '/examples/ios/form.webp', aspect: 1206 / 2622 },
+  ipados: { src: '/hero/ipad-form.webp', aspect: 2420 / 1668 },
   android: { src: '/hero/android-form.webp', aspect: 960 / 2142 },
   macos: { src: '/examples/macos/form.webp', aspect: 800 / 632 },
-  web: { src: '/examples/hydrolysis/form.webp', aspect: 800 / 600 },
 } as const
 
 /** Each device of the stage, left to right, with the platform it stands for and the backend that drew it. */
 const devices: { id: keyof typeof captures; icon: PlatformId; platform: string; backend: string }[] = [
-  { id: 'ios', icon: 'apple', platform: 'iOS', backend: 'UIKit' },
+  { id: 'ipados', icon: 'apple', platform: 'iPadOS', backend: 'UIKit' },
   { id: 'android', icon: 'android', platform: 'Android', backend: 'Hydrolysis' },
   { id: 'macos', icon: 'apple', platform: 'macOS', backend: 'AppKit' },
-  { id: 'web', icon: 'web', platform: 'Web', backend: 'Hydrolysis' },
 ]
 
 export default function Hero() {
@@ -59,12 +57,11 @@ export default function Hero() {
         </div>
 
         <figure className="mt-16 md:mt-24">
-          {/* Wide screens set the four devices side by side; phones stack the phones in front, larger. */}
-          <Stage className="aspect-[100/112] sm:aspect-[100/64]">
-            <Laptop capture={capture('macos')} className="top-0 left-[6cqw] w-[88cqw] sm:left-[17cqw] sm:w-[66cqw]" />
-            <Browser capture={capture('web')} url="waterui.dev/demo/form" className="top-[40cqw] left-[38cqw] w-[62cqw] sm:top-[29cqw] sm:left-[58cqw] sm:w-[42cqw]" />
-            <Phone capture={capture('ios')} className="top-[38cqw] left-[1cqw] w-[29cqw] sm:top-[18cqw] sm:left-[1cqw] sm:w-[17cqw]" />
-            <Phone capture={capture('android')} camera className="top-[42cqw] left-[32cqw] w-[29cqw] sm:top-[26cqw] sm:left-[20cqw] sm:w-[17cqw]" />
+          {/* Wide screens set the three devices side by side; phones stack the handhelds in front, larger. */}
+          <Stage className="aspect-[100/104] sm:aspect-[100/60]">
+            <Laptop capture={capture('macos')} className="top-0 left-[6cqw] w-[88cqw] sm:left-[22cqw] sm:w-[64cqw]" />
+            <Tablet capture={capture('ipados')} className="top-[47cqw] left-[1cqw] w-[66cqw] sm:top-[26cqw] sm:left-[2cqw] sm:w-[40cqw]" />
+            <Phone capture={capture('android')} camera className="top-[50cqw] left-[72cqw] w-[24cqw] sm:top-[23cqw] sm:left-[81cqw] sm:w-[16cqw]" />
           </Stage>
           <figcaption className="mt-8 flex flex-col items-center gap-5 md:mt-10">
             <ul className="flex flex-wrap justify-center gap-2.5">
