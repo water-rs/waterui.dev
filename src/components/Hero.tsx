@@ -14,9 +14,9 @@ const captures = {
 
 /** Each device of the stage, left to right, with the platform it stands for and the backend that drew it. */
 const devices: { id: keyof typeof captures; icon: PlatformId; platform: string; backend: string }[] = [
+  { id: 'macos', icon: 'apple', platform: 'macOS', backend: 'AppKit' },
   { id: 'ipados', icon: 'apple', platform: 'iPadOS', backend: 'UIKit' },
   { id: 'android', icon: 'android', platform: 'Android', backend: 'Hydrolysis' },
-  { id: 'macos', icon: 'apple', platform: 'macOS', backend: 'AppKit' },
 ]
 
 export default function Hero() {
@@ -57,11 +57,11 @@ export default function Hero() {
         </div>
 
         <figure className="mt-16 md:mt-24">
-          {/* Wide screens set the three devices side by side; phones stack the handhelds in front, larger. */}
-          <Stage className="aspect-[100/104] sm:aspect-[100/60]">
-            <Laptop capture={capture('macos')} className="top-0 left-[6cqw] w-[88cqw] sm:left-[22cqw] sm:w-[64cqw]" />
-            <Tablet capture={capture('ipados')} className="top-[47cqw] left-[1cqw] w-[66cqw] sm:top-[26cqw] sm:left-[2cqw] sm:w-[40cqw]" />
-            <Phone capture={capture('android')} camera className="top-[50cqw] left-[72cqw] w-[24cqw] sm:top-[23cqw] sm:left-[81cqw] sm:w-[16cqw]" />
+          {/* The devices stand on one baseline: the laptop behind, the tablet in front of its right side, the phone at the tablet's edge. */}
+          <Stage className="aspect-[100/43]">
+            <Laptop capture={capture('macos')} className="bottom-[1.5cqw] left-[5cqw] w-[60cqw]" />
+            <Tablet capture={capture('ipados')} className="bottom-[1.5cqw] left-[42cqw] w-[44cqw]" />
+            <Phone capture={capture('android')} camera className="bottom-[1.5cqw] left-[84cqw] w-[13cqw]" />
           </Stage>
           <figcaption className="mt-8 flex flex-col items-center gap-5 md:mt-10">
             <ul className="flex flex-wrap justify-center gap-2.5">
