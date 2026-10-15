@@ -33,8 +33,8 @@ export function Laptop({ capture, className }: { capture: Capture; className: st
   return (
     <div className={`absolute ${className}`}>
       {/* The aluminium rim around the black bezel keeps the lid's outline readable on a dark page. */}
-      <div className={`rounded-t-[2.1%/3.4%] bg-[#0c0d10] p-[1.5%] pb-[2.1%] ring-[0.3cqw] ring-[#a7a9b0] ${shadow}`}>
-        <div className="relative aspect-[16/10] overflow-hidden bg-[linear-gradient(135deg,#b9c6f2_0%,#dcd6ef_45%,#f1d6c4_100%)]">
+      <div className={`rounded-t-[2.1%_3.4%] bg-[#0c0d10] p-[1.5%] pb-[2.1%] ring-[0.3cqw] ring-[#a7a9b0] ${shadow}`}>
+        <div className="relative aspect-[16/10] overflow-hidden rounded-t-[1.1%_1.75%] bg-[linear-gradient(135deg,#b9c6f2_0%,#dcd6ef_45%,#f1d6c4_100%)]">
           <img
             src={capture.src}
             alt={capture.alt}
