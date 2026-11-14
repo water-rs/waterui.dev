@@ -47,7 +47,7 @@ export function shotUrl(backend: BackendId, id: string): string {
 }
 
 export function sourceUrl(example: Example): string {
-  return example.source ?? `https://github.com/water-rs/waterui/tree/dev/examples/${example.id}`
+  return example.source ?? `https://github.com/water-rs/waterui/tree/main/examples/${example.id}`
 }
 
 type Native = Exclude<BackendId, 'hydrolysis'>
@@ -101,7 +101,7 @@ export const examples: Example[] = [
     const capture = nativeCaptures(id)
     return example(id, capture.captured, capture.withheld)
   }),
-  example('liquid_glass', APPLE, {}, 'https://github.com/water-rs/apple-backend/tree/dev/Examples/liquid_glass'),
+  example('liquid_glass', APPLE, {}, 'https://github.com/water-rs/waterui/tree/main/backends/apple/Examples/liquid_glass'),
 ]
 
 /** The examples that cannot run in a browser: they embed a desktop browser engine. */

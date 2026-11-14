@@ -107,7 +107,7 @@ export default function Engine() {
                 <Point key={point.id} icon={point.icon} title={t(`engine.hydrolysis.${point.id}.title`)} />
               ))}
             </ul>
-            <a href="https://github.com/water-rs/waterui/tree/dev/backends/hydrolysis" target="_blank" rel="noopener noreferrer" className="mt-8 inline-block text-[16px] font-semibold underline underline-offset-4 hover:text-guide">
+            <a href="https://github.com/water-rs/waterui/tree/main/backends/hydrolysis" target="_blank" rel="noopener noreferrer" className="mt-8 inline-block text-[16px] font-semibold underline underline-offset-4 hover:text-guide">
               backends/hydrolysis ↗
             </a>
           </div>
@@ -127,7 +127,7 @@ export default function Engine() {
             </ul>
             <p className="mt-12 border-t border-rule pt-5 text-[16px] leading-relaxed text-ink-2">
               {t('engine.cherenkov.status')}{' '}
-              <a href="https://github.com/water-rs/waterui/tree/dev/graphics/cherenkov" target="_blank" rel="noopener noreferrer" className="font-semibold whitespace-nowrap text-ink underline underline-offset-4 hover:text-guide">
+              <a href="https://github.com/water-rs/waterui/tree/main/graphics/cherenkov" target="_blank" rel="noopener noreferrer" className="font-semibold whitespace-nowrap text-ink underline underline-offset-4 hover:text-guide">
                 graphics/cherenkov ↗
               </a>
             </p>

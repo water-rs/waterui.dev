@@ -149,7 +149,7 @@ export default function Gallery() {
           <div className="lg:col-span-4">
             <h3 className="text-[22px] font-semibold tracking-[-0.01em]">{t('gallery.runOne')}</h3>
             <div className="mt-4">
-              <PrimaryLink href="https://github.com/water-rs/waterui/tree/dev/examples" external>
+              <PrimaryLink href="https://github.com/water-rs/waterui/tree/main/examples" external>
                 {t('gallery.viewAll')} ↗
               </PrimaryLink>
             </div>
